@@ -45,7 +45,10 @@ public class PlayerController : MonoBehaviour
 
         //ensure that the player only moves on x and z axis
         contMovement = controlled.trans.InverseTransformDirection(contMovement);
+        
+        
 
+        //use run speed/animation if  the shift key is pressed while moving, otherwise use the walking speed
         if (Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift))
         {
             controlled.MovePlayer(contMovement, runSpeed);
@@ -54,5 +57,12 @@ public class PlayerController : MonoBehaviour
         {
             controlled.MovePlayer(contMovement, walkSpeed);
         }
+
+        //jump when you press space key
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            controlled.Jump();
+        }
+        
     }
 }

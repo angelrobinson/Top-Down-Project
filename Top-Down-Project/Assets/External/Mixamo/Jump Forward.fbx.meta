@@ -1,11 +1,11 @@
 fileFormatVersion: 2
-guid: 6aece0b98b3b37a4b9fd1abc5199ff84
+guid: b8a7db37283aad7419786c1f6ee70457
 ModelImporter:
   serializedVersion: 25
   internalIDToNameTable:
   - first:
       74: -203655887218126122
-    second: Jump_In_Place
+    second: mixamo.com
   externalObjects: {}
   materials:
     importMaterials: 1
@@ -19,7 +19,13 @@ ModelImporter:
     optimizeGameObjects: 0
     motionNodeName: 
     rigImportErrors: 
-    rigImportWarnings: 
+    rigImportWarnings: "Copied Avatar Rig Configuration mis-match. Bone length in
+      copied configuration does not match position in animation file:\n\t'LeftUpLeg'
+      : position error = 38.127270 mm\n\t'LeftLeg' : position error = 132.297913 mm\n\t'LeftFoot'
+      : position error = 117.310654 mm\n\t'LeftToeBase' : position error = 45.042683
+      mm\n\t'RightUpLeg' : position error = 39.011078 mm\n\t'RightLeg' : position
+      error = 132.288498 mm\n\t'RightFoot' : position error = 117.320442 mm\n\t'RightToeBase'
+      : position error = 45.042683 mm\n"
     animationImportErrors: 
     animationImportWarnings: 
     animationRetargetingWarnings: 
@@ -35,11 +41,11 @@ ModelImporter:
     extraUserProperties: []
     clipAnimations:
     - serializedVersion: 16
-      name: Jump_In_Place
+      name: Jump_Forward
       takeName: mixamo.com
       internalID: -203655887218126122
       firstFrame: 0
-      lastFrame: 47
+      lastFrame: 30
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
@@ -49,7 +55,7 @@ ModelImporter:
       loopTime: 0
       loopBlend: 0
       loopBlendOrientation: 1
-      loopBlendPositionY: 0
+      loopBlendPositionY: 1
       loopBlendPositionXZ: 0
       keepOriginalOrientation: 1
       keepOriginalPositionY: 1

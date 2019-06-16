@@ -13,6 +13,8 @@ public class FollowPlayer : MonoBehaviour
     void Start()
     {
         trans = GetComponent<Transform>();
+
+        //if no offset is input into the inspector, it will default to starting position Vector of the object that it is attached to
         if (offset == Vector3.zero)
         {
             offset = trans.position;
@@ -24,7 +26,7 @@ public class FollowPlayer : MonoBehaviour
     void Update()
     {
         
-        //cameraTargetPosition = Vector3.ClampMagnitude(cameraTargetPosition, 1.0f);
+        //move the camera to the offset position related to the target and look at the target
         trans.position = lookAtTarget.position + offset;
         trans.LookAt(lookAtTarget);
 

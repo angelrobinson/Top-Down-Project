@@ -21,14 +21,29 @@ public class Player : MonoBehaviour
     }
 
 
+
     public void MovePlayer(Vector3 direction, float speed)
     {
         anim.SetFloat("Vertical", direction.z * speed);
         anim.SetFloat("Horizontal", direction.x * speed);
+        anim.SetBool("IsMoving", true);
     }
 
     public void TurnPlayer(Vector3 target)
     {
         trans.LookAt(target);
+    }
+
+    public void Jump()
+    {
+        if (anim.GetBool("IsMoving") == true)
+        {
+            anim.SetTrigger("RunJump");
+        }
+        else
+        {
+            anim.SetTrigger("Jump");
+        }
+
     }
 }
