@@ -32,6 +32,8 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        FindMouseLocation();
+        
         Movement();
     }
 
@@ -63,6 +65,20 @@ public class PlayerController : MonoBehaviour
         {
             controlled.Jump();
         }
+        
+    }
+
+    private void FindMouseLocation()
+    {
+        Plane plane = new Plane(Vector3.up, transform.position);
+        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+        float distance;
+        if (plane.Raycast(ray, out distance))
+        {
+            //transform.position = ray.GetPoint(distance);
+            controlled.TurnPlayer(ray.GetPoint(distance));
+        }
+
         
     }
 }
