@@ -47,8 +47,12 @@ public class PlayerController : MonoBehaviour
 
         //ensure that the player only moves on x and z axis
         contMovement = controlled.trans.InverseTransformDirection(contMovement);
-        
-        
+
+        //check to see if player is moving and if so set animation bool to true as to call the correct jum animation when triggered
+        if (contMovement.x != 0 || contMovement.z != 0)
+        {
+            controlled.anim.SetBool("IsMoving", true);
+        }
 
         //use run speed/animation if  the shift key is pressed while moving, otherwise use the walking speed
         if (Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift))
@@ -70,12 +74,16 @@ public class PlayerController : MonoBehaviour
 
     private void FindMouseLocation()
     {
+        //create invisible plane to attach to the mouse position
         Plane plane = new Plane(Vector3.up, transform.position);
+
+        //create a ray from camera to mouse position
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+
+        //calculate distance from camera to the plane that the ray hit
         float distance;
         if (plane.Raycast(ray, out distance))
-        {
-            //transform.position = ray.GetPoint(distance);
+        {            
             controlled.TurnPlayer(ray.GetPoint(distance));
         }
 
