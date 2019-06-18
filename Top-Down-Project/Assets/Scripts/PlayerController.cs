@@ -46,12 +46,12 @@ public class PlayerController : MonoBehaviour
         contMovement = Vector3.ClampMagnitude(contMovement, 1);
 
         //ensure that the player only moves on x and z axis
-        contMovement = controlled.trans.InverseTransformDirection(contMovement);
+        contMovement = controlled.transform.InverseTransformDirection(contMovement);
 
         //check to see if player is moving and if so set animation bool to true as to call the correct jum animation when triggered
         if (contMovement.x != 0 || contMovement.z != 0)
         {
-            controlled.anim.SetBool("IsMoving", true);
+            controlled.CharAnimator.SetBool("IsMoving", true);
         }
 
         //use run speed/animation if  the shift key is pressed while moving, otherwise use the walking speed
