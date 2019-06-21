@@ -138,7 +138,7 @@ public class PlayerController : MonoBehaviour
         if (!controlled.currentWeapon)
             return;
 
-        Weapon current = controlled.currentWeapon.GetComponent<Weapon>();
+        Weapon current = controlled.currentWeapon.GetComponent<ProjectileWeapon>();
 
         if (current.RightHandIK)
         {

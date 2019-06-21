@@ -18,10 +18,6 @@ public class Player : Character
 
     [Header("Equipment")]
     public GameObject currentWeapon;
-    public Weapon noWeapon;
-    public ProjectileWeapon shotgun;
-    public ProjectileWeapon oneHanded;
-    public ProjectileWeapon rifle;
     public GameObject weaponHolder;
 
     #region Properties
@@ -111,7 +107,7 @@ public class Player : Character
         if (currentWeapon)
         {
             GameObject temp = currentWeapon;
-            DestroyImmediate(temp.gameObject);
+            Destroy(temp.gameObject);
 
         }
 

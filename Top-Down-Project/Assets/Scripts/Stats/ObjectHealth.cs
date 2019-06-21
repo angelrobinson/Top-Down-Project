@@ -8,20 +8,22 @@ public class ObjectHealth : MonoBehaviour
     [SerializeField] int _maxHealth;
     [SerializeField] int _currentHealth;
 
-    private void Awake()
-    {
-        //set initial amount of health
-        Health = MaxHealth;
-    }
+
 
     #region Properties
+
+    /// <summary>
+    /// gets percentage of current health compared to max health
+    /// </summary>
+    public float HealthPercent { get { return Health / MaxHealth; } }
+    
     /// <summary>
     /// can't be zero as that would mean the object is always dead
     /// normally this would be set on game start (i.e. in inspector),
     /// but if we decide to include character leveling and want to increase max health pool, 
     /// this is where it would be
     /// </summary>
-    protected int MaxHealth
+    public int MaxHealth
     {
         get { return _maxHealth; }
         private set
@@ -44,7 +46,7 @@ public class ObjectHealth : MonoBehaviour
     /// if a value higher than the maxhealth pool, the current health will default to the max health
     /// If wanting to adjust the current health based off of  damage or healing, you need to do this from a helper method
     /// </summary>
-    protected int Health
+    public int Health
     {
         get { return _currentHealth; }
         private set
@@ -65,6 +67,12 @@ public class ObjectHealth : MonoBehaviour
         }
     }
     #endregion
+
+    private void Awake()
+    {
+        //set initial amount of health
+        Health = MaxHealth;
+    }
 
     #region Helper Methods
     /// <summary>
