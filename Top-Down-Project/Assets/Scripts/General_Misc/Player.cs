@@ -21,7 +21,7 @@ public class Player : Character
     public GameObject weaponHolder;
 
     #region Properties
-    public float Stamina   
+    public float Stamina
     {
         get { return _stamina; }
         set

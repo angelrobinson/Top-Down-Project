@@ -15,7 +15,7 @@ public class ObjectHealth : MonoBehaviour
     /// <summary>
     /// gets percentage of current health compared to max health
     /// </summary>
-    public float HealthPercent { get { return Health / MaxHealth; } }
+    //public float HealthPercent { get { return Health / MaxHealth; } }
     
     /// <summary>
     /// can't be zero as that would mean the object is always dead
@@ -148,5 +148,7 @@ public class ObjectHealth : MonoBehaviour
         //add the new amount to the MaxHealth
         MaxHealth += (int) changeAmt;
     }
+
+    public float HealthPercent() {  return (float)Health / MaxHealth * 100; } 
     #endregion
 }

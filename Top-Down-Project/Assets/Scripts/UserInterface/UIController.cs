@@ -11,15 +11,15 @@ public class UIController : MonoBehaviour
     [SerializeField] Text healthPercent;
 
     //Variables-Properties
-    Player playerHealth;
+    public ObjectHealth playerHealth;
 
     private void Awake()
     {
         //find the game object with the tag "Player" and get the health coponent
-        playerHealth = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
+        playerHealth = GameObject.FindGameObjectWithTag("Player").GetComponent<ObjectHealth>();
     }
     // Update is called once per frame
-    void FixedUpdate()
+    void Update()
     {
         //press escape to bring up popup panel
         if (Input.GetKeyDown(KeyCode.Escape))
@@ -27,11 +27,7 @@ public class UIController : MonoBehaviour
             panel.SetActive(true);
         }
 
-        Debug.Log("health: " + playerHealth.Health.Health);
-        Debug.Log("Max: " + playerHealth.Health.MaxHealth);
-        Debug.Log("Health %: " + playerHealth.Health.HealthPercent);
-        //healthPercent.text = string.Format("Health: {0}%", Mathf.RoundToInt(playerHealth.HealthPercent * 100f));
-        healthPercent.text = string.Format("Health: {0}%", playerHealth.Health.HealthPercent * 100f);
+        healthPercent.text = string.Format("Health: {0}/{1} : {2}%", playerHealth.Health, playerHealth.MaxHealth, playerHealth.HealthPercent().ToString());
     }
 
     

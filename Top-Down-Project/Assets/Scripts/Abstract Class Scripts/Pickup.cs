@@ -27,15 +27,9 @@ public abstract class Pickup : MonoBehaviour
 
     // Update is called once per frame
     void Update()
-    {        
-        //rotate the object on the Y axis
-        //transform.Rotate(Vector3.up, 0.25f, Space.Self);
-
-        //rotate the object based off of a Vector3 eulers
-        
-        transform.Rotate(rotation, Space.World);
-        //transform.Rotate(0.12f, 0.25f, 0.35f, Space.Self);
-        
+    {  
+        //rotate object with the given vector that was put in the inspector
+        transform.Rotate(rotation, Space.World);        
     }
 
     /// <summary>
@@ -44,7 +38,6 @@ public abstract class Pickup : MonoBehaviour
     /// <param name="collider">the collider that enters this objects trigger collider</param>
     protected void OnTriggerEnter(Collider collider)
     {
-        Debug.Log("Collided with: " + collider.name);
         //check to see if other collider has the Player script on it as a component
         Player player = collider.GetComponent<Player>();
         if (player)
