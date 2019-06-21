@@ -34,6 +34,7 @@ Transform:
   m_LocalScale: {x: 1.25, y: 1.25, z: 1.25}
   m_Children:
   - {fileID: 6710715172827219480}
+  - {fileID: 3374464635755538026}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -98,9 +99,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 88affc4534cc2f743850eeda1bbbbc55, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  controlled: {fileID: 0}
   walkSpeed: 4
   runSpeed: 8
+  isBuffed: 0
+  buffType: 0
+  buffTime: 0
 --- !u!114 &1755149499668211235
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -130,6 +133,42 @@ MonoBehaviour:
   anim: {fileID: 0}
   _speed: 0
   _stamina: 0
+  currentWeapon: {fileID: 0}
+  noWeapon: {fileID: 0}
+  shotgun: {fileID: 0}
+  oneHanded: {fileID: 0}
+  rifle: {fileID: 0}
+  weaponHolder: {fileID: 3374464635755538026}
+--- !u!1 &4395077554588753510
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3374464635755538026}
+  m_Layer: 0
+  m_Name: WeaponSpawn
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3374464635755538026
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4395077554588753510}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.045, y: 0.976, z: 0.28}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1755149499668211240}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1755149499017817346
 PrefabInstance:
   m_ObjectHideFlags: 0

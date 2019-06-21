@@ -132,4 +132,53 @@ public class PlayerController : MonoBehaviour
 
         
     }
+
+    protected virtual void OnAnimatorIK()
+    {
+        if (!controlled.currentWeapon)
+            return;
+
+        Weapon current = controlled.currentWeapon.GetComponent<Weapon>();
+
+        if (current.RightHandIK)
+        {
+            controlled.CharAnimator.SetIKPosition(AvatarIKGoal.RightHand, current.RightHandIK.position);
+            controlled.CharAnimator.SetIKPositionWeight(AvatarIKGoal.RightHand, 1f);
+            controlled.CharAnimator.SetIKRotation(AvatarIKGoal.RightHand, current.RightHandIK.rotation);
+            controlled.CharAnimator.SetIKRotationWeight(AvatarIKGoal.RightHand, 1f);
+
+            if (current.RightElbowHint)
+            {
+                controlled.CharAnimator.SetIKHintPosition(AvatarIKHint.RightElbow, current.RightElbowHint.position);
+                controlled.CharAnimator.SetIKHintPositionWeight(AvatarIKHint.RightElbow, 1f);
+            }
+
+            
+            
+        }
+        else
+        {
+            controlled.CharAnimator.SetIKPositionWeight(AvatarIKGoal.RightHand, 0f);
+            controlled.CharAnimator.SetIKRotationWeight(AvatarIKGoal.RightHand, 0f);
+        }
+
+        if (current.LeftHandIK)
+        {
+            controlled.CharAnimator.SetIKPosition(AvatarIKGoal.LeftHand, current.LeftHandIK.position);
+            controlled.CharAnimator.SetIKPositionWeight(AvatarIKGoal.LeftHand, 1f);
+            controlled.CharAnimator.SetIKRotation(AvatarIKGoal.LeftHand, current.LeftHandIK.rotation);
+            controlled.CharAnimator.SetIKRotationWeight(AvatarIKGoal.LeftHand, 1f);
+
+            if (current.LeftElbowHint)
+            {
+                controlled.CharAnimator.SetIKHintPosition(AvatarIKHint.LeftElbow, current.LeftElbowHint.position);
+                controlled.CharAnimator.SetIKHintPositionWeight(AvatarIKHint.LeftElbow, 1f);
+            }
+        }
+        else
+        {
+            controlled.CharAnimator.SetIKPositionWeight(AvatarIKGoal.LeftHand, 0f);
+            controlled.CharAnimator.SetIKRotationWeight(AvatarIKGoal.LeftHand, 0f);
+        }
+    }
 }

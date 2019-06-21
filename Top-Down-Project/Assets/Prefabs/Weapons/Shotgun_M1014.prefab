@@ -54,7 +54,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1991113813}
   m_LocalRotation: {x: -0.058574833, y: -0.15933147, z: -0.8239517, w: 0.5406349}
-  m_LocalPosition: {x: 0.0249, y: -0.0755, z: -0.3172}
+  m_LocalPosition: {x: 0.036, y: -0.069, z: -0.278}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 8553420908090479287}
@@ -118,11 +118,12 @@ Transform:
   m_GameObject: {fileID: 4677132419079807140}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.8, y: 0.8, z: 0.6}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1991113814}
   - {fileID: 247700180}
   - {fileID: 8532197241155254958}
+  - {fileID: 4223792335567127195}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -183,12 +184,45 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ff5bd76644bf77346bb2288c5cf9c065, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  weaponState: 0
-  LeftHandIK: {fileID: 0}
-  RightHandIK: {fileID: 0}
-  bulletPrefab: {fileID: 0}
-  barrel: {fileID: 0}
-  damage: 0
-  bulletVelocity: 0
-  shotsPerMinute: 0
+  weaponState: 1
+  LeftHandIK: {fileID: 247700180}
+  RightHandIK: {fileID: 1991113814}
+  RightElbowHint: {fileID: 4223792335567127195}
+  LeftElbowHint: {fileID: 0}
+  bulletPrefab: {fileID: 6199804028842390987, guid: 01ae1143eb3185447b85ecccdc9cc99c,
+    type: 3}
+  barrel: {fileID: 8532197241155254958}
+  damage: 10
+  bulletVelocity: 10
+  shotsPerMinute: 200
   canshoot: 1
+--- !u!1 &5487670726168444795
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4223792335567127195}
+  m_Layer: 0
+  m_Name: RHHintIK
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4223792335567127195
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5487670726168444795}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.099, y: -0.086, z: -0.472}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 8553420908090479287}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

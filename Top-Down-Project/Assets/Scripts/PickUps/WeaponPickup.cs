@@ -24,6 +24,7 @@ public class WeaponPickup : Pickup
     protected override void OnPickUp(Player player)
     {
         //instantiate in the weapon placement on player
+        player.EquipWeapon(weapon);
         //if there is already a weapon equipped, swap them out (Or, have an inventory and a swap button)
         base.OnPickUp(player);
     }

@@ -3105,6 +3105,12 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1655149941}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &1682603321 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4395077554588753510, guid: 8d03db4d86e2f744abc50a2a96abcab2,
+    type: 3}
+  m_PrefabInstance: {fileID: 1755149499537721152}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1699272795
 GameObject:
   m_ObjectHideFlags: 0
@@ -3564,6 +3570,11 @@ PrefabInstance:
       propertyPath: runSpeed
       value: 20
       objectReference: {fileID: 0}
+    - target: {fileID: 1755149499668211234, guid: 8d03db4d86e2f744abc50a2a96abcab2,
+        type: 3}
+      propertyPath: weaponHolder
+      value: 
+      objectReference: {fileID: 1682603321}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8d03db4d86e2f744abc50a2a96abcab2, type: 3}
 --- !u!1001 &3637848244099844239

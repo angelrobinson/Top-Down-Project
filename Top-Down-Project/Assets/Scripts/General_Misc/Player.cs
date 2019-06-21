@@ -11,16 +11,18 @@ public class Player : Character
     [Header("Stats")]
     [SerializeField] float _stamina;
 
-    [Header("Equipment")]
-    [SerializeField] ProjectileWeapon[] guns;
-    [SerializeField] MeleeWeapon[] melee;
-
     //[Header("Equipment")]
+    //[SerializeField] ProjectileWeapon[] guns;
+    //[SerializeField] MeleeWeapon[] melee;
     //public Weapon currentWeapon;
-    //public Weapon noWeapon;
-    //public ProjectileWeapon shotgun;
-    //public ProjectileWeapon oneHanded;
-    //public ProjectileWeapon rifle;
+
+    [Header("Equipment")]
+    public GameObject currentWeapon;
+    public Weapon noWeapon;
+    public ProjectileWeapon shotgun;
+    public ProjectileWeapon oneHanded;
+    public ProjectileWeapon rifle;
+    public GameObject weaponHolder;
 
     #region Properties
     public float Stamina   
@@ -102,5 +104,23 @@ public class Player : Character
             base.Jump();
         }
 
+    }
+
+    public void EquipWeapon(GameObject weapon)
+    {
+        if (currentWeapon)
+        {
+            GameObject temp = currentWeapon;
+            DestroyImmediate(temp.gameObject);
+
+        }
+
+        currentWeapon = Instantiate(weapon);
+        currentWeapon.transform.SetParent(weaponHolder.transform);
+        currentWeapon.transform.localPosition = weapon.transform.position;
+        currentWeapon.transform.localRotation = weapon.transform.localRotation;
+        currentWeapon.gameObject.layer = gameObject.layer;
+
+        anim.SetInteger("WeaponState", (int)weapon.GetComponent<Weapon>().weaponState);
     }
 }

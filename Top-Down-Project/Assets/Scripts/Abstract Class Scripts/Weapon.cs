@@ -17,6 +17,8 @@ public abstract class Weapon : MonoBehaviour
     [Header("Inverse Kenetics (IK) Settings")]
     public Transform LeftHandIK;
     public Transform RightHandIK;
+    public Transform RightElbowHint;
+    public Transform LeftElbowHint;
 
     public abstract void PullTrigger();
     public abstract void ReleaseTrigger();
