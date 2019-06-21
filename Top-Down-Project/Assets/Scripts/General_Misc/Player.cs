@@ -11,6 +11,10 @@ public class Player : Character
     [Header("Stats")]
     [SerializeField] float _stamina;
 
+    [Header("Equipment")]
+    [SerializeField] ProjectileWeapon[] guns;
+    [SerializeField] MeleeWeapon[] melee;
+
     //[Header("Equipment")]
     //public Weapon currentWeapon;
     //public Weapon noWeapon;
@@ -19,6 +23,20 @@ public class Player : Character
     //public ProjectileWeapon rifle;
 
     #region Properties
+    public float Stamina   
+    {
+        get { return _stamina; }
+        set
+        {
+            //can not be below 0
+            if (value < 0)
+            {
+                _stamina = 0;
+            }
+
+            _stamina = value;
+        }
+    }
     /// <summary>
     /// Use this to get and set the speed of the character
     /// when at Zero, the character can not move

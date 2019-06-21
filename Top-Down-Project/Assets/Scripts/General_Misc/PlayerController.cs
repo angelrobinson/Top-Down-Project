@@ -4,9 +4,15 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    public Player controlled;
-    public float walkSpeed;
-    public float runSpeed;
+    public enum BuffType { None, Speed } //idea:  add MaxHealth buff
+
+    Player controlled;
+    [SerializeField] float walkSpeed;
+    [SerializeField] float runSpeed;
+
+    public bool isBuffed = false;
+    public BuffType buffType = BuffType.None;
+    public float buffTime;
         
 
     // Start is called before the first frame update
@@ -30,7 +36,7 @@ public class PlayerController : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
         FindMouseLocation();
         
@@ -54,15 +60,52 @@ public class PlayerController : MonoBehaviour
             controlled.CharAnimator.SetBool("IsMoving", true);
         }
 
+        //if (isBuffed)
+        //{
+        //    switch (buffType)
+        //    {
+        //        case BuffType.None:
+        //            break;
+        //        case BuffType.Speed:
+        //            if (buffTime <= 0)
+        //            {
+        //                walkSpeed += controlled.Speed - walkSpeed;
+        //                runSpeed += controlled.Speed - runSpeed;
+        //            }
+        //            else
+        //            {
+        //                float previousWalk = walkSpeed;
+        //                float previousRun = runSpeed;
+        //                while (buffTime > 0)
+        //                {
+        //                    walkSpeed += controlled.Speed - walkSpeed;
+        //                    runSpeed += controlled.Speed - runSpeed;
+        //                }
+
+        //                walkSpeed = previousWalk;
+        //                runSpeed = previousRun;
+        //            }
+
+
+        //            break;
+        //        default:
+        //            break;
+        //    }
+        //}
+
         //use run speed/animation if  the shift key is pressed while moving, otherwise use the walking speed
         if (Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift))
         {
+            controlled.Speed = runSpeed;
             controlled.MovePlayer(contMovement, runSpeed);
-        }
+        }        
         else
         {
+            controlled.Speed = walkSpeed;
             controlled.MovePlayer(contMovement, walkSpeed);
         }
+
+        
 
         //jump when you press space key
         if (Input.GetKeyDown(KeyCode.Space))
