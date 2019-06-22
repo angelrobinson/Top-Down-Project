@@ -74,6 +74,11 @@ public class ObjectHealth : MonoBehaviour
         Health = MaxHealth;
     }
 
+    private void OnEnable()
+    {
+        //set initial amount of health
+        Health = MaxHealth;
+    }
     #region Helper Methods
     /// <summary>
     /// Use this to reduce the current health of the object.
