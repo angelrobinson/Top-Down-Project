@@ -13,7 +13,7 @@ public class DamagePickup : Pickup
     /// <param name="player"></param>
     protected override void OnPickUp(Player player)
     {
-        player.Health.TakeDamage(damage);
+        player.MyHealth.TakeDamage(damage);
         base.OnPickUp(player);
     }
 }

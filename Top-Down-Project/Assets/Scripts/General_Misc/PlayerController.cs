@@ -35,6 +35,14 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    private void Update()
+    {
+        if (controlled.MyHealth.Health <= 0)
+        {
+            controlled.Die();
+        }
+    }
+
     // Update is called once per frame
     void FixedUpdate()
     {

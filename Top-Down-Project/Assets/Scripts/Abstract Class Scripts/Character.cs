@@ -40,11 +40,19 @@ public abstract class Character : MonoBehaviour
     public abstract void TurnPlayer(Vector3 target);
 
     /// <summary>
-    /// Allows to make your character jump
+    /// Allows to make your character jump by triggering Jump animation
     /// </summary>
     public virtual void Jump()
     {
         anim.SetTrigger("Jump");
+    }
+
+    /// <summary>
+    /// Triggers death animations
+    /// </summary>
+    public virtual void Die()
+    {
+        anim.SetTrigger("Death");
     }
     #endregion
 }

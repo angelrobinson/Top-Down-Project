@@ -19,11 +19,8 @@ public abstract class Pickup : MonoBehaviour
         //destroy the object after set amount of seconds defined in lifespan variable
         Destroy(gameObject, lifespan);
     }
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    
+
 
     // Update is called once per frame
     void Update()

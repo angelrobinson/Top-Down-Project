@@ -209,7 +209,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 935826302620024904}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ff5bd76644bf77346bb2288c5cf9c065, type: 3}
   m_Name: 
@@ -225,6 +225,7 @@ MonoBehaviour:
   damage: 20
   bulletVelocity: 20
   shotsPerMinute: 30
+  spread: 1
   canshoot: 1
 --- !u!1 &1112185099526015868
 GameObject:

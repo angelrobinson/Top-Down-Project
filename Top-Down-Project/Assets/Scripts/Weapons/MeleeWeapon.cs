@@ -8,9 +8,4 @@ public class MeleeWeapon : Weapon
     {
         throw new System.NotImplementedException();
     }
-
-    public override void ReleaseTrigger()
-    {
-        throw new System.NotImplementedException();
-    }
 }

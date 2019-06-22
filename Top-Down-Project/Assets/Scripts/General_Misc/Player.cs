@@ -10,6 +10,7 @@ public class Player : Character
 
     [Header("Stats")]
     [SerializeField] float _stamina;
+    bool dead;
 
     //[Header("Equipment")]
     //[SerializeField] ProjectileWeapon[] guns;
@@ -54,7 +55,7 @@ public class Player : Character
         }
     }
 
-    public ObjectHealth Health { get; set; }
+    public ObjectHealth MyHealth { get; set; }
     #endregion
 
     // Start is called before the first frame update
@@ -73,10 +74,12 @@ public class Player : Character
             }
         }
 
-        Health = GetComponent<ObjectHealth>();
+        MyHealth = GetComponent<ObjectHealth>();
         
     }
+    
 
+    #region helper methods
     /// <summary>
     /// Allows to set specific target object or Vector direction to have your game object turn to look at it
     /// </summary>
@@ -102,6 +105,10 @@ public class Player : Character
 
     }
 
+    /// <summary>
+    /// Used to Equip a weapon.
+    /// </summary>
+    /// <param name="weapon">Gameobject of weapon that is to be equipped</param>
     public void EquipWeapon(GameObject weapon)
     {
         if (currentWeapon)
@@ -119,4 +126,19 @@ public class Player : Character
 
         anim.SetInteger("WeaponState", (int)weapon.GetComponent<Weapon>().weaponState);
     }
+
+    /// <summary>
+    /// This method checks to see if the Player health gets to zero or below and if the player is already dead.
+    /// If not already dead, it will trigger the death animation and mark the player as dead
+    /// </summary>
+    public override void Die()
+    {        
+        if (MyHealth.Health <= 0 && dead == false)
+        {
+            base.Die();
+            dead = true;
+        }
+        
+    }
+    #endregion
 }

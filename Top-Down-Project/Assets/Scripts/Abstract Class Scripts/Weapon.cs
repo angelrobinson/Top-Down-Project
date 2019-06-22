@@ -21,7 +21,6 @@ public abstract class Weapon : MonoBehaviour
     public Transform LeftElbowHint;
 
     public abstract void PullTrigger();
-    public abstract void ReleaseTrigger();
  
 }
 

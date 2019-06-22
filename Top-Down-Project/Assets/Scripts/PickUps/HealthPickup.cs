@@ -12,7 +12,7 @@ public class HealthPickup : Pickup
     /// <param name="player"></param>
     protected override void OnPickUp(Player player)
     {
-        player.Health.Heal(healAmount);
+        player.MyHealth.Heal(healAmount);
         base.OnPickUp(player);
     }
 }

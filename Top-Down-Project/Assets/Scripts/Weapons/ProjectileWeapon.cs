@@ -4,83 +4,68 @@ using UnityEngine;
 
 
 public class ProjectileWeapon : Weapon
-{
+{    
+
     [Header("Projectile Settings")]
-    [SerializeField] private Projectile bulletPrefab;
-    [SerializeField] private Transform barrel;
-    [SerializeField] private int damage;
-    [SerializeField] private float bulletVelocity;
-    [SerializeField] private int shotsPerMinute;
-    int spread = 1;
+    [SerializeField] Projectile bulletPrefab;
+    [SerializeField] Transform barrel;
+    [SerializeField] int damage;
+    [SerializeField] float bulletVelocity;
+    [SerializeField] int shotsPerMinute;
+    [SerializeField] int spread = 1;
 
-    private float readyToFire;
-
-    public bool IsFiring { get; private set; }
-    public bool canshoot = true;
+    //timer settings
+    float readyToFire;
+    float timeBetweenFire;
+    public bool canShoot = true;
 
     private void OnEnable()
     {
-        readyToFire = 60f / shotsPerMinute;
-        
+        //divide the amount of seconds in a minute by the amount of shots per Minute
+        //to get how much time is between each shot
+        timeBetweenFire = 60f / shotsPerMinute;
     }
 
-    private void FixedUpdate()
-    {
-        
-
-        if (Input.GetKeyUp(KeyCode.F))
+    private void Update()
+    {        
+        if (readyToFire <= 0)
         {
-            PullTrigger();
+            canShoot = true;
         }
         else
         {
-            ReleaseTrigger();
+            readyToFire -= Time.time;
         }
-
-        if (IsFiring)
+    }
+    private void FixedUpdate()
+    {
+        if (canShoot)
         {
-            Projectile bullet = Instantiate(bulletPrefab, barrel.position, barrel.rotation * Quaternion.Euler(Random.onUnitSphere * spread));
-            bullet.Damage = damage;
-            bullet.rb.AddRelativeForce(Vector3.forward * bulletVelocity, ForceMode.VelocityChange);
-            bullet.gameObject.layer = gameObject.layer;
+            if (Input.GetButtonDown("Fire1"))
+            {
+                //Pull the trigger to instantiate multiple shots
+                for (int i = 0; i < spread; i++)
+                {
+                    PullTrigger();
+                }
+                
+            }
         }
 
-        
     }
 
     public override void PullTrigger()
-    {
-        IsFiring = true;
-        
-    }
+    {        
+        Projectile bullet = Instantiate(bulletPrefab, barrel.position, barrel.rotation * Quaternion.Euler(Random.onUnitSphere * spread));
+        bullet.Damage = damage;
+        bullet.rb.AddRelativeForce(Vector3.forward * bulletVelocity, ForceMode.VelocityChange);
+        bullet.gameObject.layer = gameObject.layer;
 
-    public override void ReleaseTrigger()
-    {
-        IsFiring = false;
-    }
-}
-
-
-/*
- * private void Awake()
-{
-    timeNextShotIsReady = Time.time;
-} 
-
-private void Update()
-{
-    if (triggerPulled)
-    {
-        while (Time.time > timeNextShotIsReady)
-        {
-            // Shoot
-            timeNextShotIsReady += 60f / shotsPerMinute;
-        }
-    }
-    else if (Time.time > timeNextShotIsReady)
-    {
-        timeNextShotIsReady = Time.time;
+        //reset the canshoot bool to false
+        canShoot = false;
+        //reset the timer
+        readyToFire = timeBetweenFire;
     }
 }
 
-    */
+
