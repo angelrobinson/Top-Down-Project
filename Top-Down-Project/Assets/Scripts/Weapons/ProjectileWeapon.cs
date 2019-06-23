@@ -26,19 +26,18 @@ public class ProjectileWeapon : Weapon
         timeBetweenFire = 60f / shotsPerMinute;
     }
 
-    private void Update()
-    {        
+    
+    private void FixedUpdate()
+    {
         if (readyToFire <= 0)
         {
             canShoot = true;
         }
         else
         {
-            readyToFire -= Time.time;
+            readyToFire -= Time.deltaTime;
         }
-    }
-    private void FixedUpdate()
-    {
+
         if (canShoot)
         {
             if (Input.GetButtonDown("Fire1"))
@@ -50,7 +49,7 @@ public class ProjectileWeapon : Weapon
                 }
                 
             }
-        }
+        }        
 
     }
 

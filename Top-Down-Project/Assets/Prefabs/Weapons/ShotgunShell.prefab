@@ -168,6 +168,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rb: {fileID: 0}
   lifespan: 15
+  maxDistance: 64.008
 --- !u!1 &6632198534910148487
 GameObject:
   m_ObjectHideFlags: 0

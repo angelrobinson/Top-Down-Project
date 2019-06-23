@@ -108,3 +108,4 @@ MonoBehaviour:
   rotation: {x: 1, y: 1, z: 0.5}
   relativeRotation: 1
   speed: 15
+  timeLimit: 10

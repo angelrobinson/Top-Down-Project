@@ -19,12 +19,13 @@ public class SpeedPickup : Pickup
         PlayerController pc = player.GetComponent<PlayerController>();
 
         Debug.Log("Speed OnPickup Triggered");
-        player.Speed += speed;
-        pc.isBuffed = true;
+        //player.Speed += speed;
+        pc.BuffSpeed = speed;
+        //pc.isBuffed = true;
         pc.buffType = PlayerController.BuffType.Speed;
         pc.buffTime = timeLimit;
         Debug.Log("Player speed is: " + player.Speed);
-        player.Stamina += speed;
+        //player.Stamina += speed;
         base.OnPickUp(player);
     }
     
