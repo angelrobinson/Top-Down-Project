@@ -4,6 +4,9 @@ using UnityEngine;
 
 public abstract class Weapon : MonoBehaviour
 {
+    /// <summary>
+    /// Enum created to use with Animation and IK
+    /// </summary>
     public enum WeaponState
     {
         None = 0,
@@ -20,6 +23,9 @@ public abstract class Weapon : MonoBehaviour
     public Transform RightElbowHint;
     public Transform LeftElbowHint;
 
+    /// <summary>
+    /// derived class will determine what is done in this method
+    /// </summary>
     public abstract void PullTrigger();
  
 }

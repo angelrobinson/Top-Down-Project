@@ -6,15 +6,16 @@ public class PlayerController : MonoBehaviour
 {
     public enum BuffType { None, Speed } //idea:  add MaxHealth buff
 
+    [Header("Player/Controlled Settings")]
     Player controlled;
     [SerializeField] float walkSpeed;
     [SerializeField] float runSpeed;
-    float buffSpeed;
-
-    //public bool isBuffed = false;
+    
+    [Header("Buff settings")]
     public BuffType buffType = BuffType.None;
     public float buffTime;
-        
+    float buffSpeed;
+
     public float BuffSpeed { get { return buffSpeed; } set { buffSpeed = value; } }
 
     // Start is called before the first frame update
@@ -39,6 +40,7 @@ public class PlayerController : MonoBehaviour
 
     private void Update()
     {
+        //check on Player's health and trigger die animation when health gets to zero
         if (controlled.MyHealth.Health <= 0)
         {
             controlled.Die();
@@ -71,10 +73,11 @@ public class PlayerController : MonoBehaviour
         }
 
         
-        //use run speed/animation if  the shift key is pressed while moving, otherwise use the walking speed
+        //If there is a buff, update the player object as needed for the buff
         switch (buffType)
         {
             case BuffType.None:
+                //use run speed/animation if  the shift key is pressed while moving, otherwise use the walking speed
                 if (Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift))
                 {
                     controlled.Speed = runSpeed;
@@ -88,6 +91,8 @@ public class PlayerController : MonoBehaviour
                 if (buffTime >= 0)
                 {
                     buffTime -= Time.deltaTime;
+
+                    //use run speed/animation if  the shift key is pressed while moving, otherwise use the walking speed
                     if (Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift))
                     {
                         controlled.Speed = runSpeed + BuffSpeed;
@@ -107,7 +112,7 @@ public class PlayerController : MonoBehaviour
 
         controlled.MovePlayer(contMovement, controlled.Speed);
 
-        //jump when you press space key
+        //jump when you press the key set in the Input settings...default is space
         if (Input.GetButtonDown("Jump"))
         {
             controlled.Jump();
@@ -135,13 +140,19 @@ public class PlayerController : MonoBehaviour
         
     }
 
+    /// <summary>
+    /// Used when IK is set to be used with animations
+    /// </summary>
     protected virtual void OnAnimatorIK()
     {
+        //if there is no weapon equipped return
         if (!controlled.currentWeapon)
             return;
 
+        //make temp weapon so that I don't have to do getcomponent each time
         Weapon current = controlled.currentWeapon.GetComponent<ProjectileWeapon>();
 
+        //if there is a transform assigned to the IK for right hand do the following
         if (current.RightHandIK)
         {
             controlled.CharAnimator.SetIKPosition(AvatarIKGoal.RightHand, current.RightHandIK.position);
@@ -149,12 +160,13 @@ public class PlayerController : MonoBehaviour
             controlled.CharAnimator.SetIKRotation(AvatarIKGoal.RightHand, current.RightHandIK.rotation);
             controlled.CharAnimator.SetIKRotationWeight(AvatarIKGoal.RightHand, 1f);
 
+            //if there is a transform assigned to the IK for Hint. . . This is for the right elbow
             if (current.RightElbowHint)
             {
                 controlled.CharAnimator.SetIKHintPosition(AvatarIKHint.RightElbow, current.RightElbowHint.position);
                 controlled.CharAnimator.SetIKHintPositionWeight(AvatarIKHint.RightElbow, 1f);
             }
-
+            
             
             
         }
@@ -162,8 +174,15 @@ public class PlayerController : MonoBehaviour
         {
             controlled.CharAnimator.SetIKPositionWeight(AvatarIKGoal.RightHand, 0f);
             controlled.CharAnimator.SetIKRotationWeight(AvatarIKGoal.RightHand, 0f);
+
+            //if there is a transform assigned to the IK for Hint. . . This is for the right elbow
+            if (current.RightElbowHint)
+            {                
+                controlled.CharAnimator.SetIKHintPositionWeight(AvatarIKHint.RightElbow, 0f);
+            }
         }
 
+        //if there is a transform assigned to the IK for left hand do the following
         if (current.LeftHandIK)
         {
             controlled.CharAnimator.SetIKPosition(AvatarIKGoal.LeftHand, current.LeftHandIK.position);
@@ -171,6 +190,7 @@ public class PlayerController : MonoBehaviour
             controlled.CharAnimator.SetIKRotation(AvatarIKGoal.LeftHand, current.LeftHandIK.rotation);
             controlled.CharAnimator.SetIKRotationWeight(AvatarIKGoal.LeftHand, 1f);
 
+            //if there is a transform assigned to the IK for Hint. . . This is for the left elbow
             if (current.LeftElbowHint)
             {
                 controlled.CharAnimator.SetIKHintPosition(AvatarIKHint.LeftElbow, current.LeftElbowHint.position);
@@ -181,6 +201,12 @@ public class PlayerController : MonoBehaviour
         {
             controlled.CharAnimator.SetIKPositionWeight(AvatarIKGoal.LeftHand, 0f);
             controlled.CharAnimator.SetIKRotationWeight(AvatarIKGoal.LeftHand, 0f);
+
+            //if there is a transform assigned to the IK for Hint. . . This is for the left elbow
+            if (current.LeftElbowHint)
+            {
+                controlled.CharAnimator.SetIKHintPositionWeight(AvatarIKHint.LeftElbow, 1f);
+            }
         }
     }
 }

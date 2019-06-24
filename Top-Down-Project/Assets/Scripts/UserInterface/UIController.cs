@@ -27,6 +27,7 @@ public class UIController : MonoBehaviour
             panel.SetActive(true);
         }
 
+        //Show health as a fraction and as percent
         healthPercent.text = string.Format("Health: {0}/{1} : {2}%", playerHealth.Health, playerHealth.MaxHealth, playerHealth.HealthPercent().ToString());
     }
 
@@ -39,17 +40,3 @@ public class UIController : MonoBehaviour
         Application.Quit();
     }
 }
-/*
- * public CharacterHealth health;
-    private Text text;
-
-    private void Awake()
-    {
-        text = GetComponent<Text>();
-    }
-
-    private void Update()
-    {
-        text.text = string.Format("Health: {0}%", Mathf.RoundToInt(health.HealthPercent * 100f));
-    }
-*/

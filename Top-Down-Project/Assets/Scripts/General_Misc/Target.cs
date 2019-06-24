@@ -2,6 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// despawns target if the health of the target is at or below zero
+/// </summary>
 [RequireComponent(typeof(ObjectHealth))]
 public class Target : MonoBehaviour
 {
