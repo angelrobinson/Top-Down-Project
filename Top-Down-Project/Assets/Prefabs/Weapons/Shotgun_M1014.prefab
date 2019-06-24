@@ -189,9 +189,10 @@ MonoBehaviour:
   RightHandIK: {fileID: 1991113814}
   RightElbowHint: {fileID: 4223792335567127195}
   LeftElbowHint: {fileID: 0}
-  bulletPrefab: {fileID: 6199804028842390987, guid: 01ae1143eb3185447b85ecccdc9cc99c,
-    type: 3}
-  barrel: {fileID: 8532197241155254958}
+  bulletPrefab:
+  - {fileID: 6199804028842390987, guid: 01ae1143eb3185447b85ecccdc9cc99c, type: 3}
+  barrel:
+  - {fileID: 8532197241155254958}
   damage: 10
   bulletVelocity: 10
   shotsPerMinute: 200

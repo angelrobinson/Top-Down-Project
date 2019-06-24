@@ -241,7 +241,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 935826302620024904}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ff5bd76644bf77346bb2288c5cf9c065, type: 3}
   m_Name: 
@@ -251,9 +251,14 @@ MonoBehaviour:
   RightHandIK: {fileID: 1560344333061721990}
   RightElbowHint: {fileID: 3966542203367253556}
   LeftElbowHint: {fileID: 0}
-  bulletPrefab: {fileID: 5129913490861838796, guid: f12c7b6353304764387d94f28757ebb8,
-    type: 3}
-  barrel: {fileID: 1274593253725499850}
+  bulletPrefab:
+  - {fileID: 5129913490861838796, guid: f12c7b6353304764387d94f28757ebb8, type: 3}
+  - {fileID: 2619905586500216635, guid: 56b9b87ad8494a64e83fc87172ba3225, type: 3}
+  - {fileID: 2619905586500216635, guid: 56b9b87ad8494a64e83fc87172ba3225, type: 3}
+  barrel:
+  - {fileID: 1274593253725499850}
+  - {fileID: 1347261219262260106}
+  - {fileID: 1289696647006095817}
   damage: 20
   bulletVelocity: 10
   shotsPerMinute: 30

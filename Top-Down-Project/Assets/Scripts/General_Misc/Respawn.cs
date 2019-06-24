@@ -56,7 +56,7 @@ public class Respawn : MonoBehaviour
             else
             {
                 //if the spawn index is greater than the length of the array, then reset to 0
-                if (spawnIndex >= spawnObj.Length)
+                if (spawnIndex >= spawnObj.Length || spawnIndex == 0 )
                 {
                     spawnIndex = 0;
                 }
@@ -70,7 +70,9 @@ public class Respawn : MonoBehaviour
                 if (randomSpawn)
                 {
                     spawnIndex = ran.Next(0, spawnObj.Length);
+                    Debug.Log("Random Spawn Index: " + spawnIndex);
                 }
+
                 //instantiate next object
                 Instantiate(spawnObj[spawnIndex], transform.position, Quaternion.identity, transform);
             }

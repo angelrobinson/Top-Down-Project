@@ -7,14 +7,17 @@ public class ProjectileWeapon : Weapon
 {    
 
     [Header("Projectile Settings")]
-    [SerializeField] Projectile bulletPrefab;
-    [SerializeField] Transform barrel;
+    [Tooltip("List any bullets that the gun can use")]
+    [SerializeField] Projectile[] bulletPrefab; 
+    [Tooltip("List all barrels that the gun can shoot from")]
+    [SerializeField] Transform[] barrel;
     [SerializeField] int damage;
     [SerializeField] float bulletVelocity;
     [SerializeField] int shotsPerMinute;
     [SerializeField] int spread = 1;
 
-    //timer settings
+
+    [Header("Timer Settings")]
     float readyToFire;
     float timeBetweenFire;
     public bool canShoot = true;
@@ -29,36 +32,52 @@ public class ProjectileWeapon : Weapon
     
     private void FixedUpdate()
     {
+        //check to see if you can shoot
         if (readyToFire <= 0)
         {
             canShoot = true;
         }
         else
         {
+            //update timer for checking if ready to shoot
             readyToFire -= Time.deltaTime;
         }
 
+        //if can shoot and if the button set up in the Input settings for Fire1 is pressed, instantiate the bullet
         if (canShoot)
         {
             if (Input.GetButtonDown("Fire1"))
             {
-                //Pull the trigger to instantiate multiple shots
-                for (int i = 0; i < spread; i++)
-                {
                     PullTrigger();
-                }
-                
             }
         }        
 
     }
 
     public override void PullTrigger()
-    {        
-        Projectile bullet = Instantiate(bulletPrefab, barrel.position, barrel.rotation * Quaternion.Euler(Random.onUnitSphere * spread)) as Projectile;
-        bullet.Damage = damage;
-        bullet.rb.AddRelativeForce(Vector3.forward * bulletVelocity, ForceMode.VelocityChange);
-        bullet.gameObject.layer = gameObject.layer;
+    {
+        //create temp variable to be able to assign settings on the projectile
+        Projectile bullet;
+
+        //
+        for (int i = 0; i < barrel.Length; i++)
+        {
+            if (bulletPrefab.Length > 1)
+            {
+                bullet = Instantiate(bulletPrefab[i], barrel[i].position, barrel[i].rotation * Quaternion.Euler(Random.onUnitSphere * spread)) as Projectile;
+            }
+            else
+            {
+                bullet = Instantiate(bulletPrefab[0], barrel[i].position, barrel[i].rotation * Quaternion.Euler(Random.onUnitSphere * spread)) as Projectile;
+            }
+
+            //bullet = Instantiate(bulletPrefab, barrel.position, barrel.rotation * Quaternion.Euler(Random.onUnitSphere * spread)) as Projectile;
+
+            //add damage, force and layer to the bullet
+            bullet.Damage = damage;
+            bullet.rb.AddRelativeForce(Vector3.forward * bulletVelocity, ForceMode.VelocityChange);
+            bullet.gameObject.layer = gameObject.layer;
+        }
 
         //reset the canshoot bool to false
         canShoot = false;
