@@ -205,7 +205,7 @@ public class PlayerController : MonoBehaviour
             //if there is a transform assigned to the IK for Hint. . . This is for the left elbow
             if (current.LeftElbowHint)
             {
-                controlled.CharAnimator.SetIKHintPositionWeight(AvatarIKHint.LeftElbow, 1f);
+                controlled.CharAnimator.SetIKHintPositionWeight(AvatarIKHint.LeftElbow, 0f);
             }
         }
     }
