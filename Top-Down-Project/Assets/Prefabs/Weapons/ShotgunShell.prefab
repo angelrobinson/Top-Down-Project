@@ -12,7 +12,8 @@ GameObject:
   - component: {fileID: 2524103735736012945}
   - component: {fileID: 5704716460559557767}
   - component: {fileID: 5129913490861838796}
-  m_Layer: 0
+  - component: {fileID: 1270257136133236329}
+  m_Layer: 8
   m_Name: ShotgunShell
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -27,7 +28,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2234654753836475002}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.6017, y: 0.68736, z: 0.29321}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1957902730847081788}
@@ -169,6 +170,20 @@ MonoBehaviour:
   rb: {fileID: 0}
   lifespan: 15
   maxDistance: 64.008
+--- !u!136 &1270257136133236329
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2234654753836475002}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.015
+  m_Height: 0.08
+  m_Direction: 2
+  m_Center: {x: 0, y: 0, z: 0.02}
 --- !u!1 &6632198534910148487
 GameObject:
   m_ObjectHideFlags: 0
@@ -180,7 +195,7 @@ GameObject:
   - component: {fileID: 1957902730847081788}
   - component: {fileID: 470362732539315321}
   - component: {fileID: 74819931430073596}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Shell
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -195,7 +210,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6632198534910148487}
   m_LocalRotation: {x: -0.7071068, y: -0, z: -0, w: 0.7071067}
-  m_LocalPosition: {x: 0.04634136, y: -0.4096871, z: -0.7716689}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 15, y: 15, z: 15}
   m_Children: []
   m_Father: {fileID: 4107506705874980481}

@@ -55,7 +55,7 @@ public class ProjectileWeapon : Weapon
 
     public override void PullTrigger()
     {        
-        Projectile bullet = Instantiate(bulletPrefab, barrel.position, barrel.rotation * Quaternion.Euler(Random.onUnitSphere * spread));
+        Projectile bullet = Instantiate(bulletPrefab, barrel.position, barrel.rotation * Quaternion.Euler(Random.onUnitSphere * spread)) as Projectile;
         bullet.Damage = damage;
         bullet.rb.AddRelativeForce(Vector3.forward * bulletVelocity, ForceMode.VelocityChange);
         bullet.gameObject.layer = gameObject.layer;
