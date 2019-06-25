@@ -10,22 +10,22 @@ PrefabInstance:
     - target: {fileID: 8079766762026301897, guid: 725ec48db51506645ac987dda2be8f6a,
         type: 3}
       propertyPath: m_Name
-      value: ShotgunPickUp
+      value: ShotgunPickUp Variant
       objectReference: {fileID: 0}
     - target: {fileID: 4046949602010685923, guid: 725ec48db51506645ac987dda2be8f6a,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 4.201
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4046949602010685923, guid: 725ec48db51506645ac987dda2be8f6a,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.936
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4046949602010685923, guid: 725ec48db51506645ac987dda2be8f6a,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 2.398
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4046949602010685923, guid: 725ec48db51506645ac987dda2be8f6a,
         type: 3}
@@ -83,10 +83,5 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 935826302620024904, guid: 5ae2e69dbfba24444a9170da01d38e86,
         type: 3}
-    - target: {fileID: 7327818922347816950, guid: 725ec48db51506645ac987dda2be8f6a,
-        type: 3}
-      propertyPath: lifespan
-      value: 120
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 725ec48db51506645ac987dda2be8f6a, type: 3}

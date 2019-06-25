@@ -41,7 +41,7 @@ public class Respawn : MonoBehaviour
         }
 
         //spawn first object
-        Instantiate(spawnObj[spawnIndex], transform.position, Quaternion.identity, transform);
+        Instantiate(spawnObj[spawnIndex],transform);
     }
 
     private void FixedUpdate()
@@ -56,7 +56,7 @@ public class Respawn : MonoBehaviour
             else
             {
                 //if the spawn index is greater than the length of the array, then reset to 0
-                if (spawnIndex >= spawnObj.Length || spawnIndex == 0 )
+                if (spawnIndex >= spawnObj.Length)
                 {
                     spawnIndex = 0;
                 }
@@ -74,7 +74,7 @@ public class Respawn : MonoBehaviour
                 }
 
                 //instantiate next object
-                Instantiate(spawnObj[spawnIndex], transform.position, Quaternion.identity, transform);
+                Instantiate(spawnObj[spawnIndex], transform);
             }
         }
         else

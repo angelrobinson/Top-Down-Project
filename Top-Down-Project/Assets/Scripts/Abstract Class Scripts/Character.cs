@@ -8,6 +8,8 @@ using UnityEngine;
 /// We can restrict the use of the base class by changing the Pickup to an abstract class. 
 /// This tells the compiler “this class can only be used if something derives from it”.
 /// </summary>
+
+ [RequireComponent(typeof(Animator))]
 public abstract class Character : MonoBehaviour
 {
     //variables
@@ -16,7 +18,7 @@ public abstract class Character : MonoBehaviour
     [SerializeField]protected Animator anim;
 
     //properties
-    public Animator CharAnimator { get {return anim; } }
+    public Animator CharAnimator { get { return anim; } protected set { anim = value; } }
 
     #region Helper Methods
     /// <summary>
@@ -30,6 +32,17 @@ public abstract class Character : MonoBehaviour
     {
         anim.SetFloat("Vertical", direction.z * speed);
         anim.SetFloat("Horizontal", direction.x * speed);
+    }
+
+    /// <summary>
+    /// Allows for movement of an object in a specific direction
+    /// This method was constructed to work with NavMesh AI where you put the speed/velocity into the direction Vector3
+    /// </summary>
+    /// <param name="direction">Input Direction</param>
+    public void MovePlayer(Vector3 direction)
+    {
+        anim.SetFloat("Vertical", direction.z);
+        anim.SetFloat("Horizontal", direction.x);
     }
 
     /// <summary>
