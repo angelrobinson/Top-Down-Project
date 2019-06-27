@@ -55,16 +55,15 @@ public class Respawn : MonoBehaviour
             }
             else
             {
+                //increase spawn index to the next
+                ++spawnIndex;
+
                 //if the spawn index is greater than the length of the array, then reset to 0
                 if (spawnIndex >= spawnObj.Length)
                 {
                     spawnIndex = 0;
                 }
-                else
-                {
-                    //increase spawn index to the next
-                    ++spawnIndex;
-                }
+                
 
                 //if random select a new index to spawn
                 if (randomSpawn)
