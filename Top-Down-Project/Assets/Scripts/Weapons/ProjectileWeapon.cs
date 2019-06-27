@@ -43,14 +43,14 @@ public class ProjectileWeapon : Weapon
             readyToFire -= Time.deltaTime;
         }
 
-        //if can shoot and if the button set up in the Input settings for Fire1 is pressed, instantiate the bullet
-        if (canShoot)
-        {
-            if (Input.GetButtonDown("Fire1"))
-            {
-                    PullTrigger();
-            }
-        }        
+        ////if can shoot and if the button set up in the Input settings for Fire1 is pressed, instantiate the bullet
+        //if (canShoot)
+        //{
+        //    if (Input.GetButtonDown("Fire1") && transform.parent.parent.CompareTag("Player"))
+        //    {
+        //            PullTrigger();
+        //    }
+        //}        
 
     }
 

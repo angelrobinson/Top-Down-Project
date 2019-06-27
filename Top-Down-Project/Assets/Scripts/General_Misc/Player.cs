@@ -20,6 +20,7 @@ public class Player : Character
     //[Header("Equipment")]
     //public GameObject currentWeapon;
     //public GameObject weaponHolder;
+    ProjectileWeapon gun;
 
     #region Properties
     public float Stamina
@@ -77,7 +78,24 @@ public class Player : Character
         //MyHealth = GetComponent<ObjectHealth>();
         
     }
-    
+
+    private void Update()
+    {
+        if (currentWeapon)
+        {
+            gun = currentWeapon.GetComponent<ProjectileWeapon>();
+            //if can shoot and if the button set up in the Input settings for Fire1 is pressed, instantiate the bullet
+            if (gun.canShoot)
+            {
+                if (Input.GetButtonDown("Fire1"))
+                {
+                    gun.PullTrigger();
+                }
+            }
+        }
+        
+    }
+
 
     #region helper methods
     /// <summary>
