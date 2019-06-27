@@ -26,24 +26,25 @@ public abstract class Character : MonoBehaviour
     //public Weapon currentWeapon;
 
     [Header("Equipment")]
-    public GameObject currentWeapon;
-    public GameObject weaponHolder;
+    [SerializeField]protected ProjectileWeapon[] guns; //gun inventory
+    [SerializeField] protected GameObject currentWeapon;
+    [SerializeField] protected GameObject weaponHolder;
 
     //properties
     public Animator CharAnimator { get { return anim; } protected set { anim = value; } }
     public ObjectHealth MyHealth { get; set; }
 
-    private void Awake()
+    protected void Awake()
     {
         //if animator is not set in inspector try and get the animator on the object this script is attached to
-        if (anim == null)
+        if (CharAnimator == null)
         {
-            anim = GetComponent<Animator>();
+            CharAnimator = GetComponent<Animator>();
 
             //if there is no animator on the same object look for it on the Parent of the object
-            if (anim == null)
+            if (CharAnimator == null)
             {
-                anim = GetComponentInParent<Animator>();
+                CharAnimator = GetComponentInParent<Animator>();
             }
         }
 
