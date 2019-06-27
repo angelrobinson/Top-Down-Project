@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1001 &7595599095672750616
+--- !u!1001 &3282359583396115762
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -10,52 +10,34 @@ PrefabInstance:
     - target: {fileID: 5764233323673175739, guid: 0fbbefc350b72d34da791c2b19804dab,
         type: 3}
       propertyPath: m_Name
-      value: PickupRespawn Variant
+      value: WeaponRespawn Variant
       objectReference: {fileID: 0}
     - target: {fileID: 396291789754355906, guid: 0fbbefc350b72d34da791c2b19804dab,
         type: 3}
       propertyPath: spawnObj.Array.size
-      value: 3
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 396291789754355906, guid: 0fbbefc350b72d34da791c2b19804dab,
+        type: 3}
+      propertyPath: respawnTime
+      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 396291789754355906, guid: 0fbbefc350b72d34da791c2b19804dab,
         type: 3}
       propertyPath: spawnObj.Array.data[0]
       value: 
-      objectReference: {fileID: 1087879810476366138, guid: 98a0e04103ce24c43ae2b1edc53f69e6,
-        type: 3}
-    - target: {fileID: 396291789754355906, guid: 0fbbefc350b72d34da791c2b19804dab,
-        type: 3}
-      propertyPath: spawnObj.Array.data[1]
-      value: 
-      objectReference: {fileID: 8058779969121247718, guid: 8e63cfadf68238f4187d63dca0a923c3,
-        type: 3}
-    - target: {fileID: 396291789754355906, guid: 0fbbefc350b72d34da791c2b19804dab,
-        type: 3}
-      propertyPath: spawnObj.Array.data[2]
-      value: 
-      objectReference: {fileID: 8425642021044318168, guid: 200228b984cc88b48a9fd09ea8f4e509,
-        type: 3}
-    - target: {fileID: 396291789754355906, guid: 0fbbefc350b72d34da791c2b19804dab,
-        type: 3}
-      propertyPath: spawnObj.Array.data[3]
-      value: 
       objectReference: {fileID: 3388507341622569164, guid: 97baed4171c4ceb45959166467e4fa50,
         type: 3}
     - target: {fileID: 396291789754355906, guid: 0fbbefc350b72d34da791c2b19804dab,
         type: 3}
-      propertyPath: respawnTime
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 396291789754355906, guid: 0fbbefc350b72d34da791c2b19804dab,
-        type: 3}
-      propertyPath: spawnObj.Array.data[4]
+      propertyPath: spawnObj.Array.data[1]
       value: 
       objectReference: {fileID: 7672093253024664748, guid: f3cc72dd4e7bc9244a8548f951c87f44,
         type: 3}
     - target: {fileID: 8294952098825942773, guid: 0fbbefc350b72d34da791c2b19804dab,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: 1.88
       objectReference: {fileID: 0}
     - target: {fileID: 8294952098825942773, guid: 0fbbefc350b72d34da791c2b19804dab,
         type: 3}
@@ -65,7 +47,7 @@ PrefabInstance:
     - target: {fileID: 8294952098825942773, guid: 0fbbefc350b72d34da791c2b19804dab,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: 1.26
       objectReference: {fileID: 0}
     - target: {fileID: 8294952098825942773, guid: 0fbbefc350b72d34da791c2b19804dab,
         type: 3}

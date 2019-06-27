@@ -10,14 +10,14 @@ public class Enemy : Character
     NavMeshAgent agent;
     [SerializeField] Transform target;
     Vector3 desiredVel;
-    ObjectHealth myHealth;
-    bool dead;
+    //ObjectHealth myHealth;
+    //bool dead;
 
     private void Start()
     {
         agent = GetComponent<NavMeshAgent>();
         CharAnimator = GetComponent<Animator>();
-        myHealth = GetComponent<ObjectHealth>();
+        //myHealth = GetComponent<ObjectHealth>();
     }
 
     private void Update()
@@ -35,7 +35,7 @@ public class Enemy : Character
         //CharAnimator.SetFloat("Vertical", input.z);
         MovePlayer(input);
 
-        if (myHealth.Health == 0)
+        if (MyHealth.Health == 0)
         {
             Die();
         }
@@ -60,7 +60,7 @@ public class Enemy : Character
     /// </summary>
     public override void Die()
     {
-        if (myHealth.Health <= 0 && dead == false)
+        if (MyHealth.Health <= 0 && dead == false)
         {
             base.Die();
             dead = true;

@@ -10,16 +10,16 @@ public class Player : Character
 
     [Header("Stats")]
     [SerializeField] float _stamina;
-    bool dead;
+    //bool dead;
 
     //[Header("Equipment")]
     //[SerializeField] ProjectileWeapon[] guns;
     //[SerializeField] MeleeWeapon[] melee;
     //public Weapon currentWeapon;
 
-    [Header("Equipment")]
-    public GameObject currentWeapon;
-    public GameObject weaponHolder;
+    //[Header("Equipment")]
+    //public GameObject currentWeapon;
+    //public GameObject weaponHolder;
 
     #region Properties
     public float Stamina
@@ -55,26 +55,26 @@ public class Player : Character
         }
     }
 
-    public ObjectHealth MyHealth { get; set; }
+    //public ObjectHealth MyHealth { get; set; }
     #endregion
 
     // Start is called before the first frame update
     void Start()
     {       
 
-        //if animator is not set in inspector try and get the animator on the object this script is attached to
-        if (anim == null)
-        {
-            anim = GetComponent<Animator>();
+        ////if animator is not set in inspector try and get the animator on the object this script is attached to
+        //if (anim == null)
+        //{
+        //    anim = GetComponent<Animator>();
 
-            //if there is no animator on the same object look for it on the Parent of the object
-            if (anim == null)
-            {
-                anim = GetComponentInParent<Animator>();
-            }
-        }
+        //    //if there is no animator on the same object look for it on the Parent of the object
+        //    if (anim == null)
+        //    {
+        //        anim = GetComponentInParent<Animator>();
+        //    }
+        //}
 
-        MyHealth = GetComponent<ObjectHealth>();
+        //MyHealth = GetComponent<ObjectHealth>();
         
     }
     
@@ -105,27 +105,27 @@ public class Player : Character
 
     }
 
-    /// <summary>
-    /// Used to Equip a weapon.
-    /// </summary>
-    /// <param name="weapon">Gameobject of weapon that is to be equipped</param>
-    public void EquipWeapon(GameObject weapon)
-    {
-        if (currentWeapon)
-        {
-            GameObject temp = currentWeapon;
-            Destroy(temp.gameObject);
+    ///// <summary>
+    ///// Used to Equip a weapon.
+    ///// </summary>
+    ///// <param name="weapon">Gameobject of weapon that is to be equipped</param>
+    //public void EquipWeapon(GameObject weapon)
+    //{
+    //    if (currentWeapon)
+    //    {
+    //        GameObject temp = currentWeapon;
+    //        Destroy(temp.gameObject);
 
-        }
+    //    }
 
-        currentWeapon = Instantiate(weapon);
-        currentWeapon.transform.SetParent(weaponHolder.transform);
-        currentWeapon.transform.localPosition = weapon.transform.position;
-        currentWeapon.transform.localRotation = weapon.transform.localRotation;
-        currentWeapon.gameObject.layer = gameObject.layer;
+    //    currentWeapon = Instantiate(weapon);
+    //    currentWeapon.transform.SetParent(weaponHolder.transform);
+    //    currentWeapon.transform.localPosition = weapon.transform.position;
+    //    currentWeapon.transform.localRotation = weapon.transform.localRotation;
+    //    currentWeapon.gameObject.layer = gameObject.layer;
 
-        anim.SetInteger("WeaponState", (int)weapon.GetComponent<Weapon>().weaponState);
-    }
+    //    anim.SetInteger("WeaponState", (int)weapon.GetComponent<Weapon>().weaponState);
+    //}
 
     /// <summary>
     /// This method checks to see if the Player health gets to zero or below and if the player is already dead.

@@ -140,73 +140,73 @@ public class PlayerController : MonoBehaviour
         
     }
 
-    /// <summary>
-    /// Used when IK is set to be used with animations
-    /// </summary>
-    protected virtual void OnAnimatorIK()
-    {
-        //if there is no weapon equipped return
-        if (!controlled.currentWeapon)
-            return;
+    ///// <summary>
+    ///// Used when IK is set to be used with animations
+    ///// </summary>
+    //protected virtual void OnAnimatorIK()
+    //{
+    //    //if there is no weapon equipped return
+    //    if (!controlled.currentWeapon)
+    //        return;
 
-        //make temp weapon so that I don't have to do getcomponent each time
-        Weapon current = controlled.currentWeapon.GetComponent<ProjectileWeapon>();
+    //    //make temp weapon so that I don't have to do getcomponent each time
+    //    Weapon current = controlled.currentWeapon.GetComponent<ProjectileWeapon>();
 
-        //if there is a transform assigned to the IK for right hand do the following
-        if (current.RightHandIK)
-        {
-            controlled.CharAnimator.SetIKPosition(AvatarIKGoal.RightHand, current.RightHandIK.position);
-            controlled.CharAnimator.SetIKPositionWeight(AvatarIKGoal.RightHand, 1f);
-            controlled.CharAnimator.SetIKRotation(AvatarIKGoal.RightHand, current.RightHandIK.rotation);
-            controlled.CharAnimator.SetIKRotationWeight(AvatarIKGoal.RightHand, 1f);
+    //    //if there is a transform assigned to the IK for right hand do the following
+    //    if (current.RightHandIK)
+    //    {
+    //        controlled.CharAnimator.SetIKPosition(AvatarIKGoal.RightHand, current.RightHandIK.position);
+    //        controlled.CharAnimator.SetIKPositionWeight(AvatarIKGoal.RightHand, 1f);
+    //        controlled.CharAnimator.SetIKRotation(AvatarIKGoal.RightHand, current.RightHandIK.rotation);
+    //        controlled.CharAnimator.SetIKRotationWeight(AvatarIKGoal.RightHand, 1f);
 
-            //if there is a transform assigned to the IK for Hint. . . This is for the right elbow
-            if (current.RightElbowHint)
-            {
-                controlled.CharAnimator.SetIKHintPosition(AvatarIKHint.RightElbow, current.RightElbowHint.position);
-                controlled.CharAnimator.SetIKHintPositionWeight(AvatarIKHint.RightElbow, 1f);
-            }
-            
-            
-            
-        }
-        else
-        {
-            controlled.CharAnimator.SetIKPositionWeight(AvatarIKGoal.RightHand, 0f);
-            controlled.CharAnimator.SetIKRotationWeight(AvatarIKGoal.RightHand, 0f);
+    //        //if there is a transform assigned to the IK for Hint. . . This is for the right elbow
+    //        if (current.RightElbowHint)
+    //        {
+    //            controlled.CharAnimator.SetIKHintPosition(AvatarIKHint.RightElbow, current.RightElbowHint.position);
+    //            controlled.CharAnimator.SetIKHintPositionWeight(AvatarIKHint.RightElbow, 1f);
+    //        }
 
-            //if there is a transform assigned to the IK for Hint. . . This is for the right elbow
-            if (current.RightElbowHint)
-            {                
-                controlled.CharAnimator.SetIKHintPositionWeight(AvatarIKHint.RightElbow, 0f);
-            }
-        }
 
-        //if there is a transform assigned to the IK for left hand do the following
-        if (current.LeftHandIK)
-        {
-            controlled.CharAnimator.SetIKPosition(AvatarIKGoal.LeftHand, current.LeftHandIK.position);
-            controlled.CharAnimator.SetIKPositionWeight(AvatarIKGoal.LeftHand, 1f);
-            controlled.CharAnimator.SetIKRotation(AvatarIKGoal.LeftHand, current.LeftHandIK.rotation);
-            controlled.CharAnimator.SetIKRotationWeight(AvatarIKGoal.LeftHand, 1f);
 
-            //if there is a transform assigned to the IK for Hint. . . This is for the left elbow
-            if (current.LeftElbowHint)
-            {
-                controlled.CharAnimator.SetIKHintPosition(AvatarIKHint.LeftElbow, current.LeftElbowHint.position);
-                controlled.CharAnimator.SetIKHintPositionWeight(AvatarIKHint.LeftElbow, 1f);
-            }
-        }
-        else
-        {
-            controlled.CharAnimator.SetIKPositionWeight(AvatarIKGoal.LeftHand, 0f);
-            controlled.CharAnimator.SetIKRotationWeight(AvatarIKGoal.LeftHand, 0f);
+    //    }
+    //    else
+    //    {
+    //        controlled.CharAnimator.SetIKPositionWeight(AvatarIKGoal.RightHand, 0f);
+    //        controlled.CharAnimator.SetIKRotationWeight(AvatarIKGoal.RightHand, 0f);
 
-            //if there is a transform assigned to the IK for Hint. . . This is for the left elbow
-            if (current.LeftElbowHint)
-            {
-                controlled.CharAnimator.SetIKHintPositionWeight(AvatarIKHint.LeftElbow, 0f);
-            }
-        }
-    }
+    //        //if there is a transform assigned to the IK for Hint. . . This is for the right elbow
+    //        if (current.RightElbowHint)
+    //        {
+    //            controlled.CharAnimator.SetIKHintPositionWeight(AvatarIKHint.RightElbow, 0f);
+    //        }
+    //    }
+
+    //    //if there is a transform assigned to the IK for left hand do the following
+    //    if (current.LeftHandIK)
+    //    {
+    //        controlled.CharAnimator.SetIKPosition(AvatarIKGoal.LeftHand, current.LeftHandIK.position);
+    //        controlled.CharAnimator.SetIKPositionWeight(AvatarIKGoal.LeftHand, 1f);
+    //        controlled.CharAnimator.SetIKRotation(AvatarIKGoal.LeftHand, current.LeftHandIK.rotation);
+    //        controlled.CharAnimator.SetIKRotationWeight(AvatarIKGoal.LeftHand, 1f);
+
+    //        //if there is a transform assigned to the IK for Hint. . . This is for the left elbow
+    //        if (current.LeftElbowHint)
+    //        {
+    //            controlled.CharAnimator.SetIKHintPosition(AvatarIKHint.LeftElbow, current.LeftElbowHint.position);
+    //            controlled.CharAnimator.SetIKHintPositionWeight(AvatarIKHint.LeftElbow, 1f);
+    //        }
+    //    }
+    //    else
+    //    {
+    //        controlled.CharAnimator.SetIKPositionWeight(AvatarIKGoal.LeftHand, 0f);
+    //        controlled.CharAnimator.SetIKRotationWeight(AvatarIKGoal.LeftHand, 0f);
+
+    //        //if there is a transform assigned to the IK for Hint. . . This is for the left elbow
+    //        if (current.LeftElbowHint)
+    //        {
+    //            controlled.CharAnimator.SetIKHintPositionWeight(AvatarIKHint.LeftElbow, 0f);
+    //        }
+    //    }
+    //}
 }

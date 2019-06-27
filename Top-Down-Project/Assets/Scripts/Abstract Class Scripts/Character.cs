@@ -17,8 +17,38 @@ public abstract class Character : MonoBehaviour
         "If the animator is on the same object or it's direct parent object, you can leave this blank")]
     [SerializeField]protected Animator anim;
 
+    protected bool dead;
+
+    //TODO: possible uses of multiple guns in inventory?
+    //[Header("Equipment")]
+    //[SerializeField] ProjectileWeapon[] guns;
+    //[SerializeField] MeleeWeapon[] melee;
+    //public Weapon currentWeapon;
+
+    [Header("Equipment")]
+    public GameObject currentWeapon;
+    public GameObject weaponHolder;
+
     //properties
     public Animator CharAnimator { get { return anim; } protected set { anim = value; } }
+    public ObjectHealth MyHealth { get; set; }
+
+    private void Awake()
+    {
+        //if animator is not set in inspector try and get the animator on the object this script is attached to
+        if (anim == null)
+        {
+            anim = GetComponent<Animator>();
+
+            //if there is no animator on the same object look for it on the Parent of the object
+            if (anim == null)
+            {
+                anim = GetComponentInParent<Animator>();
+            }
+        }
+
+        MyHealth = GetComponent<ObjectHealth>();
+    }
 
     #region Helper Methods
     /// <summary>
@@ -67,5 +97,97 @@ public abstract class Character : MonoBehaviour
     {
         anim.SetTrigger("Death");
     }
+
+    /// <summary>
+    /// Used to Equip a weapon.
+    /// </summary>
+    /// <param name="weapon">Gameobject of weapon that is to be equipped</param>
+    public void EquipWeapon(GameObject weapon)
+    {
+        if (currentWeapon)
+        {
+            GameObject temp = currentWeapon;
+            Destroy(temp.gameObject);
+
+        }
+
+        currentWeapon = Instantiate(weapon);
+        currentWeapon.transform.SetParent(weaponHolder.transform);
+        currentWeapon.transform.localPosition = weapon.transform.position;
+        currentWeapon.transform.localRotation = weapon.transform.localRotation;
+        currentWeapon.gameObject.layer = gameObject.layer;
+
+        anim.SetInteger("WeaponState", (int)weapon.GetComponent<Weapon>().weaponState);
+    }
     #endregion
+
+    /// <summary>
+    /// Used when IK is set to be used with animations
+    /// </summary>
+    protected virtual void OnAnimatorIK()
+    {
+        //if there is no weapon equipped return
+        if (!currentWeapon)
+            return;
+
+        //make temp weapon so that I don't have to do getcomponent each time
+        Weapon current = currentWeapon.GetComponent<ProjectileWeapon>();
+
+        //if there is a transform assigned to the IK for right hand do the following
+        if (current.RightHandIK)
+        {
+            CharAnimator.SetIKPosition(AvatarIKGoal.RightHand, current.RightHandIK.position);
+            CharAnimator.SetIKPositionWeight(AvatarIKGoal.RightHand, 1f);
+            CharAnimator.SetIKRotation(AvatarIKGoal.RightHand, current.RightHandIK.rotation);
+            CharAnimator.SetIKRotationWeight(AvatarIKGoal.RightHand, 1f);
+
+            //if there is a transform assigned to the IK for Hint. . . This is for the right elbow
+            if (current.RightElbowHint)
+            {
+                CharAnimator.SetIKHintPosition(AvatarIKHint.RightElbow, current.RightElbowHint.position);
+                CharAnimator.SetIKHintPositionWeight(AvatarIKHint.RightElbow, 1f);
+            }
+
+
+
+        }
+        else
+        {
+            CharAnimator.SetIKPositionWeight(AvatarIKGoal.RightHand, 0f);
+            CharAnimator.SetIKRotationWeight(AvatarIKGoal.RightHand, 0f);
+
+            //if there is a transform assigned to the IK for Hint. . . This is for the right elbow
+            if (current.RightElbowHint)
+            {
+                CharAnimator.SetIKHintPositionWeight(AvatarIKHint.RightElbow, 0f);
+            }
+        }
+
+        //if there is a transform assigned to the IK for left hand do the following
+        if (current.LeftHandIK)
+        {
+            CharAnimator.SetIKPosition(AvatarIKGoal.LeftHand, current.LeftHandIK.position);
+            CharAnimator.SetIKPositionWeight(AvatarIKGoal.LeftHand, 1f);
+            CharAnimator.SetIKRotation(AvatarIKGoal.LeftHand, current.LeftHandIK.rotation);
+            CharAnimator.SetIKRotationWeight(AvatarIKGoal.LeftHand, 1f);
+
+            //if there is a transform assigned to the IK for Hint. . . This is for the left elbow
+            if (current.LeftElbowHint)
+            {
+                CharAnimator.SetIKHintPosition(AvatarIKHint.LeftElbow, current.LeftElbowHint.position);
+                CharAnimator.SetIKHintPositionWeight(AvatarIKHint.LeftElbow, 1f);
+            }
+        }
+        else
+        {
+            CharAnimator.SetIKPositionWeight(AvatarIKGoal.LeftHand, 0f);
+            CharAnimator.SetIKRotationWeight(AvatarIKGoal.LeftHand, 0f);
+
+            //if there is a transform assigned to the IK for Hint. . . This is for the left elbow
+            if (current.LeftElbowHint)
+            {
+                CharAnimator.SetIKHintPositionWeight(AvatarIKHint.LeftElbow, 0f);
+            }
+        }
+    }
 }
