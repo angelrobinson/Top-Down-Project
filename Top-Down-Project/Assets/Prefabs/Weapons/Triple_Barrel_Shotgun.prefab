@@ -254,8 +254,6 @@ MonoBehaviour:
   LeftElbowHint: {fileID: 0}
   bulletPrefab:
   - {fileID: 5129913490861838796, guid: f12c7b6353304764387d94f28757ebb8, type: 3}
-  - {fileID: 2619905586500216635, guid: 56b9b87ad8494a64e83fc87172ba3225, type: 3}
-  - {fileID: 2619905586500216635, guid: 56b9b87ad8494a64e83fc87172ba3225, type: 3}
   barrel:
   - {fileID: 1274593253725499850}
   - {fileID: 1347261219262260106}

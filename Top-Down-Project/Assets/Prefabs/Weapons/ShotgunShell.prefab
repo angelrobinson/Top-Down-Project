@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 5704716460559557767}
   - component: {fileID: 5129913490861838796}
   - component: {fileID: 1270257136133236329}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: ShotgunShell
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -195,7 +195,7 @@ GameObject:
   - component: {fileID: 1957902730847081788}
   - component: {fileID: 470362732539315321}
   - component: {fileID: 74819931430073596}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: Shell
   m_TagString: Untagged
   m_Icon: {fileID: 0}

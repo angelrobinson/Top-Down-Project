@@ -12,6 +12,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: BuckShot Variant (9)
       objectReference: {fileID: 0}
+    - target: {fileID: 3437793105239383847, guid: 01ae1143eb3185447b85ecccdc9cc99c,
+        type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1773107573497347578, guid: 01ae1143eb3185447b85ecccdc9cc99c,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -95,6 +100,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: BuckShot Variant (3)
+      objectReference: {fileID: 0}
+    - target: {fileID: 3437793105239383847, guid: 01ae1143eb3185447b85ecccdc9cc99c,
+        type: 3}
+      propertyPath: m_Layer
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1773107573497347578, guid: 01ae1143eb3185447b85ecccdc9cc99c,
         type: 3}
@@ -180,6 +190,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: BuckShot Variant
       objectReference: {fileID: 0}
+    - target: {fileID: 3437793105239383847, guid: 01ae1143eb3185447b85ecccdc9cc99c,
+        type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1773107573497347578, guid: 01ae1143eb3185447b85ecccdc9cc99c,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -263,6 +278,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: BuckShot Variant (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 3437793105239383847, guid: 01ae1143eb3185447b85ecccdc9cc99c,
+        type: 3}
+      propertyPath: m_Layer
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1773107573497347578, guid: 01ae1143eb3185447b85ecccdc9cc99c,
         type: 3}
@@ -348,6 +368,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: BuckShot Variant (14)
       objectReference: {fileID: 0}
+    - target: {fileID: 3437793105239383847, guid: 01ae1143eb3185447b85ecccdc9cc99c,
+        type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1773107573497347578, guid: 01ae1143eb3185447b85ecccdc9cc99c,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -431,6 +456,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: BuckShot Variant (6)
+      objectReference: {fileID: 0}
+    - target: {fileID: 3437793105239383847, guid: 01ae1143eb3185447b85ecccdc9cc99c,
+        type: 3}
+      propertyPath: m_Layer
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1773107573497347578, guid: 01ae1143eb3185447b85ecccdc9cc99c,
         type: 3}
@@ -516,6 +546,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: BuckShot Variant (5)
       objectReference: {fileID: 0}
+    - target: {fileID: 3437793105239383847, guid: 01ae1143eb3185447b85ecccdc9cc99c,
+        type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1773107573497347578, guid: 01ae1143eb3185447b85ecccdc9cc99c,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -599,6 +634,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: BuckShot Variant (10)
+      objectReference: {fileID: 0}
+    - target: {fileID: 3437793105239383847, guid: 01ae1143eb3185447b85ecccdc9cc99c,
+        type: 3}
+      propertyPath: m_Layer
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1773107573497347578, guid: 01ae1143eb3185447b85ecccdc9cc99c,
         type: 3}
@@ -684,6 +724,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: BuckShot Variant (7)
       objectReference: {fileID: 0}
+    - target: {fileID: 3437793105239383847, guid: 01ae1143eb3185447b85ecccdc9cc99c,
+        type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1773107573497347578, guid: 01ae1143eb3185447b85ecccdc9cc99c,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -767,6 +812,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: BuckShot Variant (8)
+      objectReference: {fileID: 0}
+    - target: {fileID: 3437793105239383847, guid: 01ae1143eb3185447b85ecccdc9cc99c,
+        type: 3}
+      propertyPath: m_Layer
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1773107573497347578, guid: 01ae1143eb3185447b85ecccdc9cc99c,
         type: 3}
@@ -852,6 +902,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: BuckShot Variant (11)
       objectReference: {fileID: 0}
+    - target: {fileID: 3437793105239383847, guid: 01ae1143eb3185447b85ecccdc9cc99c,
+        type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1773107573497347578, guid: 01ae1143eb3185447b85ecccdc9cc99c,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -935,6 +990,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: BuckShot Variant (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 3437793105239383847, guid: 01ae1143eb3185447b85ecccdc9cc99c,
+        type: 3}
+      propertyPath: m_Layer
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1773107573497347578, guid: 01ae1143eb3185447b85ecccdc9cc99c,
         type: 3}
@@ -1020,6 +1080,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: BuckShot Variant
       objectReference: {fileID: 0}
+    - target: {fileID: 3437793105239383847, guid: 01ae1143eb3185447b85ecccdc9cc99c,
+        type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6199804028842390987, guid: 01ae1143eb3185447b85ecccdc9cc99c,
         type: 3}
       propertyPath: maxDistance
@@ -1099,6 +1164,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: BuckShot Variant (12)
+      objectReference: {fileID: 0}
+    - target: {fileID: 3437793105239383847, guid: 01ae1143eb3185447b85ecccdc9cc99c,
+        type: 3}
+      propertyPath: m_Layer
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1773107573497347578, guid: 01ae1143eb3185447b85ecccdc9cc99c,
         type: 3}
@@ -1184,6 +1254,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: BuckShot Variant (13)
       objectReference: {fileID: 0}
+    - target: {fileID: 3437793105239383847, guid: 01ae1143eb3185447b85ecccdc9cc99c,
+        type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1773107573497347578, guid: 01ae1143eb3185447b85ecccdc9cc99c,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1267,6 +1342,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: BuckShot Variant (4)
+      objectReference: {fileID: 0}
+    - target: {fileID: 3437793105239383847, guid: 01ae1143eb3185447b85ecccdc9cc99c,
+        type: 3}
+      propertyPath: m_Layer
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1773107573497347578, guid: 01ae1143eb3185447b85ecccdc9cc99c,
         type: 3}
