@@ -247,6 +247,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   weaponState: 2
+  aimingAngleDegree: 5
   LeftHandIK: {fileID: 8456343873771657953}
   RightHandIK: {fileID: 1560344333061721990}
   RightElbowHint: {fileID: 3966542203367253556}

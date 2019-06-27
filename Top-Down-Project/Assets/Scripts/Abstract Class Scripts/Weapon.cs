@@ -17,6 +17,9 @@ public abstract class Weapon : MonoBehaviour
     [Header("Weapon Settings")]
     public WeaponState weaponState = WeaponState.None;
 
+    [Header("AI Settings"), Range(-90,90)]
+    public float aimingAngleDegree;
+
     [Header("Inverse Kenetics (IK) Settings")]
     public Transform LeftHandIK;
     public Transform RightHandIK;
