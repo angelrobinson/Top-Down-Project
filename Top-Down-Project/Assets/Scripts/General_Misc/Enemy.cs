@@ -6,22 +6,70 @@ using UnityEngine.AI;
 [RequireComponent(typeof(NavMeshAgent))]
 public class Enemy : Character
 {
-    //Animator ai;
-    NavMeshAgent agent;
+    [Header("Navigation")]
     [SerializeField] Transform target;
+    NavMeshAgent agent;    
     Vector3 desiredVel;
-    //ObjectHealth myHealth;
-    //bool dead;
 
-    private void Start()
+    Transform player;
+    
+
+    private void Awake()
     {
+        base.Awake();
         agent = GetComponent<NavMeshAgent>();
-        CharAnimator = GetComponent<Animator>();
+        player = GameObject.FindGameObjectWithTag("Player").transform;
+
+        int index = 0;
+        //try and equip a random weapon from the guns array
+        try
+        {
+            index = Random.Range(0, guns.Length);
+            EquipWeapon(guns[index].gameObject);
+        }
+        catch (System.NullReferenceException ex)
+        {
+            Debug.LogError("NO WEAPON WAS FOUND IN INDEX " + index + "! " + ex.Message);
+            
+        }
+        catch (System.IndexOutOfRangeException iex)
+        {
+            Debug.LogError("NO WEAPONS ARE IN INVENTORY! " + iex.Message);
+        }
+        //CharAnimator = GetComponent<Animator>();
         //myHealth = GetComponent<ObjectHealth>();
     }
 
     private void Update()
     {
+
+        //if there is not a target to move to, stop the animator and end the update method early
+        //so we don't get null reference errors
+        if (!target)
+        {
+            agent.isStopped = true;
+            return;
+        }
+
+        if (currentWeapon)
+        {
+            //check to see if the current weapon is a projectile weapon
+            ProjectileWeapon gun = currentWeapon.GetComponent<ProjectileWeapon>();
+            if (gun)
+            {
+                //check the angle between the Enemy’s forward and the Player.
+                //If the angle is below the equipped weapon’s attackAngle we have the Enemy pull the trigger.
+                float checkAngle = Vector3.Angle(transform.forward, player.position);
+                Debug.Log("Aim Angle: " + checkAngle);
+                if (checkAngle <= gun.aimingAngleDegree)
+                {
+                    gun.PullTrigger();
+                }
+
+            }
+        }
+        
+
         //tell agent to go to target. 
         //if target is moving, this means the agent "pursues" the target
         agent.SetDestination(target.position);
