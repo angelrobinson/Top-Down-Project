@@ -1479,7 +1479,7 @@ MonoBehaviour:
   - {fileID: 864680161672632991, guid: d07a1d6ac9d3abd4eb7e0367309bc27a, type: 3}
   currentWeapon: {fileID: 0}
   weaponHolder: {fileID: 780395324}
-  target: {fileID: 0}
+  target: {fileID: 415965544}
 --- !u!95 &735783986
 Animator:
   serializedVersion: 3
