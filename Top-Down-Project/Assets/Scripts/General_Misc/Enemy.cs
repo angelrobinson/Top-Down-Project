@@ -36,8 +36,7 @@ public class Enemy : Character
         {
             Debug.LogError("NO WEAPONS ARE IN INVENTORY! " + iex.Message);
         }
-        //CharAnimator = GetComponent<Animator>();
-        //myHealth = GetComponent<ObjectHealth>();
+        
     }
 
     private void Update()
@@ -76,11 +75,7 @@ public class Enemy : Character
 
         //add animation to the nav mesh agent
         desiredVel = Vector3.MoveTowards(desiredVel, agent.desiredVelocity, agent.acceleration * Time.deltaTime);
-        Vector3 input = transform.InverseTransformDirection(desiredVel);
-        //Vector3 input = agent.desiredVelocity;
-        //input = transform.InverseTransformDirection(input);
-        //CharAnimator.SetFloat("Horizontal", input.x);
-        //CharAnimator.SetFloat("Vertical", input.z);
+        Vector3 input = transform.InverseTransformDirection(desiredVel);        
         MovePlayer(input);
 
         if (MyHealth.Health == 0)

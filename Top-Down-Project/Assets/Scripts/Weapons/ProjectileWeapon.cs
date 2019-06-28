@@ -42,16 +42,6 @@ public class ProjectileWeapon : Weapon
             //update timer for checking if ready to shoot
             readyToFire -= Time.deltaTime;
         }
-
-        ////if can shoot and if the button set up in the Input settings for Fire1 is pressed, instantiate the bullet
-        //if (canShoot)
-        //{
-        //    if (Input.GetButtonDown("Fire1") && transform.parent.parent.CompareTag("Player"))
-        //    {
-        //            PullTrigger();
-        //    }
-        //}        
-
     }
 
     public override void PullTrigger()
@@ -70,8 +60,6 @@ public class ProjectileWeapon : Weapon
             {
                 bullet = Instantiate(bulletPrefab[0], barrel[i].position, barrel[i].rotation * Quaternion.Euler(Random.onUnitSphere * spread)) as Projectile;
             }
-
-            //bullet = Instantiate(bulletPrefab, barrel.position, barrel.rotation * Quaternion.Euler(Random.onUnitSphere * spread)) as Projectile;
 
             //add damage, force and layer to the bullet
             bullet.Damage = damage;

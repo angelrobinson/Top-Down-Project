@@ -11,12 +11,6 @@ public class ObjectHealth : MonoBehaviour
 
 
     #region Properties
-
-    /// <summary>
-    /// gets percentage of current health compared to max health
-    /// </summary>
-    //public float HealthPercent { get { return Health / MaxHealth; } }
-    
     /// <summary>
     /// can't be zero as that would mean the object is always dead
     /// normally this would be set on game start (i.e. in inspector),

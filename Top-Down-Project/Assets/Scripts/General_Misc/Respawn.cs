@@ -55,15 +55,8 @@ public class Respawn : MonoBehaviour
             }
             else
             {
-                //increase spawn index to the next
-                ++spawnIndex;
-
-                //if the spawn index is greater than the length of the array, then reset to 0
-                if (spawnIndex >= spawnObj.Length)
-                {
-                    spawnIndex = 0;
-                }
                 
+
 
                 //if random select a new index to spawn
                 if (randomSpawn)
@@ -71,6 +64,19 @@ public class Respawn : MonoBehaviour
                     spawnIndex = ran.Next(0, spawnObj.Length);
                     Debug.Log("Random Spawn Index: " + spawnIndex);
                 }
+                else
+                {
+                    //increase spawn index to the next
+                    ++spawnIndex;
+
+                    //if the spawn index is greater than the length of the array, then reset to 0
+                    if (spawnIndex >= spawnObj.Length)
+                    {
+                        spawnIndex = 0;
+                    }
+                }
+
+                Debug.Log("Index for " + gameObject.name + ": " + spawnIndex);
 
                 //instantiate next object
                 Instantiate(spawnObj[spawnIndex], transform);

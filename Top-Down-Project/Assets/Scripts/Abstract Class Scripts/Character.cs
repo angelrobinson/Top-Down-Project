@@ -105,6 +105,7 @@ public abstract class Character : MonoBehaviour
     /// <param name="weapon">Gameobject of weapon that is to be equipped</param>
     public void EquipWeapon(GameObject weapon)
     {
+        //if there is already a weapon equipped, swap them out (Or, have an inventory and a swap button)
         if (currentWeapon)
         {
             GameObject temp = currentWeapon;
@@ -112,6 +113,7 @@ public abstract class Character : MonoBehaviour
 
         }
 
+        //instantiate the weapon, set parent and layer
         currentWeapon = Instantiate(weapon);
         currentWeapon.transform.SetParent(weaponHolder.transform);
         currentWeapon.transform.localPosition = weapon.transform.position;
