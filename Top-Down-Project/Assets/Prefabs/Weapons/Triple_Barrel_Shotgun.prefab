@@ -203,6 +203,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4226593927269233243}
   - component: {fileID: 7470817250273009478}
+  - component: {fileID: 7595193574508230519}
   m_Layer: 0
   m_Name: Triple_Barrel_Shotgun
   m_TagString: Untagged
@@ -264,6 +265,41 @@ MonoBehaviour:
   shotsPerMinute: 30
   spread: 1
   canShoot: 1
+--- !u!114 &7595193574508230519
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 935826302620024904}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a656953e56d22c40aa0b3c31de62bc7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  type: 7
+  gizmoColor: {r: 1, g: 0, b: 0, a: 1}
+  scale: {x: 0, y: 0, z: 0}
+  FOV: 0
+  center: {x: 0, y: 0, z: 0}
+  farDist: 0
+  nearDist: 0
+  aspect: 0
+  XYPosition: {x: 0, y: 0}
+  XYSize: {x: 0, y: 0}
+  texture: {fileID: 0}
+  lftBorder: 0
+  rtBorder: 0
+  topBorder: 0
+  bottBorder: 0
+  mat: {fileID: 0}
+  icon: {fileID: 0}
+  fileExt: 
+  startPosition: {fileID: 0}
+  endPosition: {fileID: 0}
+  mesh: {fileID: 0}
+  rayStart: {fileID: 4226593927269233243}
+  radius: 0
 --- !u!1 &1112185099526015868
 GameObject:
   m_ObjectHideFlags: 0

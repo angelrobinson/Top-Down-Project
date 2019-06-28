@@ -14,11 +14,12 @@ public class Enemy : Character
     Transform player;
     
 
-    private void Awake()
+    new private void Awake()
     {
         base.Awake();
         agent = GetComponent<NavMeshAgent>();
         player = GameObject.FindGameObjectWithTag("Player").transform;
+        target = GameObject.FindGameObjectWithTag("Player").transform;
 
         int index = 0;
         //try and equip a random weapon from the guns array
@@ -62,7 +63,7 @@ public class Enemy : Character
                     //check the angle between the Enemy’s forward and the Player.
                     //If the angle is below the equipped weapon’s attackAngle we have the Enemy pull the trigger.
                     float checkAngle = Vector3.Angle(transform.forward, player.position);
-                    Debug.Log("Aim Angle: " + checkAngle);
+                    //Debug.Log("Aim Angle: " + checkAngle);
                     if (checkAngle <= gun.aimingAngleDegree)
                     {
                         if (gun.canShoot)
