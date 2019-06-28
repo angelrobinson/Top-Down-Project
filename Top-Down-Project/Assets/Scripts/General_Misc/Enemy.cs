@@ -56,15 +56,24 @@ public class Enemy : Character
             ProjectileWeapon gun = currentWeapon.GetComponent<ProjectileWeapon>();
             if (gun)
             {
-                //check the angle between the Enemy’s forward and the Player.
-                //If the angle is below the equipped weapon’s attackAngle we have the Enemy pull the trigger.
-                float checkAngle = Vector3.Angle(transform.forward, player.position);
-                Debug.Log("Aim Angle: " + checkAngle);
-                if (checkAngle <= gun.aimingAngleDegree)
+                //check to see if the player is within max distance of the gun range
+                if (Vector3.Distance(transform.position, player.position) <= gun.MaxDistance)
                 {
-                    gun.PullTrigger();
+                    //check the angle between the Enemy’s forward and the Player.
+                    //If the angle is below the equipped weapon’s attackAngle we have the Enemy pull the trigger.
+                    float checkAngle = Vector3.Angle(transform.forward, player.position);
+                    Debug.Log("Aim Angle: " + checkAngle);
+                    if (checkAngle <= gun.aimingAngleDegree)
+                    {
+                        if (gun.canShoot)
+                        {
+                            gun.PullTrigger();
+                            
+                        }
+                        
+                    }
                 }
-
+                
             }
         }
         

@@ -185,6 +185,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   weaponState: 1
+  maxDist: 91.44
   aimingAngleDegree: 1
   LeftHandIK: {fileID: 247700180}
   RightHandIK: {fileID: 1991113814}

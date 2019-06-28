@@ -169,7 +169,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rb: {fileID: 0}
   lifespan: 15
-  maxDistance: 64.008
+  distance: 64.008
 --- !u!136 &1270257136133236329
 CapsuleCollider:
   m_ObjectHideFlags: 0

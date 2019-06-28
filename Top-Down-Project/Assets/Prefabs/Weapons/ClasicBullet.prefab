@@ -108,7 +108,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rb: {fileID: 0}
   lifespan: 15
-  maxDistance: 91.44
+  distance: 91.44
 --- !u!54 &7600691465855607817
 Rigidbody:
   m_ObjectHideFlags: 0

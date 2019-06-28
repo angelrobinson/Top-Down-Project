@@ -16,7 +16,8 @@ public abstract class Weapon : MonoBehaviour
 
     [Header("Weapon Settings")]
     public WeaponState weaponState = WeaponState.None;
-
+    [SerializeField] private float maxDist;
+    
     [Header("AI Settings"), Range(-90,90)]
     public float aimingAngleDegree;
 
@@ -25,6 +26,9 @@ public abstract class Weapon : MonoBehaviour
     public Transform RightHandIK;
     public Transform RightElbowHint;
     public Transform LeftElbowHint;
+
+    //properties
+    public float MaxDistance { get { return maxDist; } protected set { maxDist = value; } }
 
     /// <summary>
     /// derived class will determine what is done in this method

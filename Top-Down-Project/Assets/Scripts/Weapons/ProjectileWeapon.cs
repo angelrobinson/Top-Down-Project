@@ -27,6 +27,13 @@ public class ProjectileWeapon : Weapon
         //divide the amount of seconds in a minute by the amount of shots per Minute
         //to get how much time is between each shot
         timeBetweenFire = 60f / shotsPerMinute;
+
+        //set default max distance if not put into inspector
+        if (MaxDistance <= 0)
+        {
+            MaxDistance = 25;
+        }
+        
     }
 
     

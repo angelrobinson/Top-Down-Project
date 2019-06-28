@@ -8,7 +8,7 @@ public class Projectile : MonoBehaviour
     [HideInInspector] public Rigidbody rb;
     [SerializeField] float lifespan;
     [Tooltip("In meters")]
-    [SerializeField] float maxDistance;
+    [SerializeField] float distance;
     Vector3 startPostion;
 
     private void Awake()
@@ -25,7 +25,7 @@ public class Projectile : MonoBehaviour
     private void FixedUpdate()
     {
         //check if the bullet gets past the maxDistance from startPosition
-        if (Vector3.Distance(transform.position, startPostion) > maxDistance)
+        if (Vector3.Distance(transform.position, startPostion) > distance)
         {
             //out of range and need to destroy the object
             Destroy(gameObject);
