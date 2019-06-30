@@ -87,10 +87,15 @@ public class Enemy : Character
         Vector3 input = transform.InverseTransformDirection(desiredVel);        
         MovePlayer(input);
 
-        if (MyHealth.Health == 0)
+        //if (MyHealth.Health == 0)
+        //{
+        //    Die();
+        //}
+        if (MyHealth.Health <= 0 && dead == false)
         {
             Die();
         }
+
     }
 
     /// <summary>
@@ -110,25 +115,25 @@ public class Enemy : Character
     /// This method checks to see if the Player health gets to zero or below and if the player is already dead.
     /// If not already dead, it will trigger the death animation and mark the player as dead
     /// </summary>
-    public override void Die()
-    {
-        if (MyHealth.Health <= 0 && dead == false)
-        {
-            Destroy(gameObject);
-            dead = true;
-        }
+    //public override void Die()
+    //{
+    //    if (MyHealth.Health <= 0 && dead == false)
+    //    {
+    //        base.Die();
+    //        dead = true;
+    //    }
 
-    }
+    //}
 
     protected override void RagdollOn()
     {
-        CharAnimator.enabled = false;
+        agent.isStopped = true;
         base.RagdollOn();
     }
 
     protected override void RagdollOff()
     {
+        agent.isStopped = false;
         base.RagdollOff();
-        CharAnimator.enabled = true;
     }
 }

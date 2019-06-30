@@ -62,7 +62,6 @@ public class Respawn : MonoBehaviour
                 if (randomSpawn)
                 {
                     spawnIndex = ran.Next(0, spawnObj.Length);
-                    Debug.Log("Random Spawn Index: " + spawnIndex);
                 }
                 else
                 {
@@ -75,8 +74,6 @@ public class Respawn : MonoBehaviour
                         spawnIndex = 0;
                     }
                 }
-
-                Debug.Log("Index for " + gameObject.name + ": " + spawnIndex);
 
                 //instantiate next object
                 Instantiate(spawnObj[spawnIndex], transform);

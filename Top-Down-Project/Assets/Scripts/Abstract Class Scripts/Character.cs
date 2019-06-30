@@ -19,6 +19,8 @@ public abstract class Character : MonoBehaviour
     [SerializeField]protected Animator anim;
 
     protected bool dead;
+    Rigidbody rb;
+    Collider col;
 
     //TODO: possible uses of multiple guns in inventory?
     //[Header("Equipment")]
@@ -41,6 +43,9 @@ public abstract class Character : MonoBehaviour
 
     protected void Awake()
     {
+        rb = GetComponent<Rigidbody>();
+        col = GetComponent<Collider>();
+
         //if animator is not set in inspector try and get the animator on the object this script is attached to
         if (CharAnimator == null)
         {
@@ -58,9 +63,13 @@ public abstract class Character : MonoBehaviour
         ragdollRB = GetComponentsInChildren<Rigidbody>().ToList();
         ragdollColl = GetComponentsInChildren<Collider>().ToList();
 
-        RagdollOff();
+        
     }
 
+    private void Start()
+    {
+        RagdollOff();
+    }
     #region Helper Methods
     /// <summary>
     /// Allows for movement of an object in a specific direction and speed.
@@ -107,6 +116,7 @@ public abstract class Character : MonoBehaviour
     public virtual void Die()
     {
         RagdollOn();
+        dead = true;
         //anim.SetTrigger("Death");
     }
 
@@ -146,7 +156,7 @@ public abstract class Character : MonoBehaviour
     {
         foreach (var item in ragdollRB)
         {
-            if (item.gameObject.GetInstanceID() == GetInstanceID())
+            if (item.gameObject.GetInstanceID() == rb.gameObject.GetInstanceID()) //rb.gameObject.GetInstanceID(
             {
                 item.isKinematic = true;
             }
@@ -158,7 +168,7 @@ public abstract class Character : MonoBehaviour
 
         foreach (var item in ragdollColl)
         {
-            if (item.gameObject.GetInstanceID() == GetInstanceID())
+            if (item.gameObject.GetInstanceID() == col.gameObject.GetInstanceID()) //col.gameObject.GetInstanceID()
             {
                 item.enabled = false;
             }
@@ -167,6 +177,8 @@ public abstract class Character : MonoBehaviour
                 item.enabled = true;
             }
         }
+
+        CharAnimator.enabled = false;
     }
 
 
@@ -180,9 +192,11 @@ public abstract class Character : MonoBehaviour
     /// </summary>
     protected virtual void RagdollOff()
     {
+        
+
         foreach (var item in ragdollRB)
-        {
-            if (item.gameObject.GetInstanceID() == GetInstanceID())
+        { 
+            if (item.gameObject.GetInstanceID() == rb.gameObject.GetInstanceID()) //rb.gameObject.GetInstanceID()
             {
                 item.isKinematic = false;
             }
@@ -194,7 +208,7 @@ public abstract class Character : MonoBehaviour
 
         foreach (var item in ragdollColl)
         {
-            if (item.gameObject.GetInstanceID() == GetInstanceID())
+            if (item.gameObject.GetInstanceID() == col.gameObject.GetInstanceID()) //col.gameObject.GetInstanceID()
             {
                 item.enabled = true;
             }
@@ -203,6 +217,8 @@ public abstract class Character : MonoBehaviour
                 item.enabled = false;
             }
         }
+
+        CharAnimator.enabled = true;
     }
     #endregion
 

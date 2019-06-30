@@ -66,7 +66,6 @@ public class Player : Character
                 }
             }
         }
-        
     }
 
 
@@ -102,10 +101,9 @@ public class Player : Character
     /// </summary>
     public override void Die()
     {        
-        if (MyHealth.Health <= 0 && dead == false)
+        if (dead == false)
         {
             base.Die();
-            dead = true;
         }
         
     }
