@@ -18,11 +18,9 @@ public class SpeedPickup : Pickup
     {
         PlayerController pc = player.GetComponent<PlayerController>();
 
-        Debug.Log("Speed OnPickup Triggered");
         pc.BuffSpeed = speed;
         pc.buffType = PlayerController.BuffType.Speed;
         pc.buffTime = timeLimit;
-        Debug.Log("Player speed is: " + player.Speed);
         base.OnPickUp(player);
     }
     
