@@ -67,6 +67,12 @@ PrefabInstance:
       propertyPath: m_Name
       value: EnemyRespawn Variant
       objectReference: {fileID: 0}
+    - target: {fileID: 5764233323673175739, guid: 0fbbefc350b72d34da791c2b19804dab,
+        type: 3}
+      propertyPath: m_Icon
+      value: 
+      objectReference: {fileID: 5132851093641282708, guid: 0000000000000000d000000000000000,
+        type: 0}
     - target: {fileID: 8294952098825942773, guid: 0fbbefc350b72d34da791c2b19804dab,
         type: 3}
       propertyPath: m_LocalPosition.x

@@ -105,7 +105,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d49a48c4aa82c7043af11e6a2f41c900, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  lifespan: 15
+  lifespan: 25
   rotation: {x: 0, y: 0.25, z: 0}
   relativeRotation: 1
   damage: 10

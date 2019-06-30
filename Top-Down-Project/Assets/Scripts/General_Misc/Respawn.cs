@@ -11,7 +11,6 @@ public class Respawn : MonoBehaviour
     float timeLeft;
     int spawnIndex = 0;
     [SerializeField] bool randomSpawn;
-    System.Random ran;
 
 
     // Start is called before the first frame update
@@ -36,8 +35,7 @@ public class Respawn : MonoBehaviour
         //if randome is selected then choose the random spawn index
         if (randomSpawn)
         {
-            ran = new System.Random();
-            spawnIndex = ran.Next(0, spawnObj.Length);
+            spawnIndex = Random.Range(0, spawnObj.Length);
         }
 
         //spawn first object
@@ -61,7 +59,7 @@ public class Respawn : MonoBehaviour
                 //if random select a new index to spawn
                 if (randomSpawn)
                 {
-                    spawnIndex = ran.Next(0, spawnObj.Length);
+                    spawnIndex = Random.Range(0, spawnObj.Length);
                 }
                 else
                 {

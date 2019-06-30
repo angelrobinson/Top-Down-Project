@@ -25,10 +25,13 @@ public class FollowPlayer : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (lookAtTarget)
+        {
+            //move the camera to the offset position related to the target and look at the target
+            trans.position = lookAtTarget.position + offset;
+            trans.LookAt(lookAtTarget);
+        }
         
-        //move the camera to the offset position related to the target and look at the target
-        trans.position = lookAtTarget.position + offset;
-        trans.LookAt(lookAtTarget);
 
     }
 }
