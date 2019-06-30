@@ -42,7 +42,6 @@ public class Enemy : Character
 
     private void Update()
     {
-
         //if there is not a target to move to, stop the animator and end the update method early
         //so we don't get null reference errors
         if (!target)
@@ -115,9 +114,21 @@ public class Enemy : Character
     {
         if (MyHealth.Health <= 0 && dead == false)
         {
-            base.Die();
+            Destroy(gameObject);
             dead = true;
         }
 
+    }
+
+    protected override void RagdollOn()
+    {
+        CharAnimator.enabled = false;
+        base.RagdollOn();
+    }
+
+    protected override void RagdollOff()
+    {
+        base.RagdollOff();
+        CharAnimator.enabled = true;
     }
 }

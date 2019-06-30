@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Linq;
 
 /// <summary>
 /// we want to keep our designers from creating objects that are just Pickups, 
@@ -30,6 +31,10 @@ public abstract class Character : MonoBehaviour
     [SerializeField] protected GameObject currentWeapon;
     [SerializeField] protected GameObject weaponHolder;
 
+    //ragdoll
+    protected List<Rigidbody> ragdollRB;
+    protected List<Collider> ragdollColl;
+
     //properties
     public Animator CharAnimator { get { return anim; } protected set { anim = value; } }
     public ObjectHealth MyHealth { get; set; }
@@ -49,6 +54,11 @@ public abstract class Character : MonoBehaviour
         }
 
         MyHealth = GetComponent<ObjectHealth>();
+
+        ragdollRB = GetComponentsInChildren<Rigidbody>().ToList();
+        ragdollColl = GetComponentsInChildren<Collider>().ToList();
+
+        RagdollOff();
     }
 
     #region Helper Methods
@@ -96,7 +106,8 @@ public abstract class Character : MonoBehaviour
     /// </summary>
     public virtual void Die()
     {
-        anim.SetTrigger("Death");
+        RagdollOn();
+        //anim.SetTrigger("Death");
     }
 
     /// <summary>
@@ -121,6 +132,77 @@ public abstract class Character : MonoBehaviour
         currentWeapon.gameObject.layer = gameObject.layer;
 
         anim.SetInteger("WeaponState", (int)weapon.GetComponent<Weapon>().weaponState);
+    }
+
+    /// <summary>
+    /// To Turn ON Ragdoll mode:
+    /// 1. Make all of the ragdoll rigidbodies NOT Kinematic(so they move using physics code.)
+    /// 2. Turn ON all of the ragdoll colliders.
+    /// 3. Turn OFF the main collider on our object (so that it doesn't fight with our ragdoll colliders)
+    /// 4. Make main rigidBody Kinematic(so that it doesn't fight with our physics/rigidbodies.) 
+    /// 5. Turn OFF the animator (so that it doesn't fight with our physics/rigidbodies.) 
+    /// </summary>
+    protected virtual void RagdollOn()
+    {
+        foreach (var item in ragdollRB)
+        {
+            if (item.gameObject.GetInstanceID() == GetInstanceID())
+            {
+                item.isKinematic = true;
+            }
+            else
+            {
+                item.isKinematic = false;
+            }
+        }
+
+        foreach (var item in ragdollColl)
+        {
+            if (item.gameObject.GetInstanceID() == GetInstanceID())
+            {
+                item.enabled = false;
+            }
+            else
+            {
+                item.enabled = true;
+            }
+        }
+    }
+
+
+    /// <summary>
+    /// To Turn OFF Ragdoll mode:
+    /// 1. Make all of the ragdoll rigidbodies Kinematic(so they are OFF and don't use physics anymore.)
+    /// 2. Turn OFF all of the ragdoll colliders.
+    /// 3. Turn ON the main collider on our object (so they don't fall through the floor)
+    /// 4. Make the main rigidBody NOT Kinematic (so it applied gravity again)
+    /// 5. Turn ON the animator(so the animator moves us)
+    /// </summary>
+    protected virtual void RagdollOff()
+    {
+        foreach (var item in ragdollRB)
+        {
+            if (item.gameObject.GetInstanceID() == GetInstanceID())
+            {
+                item.isKinematic = false;
+            }
+            else
+            {
+                item.isKinematic = true;
+            }
+        }
+
+        foreach (var item in ragdollColl)
+        {
+            if (item.gameObject.GetInstanceID() == GetInstanceID())
+            {
+                item.enabled = true;
+            }
+            else
+            {
+                item.enabled = false;
+            }
+        }
     }
     #endregion
 

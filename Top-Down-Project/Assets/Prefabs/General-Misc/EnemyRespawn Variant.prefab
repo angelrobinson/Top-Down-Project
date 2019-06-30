@@ -1,43 +1,71 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1001 &239476317901697158
+--- !u!114 &-7741229588541306535
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8243415148643146371}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a671fca34a5666642bc8c5a34a62a3b8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  respawnTime: 20
+  spawnObj:
+  - {fileID: 1898644373245274696, guid: 468997e2422897d48a3256b88629e15e, type: 3}
+  randomSpawn: 0
+  maxEnemies: 5
+--- !u!114 &1394947183303539720
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8243415148643146371}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a656953e56d22c40aa0b3c31de62bc7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  type: 1
+  gizmoColor: {r: 0.9056604, g: 0.004271993, b: 0.021065744, a: 1}
+  scale: {x: 0.6, y: 1.8, z: 0.6}
+  FOV: 0
+  center: {x: 0, y: 0, z: 0}
+  farDist: 0
+  nearDist: 0
+  aspect: 0
+  XYPosition: {x: 0, y: 0}
+  XYSize: {x: 0, y: 0}
+  texture: {fileID: 0}
+  lftBorder: 0
+  rtBorder: 0
+  topBorder: 0
+  bottBorder: 0
+  mat: {fileID: 0}
+  icon: {fileID: 0}
+  fileExt: 
+  startPosition: {fileID: 0}
+  endPosition: {fileID: 0}
+  mesh: {fileID: 0}
+  rayStart: {fileID: 0}
+  wireScale: {x: 0, y: 0, z: 0}
+  wireMesh: {fileID: 0}
+  wireRadius: 0
+  radius: 0
+--- !u!1001 &4438532505375644728
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1111060520304030901, guid: 0fbbefc350b72d34da791c2b19804dab,
-        type: 3}
-      propertyPath: spawnObj.Array.size
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1111060520304030901, guid: 0fbbefc350b72d34da791c2b19804dab,
-        type: 3}
-      propertyPath: spawnObj.Array.data[0]
-      value: 
-      objectReference: {fileID: 8649822001277693839, guid: d8e05012383a7bf48b306de88da05370,
-        type: 3}
     - target: {fileID: 5764233323673175739, guid: 0fbbefc350b72d34da791c2b19804dab,
         type: 3}
       propertyPath: m_Name
-      value: TargetRespawn Variant
-      objectReference: {fileID: 0}
-    - target: {fileID: 396291789754355906, guid: 0fbbefc350b72d34da791c2b19804dab,
-        type: 3}
-      propertyPath: spawnObj.Array.size
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 396291789754355906, guid: 0fbbefc350b72d34da791c2b19804dab,
-        type: 3}
-      propertyPath: spawnObj.Array.data[0]
-      value: 
-      objectReference: {fileID: 8649822001277693839, guid: d8e05012383a7bf48b306de88da05370,
-        type: 3}
-    - target: {fileID: 396291789754355906, guid: 0fbbefc350b72d34da791c2b19804dab,
-        type: 3}
-      propertyPath: respawnTime
-      value: 10
+      value: EnemyRespawn Variant
       objectReference: {fileID: 0}
     - target: {fileID: 8294952098825942773, guid: 0fbbefc350b72d34da791c2b19804dab,
         type: 3}
@@ -47,12 +75,12 @@ PrefabInstance:
     - target: {fileID: 8294952098825942773, guid: 0fbbefc350b72d34da791c2b19804dab,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8294952098825942773, guid: 0fbbefc350b72d34da791c2b19804dab,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: -8.991
       objectReference: {fileID: 0}
     - target: {fileID: 8294952098825942773, guid: 0fbbefc350b72d34da791c2b19804dab,
         type: 3}
@@ -94,5 +122,12 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 1111060520304030901, guid: 0fbbefc350b72d34da791c2b19804dab, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 0fbbefc350b72d34da791c2b19804dab, type: 3}
+--- !u!1 &8243415148643146371 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5764233323673175739, guid: 0fbbefc350b72d34da791c2b19804dab,
+    type: 3}
+  m_PrefabInstance: {fileID: 4438532505375644728}
+  m_PrefabAsset: {fileID: 0}

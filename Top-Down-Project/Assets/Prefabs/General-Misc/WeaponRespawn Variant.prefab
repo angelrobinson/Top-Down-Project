@@ -7,6 +7,28 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1111060520304030901, guid: 0fbbefc350b72d34da791c2b19804dab,
+        type: 3}
+      propertyPath: spawnObj.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1111060520304030901, guid: 0fbbefc350b72d34da791c2b19804dab,
+        type: 3}
+      propertyPath: spawnObj.Array.data[0]
+      value: 
+      objectReference: {fileID: 3388507341622569164, guid: 97baed4171c4ceb45959166467e4fa50,
+        type: 3}
+    - target: {fileID: 1111060520304030901, guid: 0fbbefc350b72d34da791c2b19804dab,
+        type: 3}
+      propertyPath: spawnObj.Array.data[1]
+      value: 
+      objectReference: {fileID: 7672093253024664748, guid: f3cc72dd4e7bc9244a8548f951c87f44,
+        type: 3}
+    - target: {fileID: 1111060520304030901, guid: 0fbbefc350b72d34da791c2b19804dab,
+        type: 3}
+      propertyPath: respawnTime
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 5764233323673175739, guid: 0fbbefc350b72d34da791c2b19804dab,
         type: 3}
       propertyPath: m_Name

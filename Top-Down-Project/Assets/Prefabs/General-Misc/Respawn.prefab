@@ -9,11 +9,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8294952098825942773}
-  - component: {fileID: 396291789754355906}
-  - component: {fileID: -5065126197997840625}
+  - component: {fileID: 1111060520304030901}
   m_Layer: 0
   m_Name: Respawn
-  m_TagString: Untagged
+  m_TagString: Respawn
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -32,7 +31,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &396291789754355906
+--- !u!114 &1111060520304030901
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -44,39 +43,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d1fb5d434bf692b44b49089c444327e3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  respawnTime: 0
+  respawnTime: 5
   spawnObj: []
   randomSpawn: 0
---- !u!114 &-5065126197997840625
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5764233323673175739}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9a656953e56d22c40aa0b3c31de62bc7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  type: 0
-  gizmoColor: {r: 0.9811321, g: 0.9579922, b: 0.9579922, a: 0}
-  scale: {x: 0, y: 0, z: 0}
-  FOV: 0
-  center: {x: 0, y: 0, z: 0}
-  farDist: 0
-  nearDist: 0
-  aspect: 0
-  XYPosition: {x: 0, y: 0}
-  XYSize: {x: 0, y: 0}
-  texture: {fileID: 0}
-  lftBorder: 0
-  rtBorder: 0
-  topBorder: 0
-  bottBorder: 0
-  mat: {fileID: 0}
-  icon: {fileID: 0}
-  fileExt: 
-  startPosition: {fileID: 0}
-  endPosition: {fileID: 0}
-  radius: 0

@@ -7,6 +7,39 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1111060520304030901, guid: 0fbbefc350b72d34da791c2b19804dab,
+        type: 3}
+      propertyPath: spawnObj.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 1111060520304030901, guid: 0fbbefc350b72d34da791c2b19804dab,
+        type: 3}
+      propertyPath: spawnObj.Array.data[0]
+      value: 
+      objectReference: {fileID: 1087879810476366138, guid: 98a0e04103ce24c43ae2b1edc53f69e6,
+        type: 3}
+    - target: {fileID: 1111060520304030901, guid: 0fbbefc350b72d34da791c2b19804dab,
+        type: 3}
+      propertyPath: spawnObj.Array.data[1]
+      value: 
+      objectReference: {fileID: 8058779969121247718, guid: 8e63cfadf68238f4187d63dca0a923c3,
+        type: 3}
+    - target: {fileID: 1111060520304030901, guid: 0fbbefc350b72d34da791c2b19804dab,
+        type: 3}
+      propertyPath: spawnObj.Array.data[2]
+      value: 
+      objectReference: {fileID: 8425642021044318168, guid: 200228b984cc88b48a9fd09ea8f4e509,
+        type: 3}
+    - target: {fileID: 1111060520304030901, guid: 0fbbefc350b72d34da791c2b19804dab,
+        type: 3}
+      propertyPath: respawnTime
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1111060520304030901, guid: 0fbbefc350b72d34da791c2b19804dab,
+        type: 3}
+      propertyPath: randomSpawn
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5764233323673175739, guid: 0fbbefc350b72d34da791c2b19804dab,
         type: 3}
       propertyPath: m_Name
