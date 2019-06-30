@@ -117,6 +117,14 @@ public abstract class Character : MonoBehaviour
     {
         RagdollOn();
         dead = true;
+
+        if (currentWeapon)
+        {
+            Transform wpn = currentWeapon.transform;
+            wpn.position = new Vector3(wpn.position.x, 0, wpn.position.z);
+        }
+
+        Destroy(gameObject, 5.0f);
         //anim.SetTrigger("Death");
     }
 

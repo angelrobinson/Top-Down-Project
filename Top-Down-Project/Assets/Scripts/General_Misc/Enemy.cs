@@ -111,20 +111,6 @@ public class Enemy : Character
         transform.LookAt(target);
     }
 
-    /// <summary>
-    /// This method checks to see if the Player health gets to zero or below and if the player is already dead.
-    /// If not already dead, it will trigger the death animation and mark the player as dead
-    /// </summary>
-    //public override void Die()
-    //{
-    //    if (MyHealth.Health <= 0 && dead == false)
-    //    {
-    //        base.Die();
-    //        dead = true;
-    //    }
-
-    //}
-
     protected override void RagdollOn()
     {
         agent.isStopped = true;

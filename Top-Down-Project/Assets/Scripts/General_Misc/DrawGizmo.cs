@@ -2,6 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// This is a utility script to draw gizmos within the scene view only.  
+/// When adding this component to an object in your scene you need to choose the type of gizmo you want
+/// and the color of the gizmo.
+/// 
+/// </summary>
 public class DrawGizmo : MonoBehaviour
 {
     public enum GizmoType { NONE, CUBE, FRUSTRUM, GUI_TEXT, ICON, LINE, MESH, RAY, SPHERE, WIRE_CUBE, WIRE_MESH, WIRE_SPHERE }
@@ -39,7 +45,8 @@ public class DrawGizmo : MonoBehaviour
     [Tooltip("Optional material to put on the texture")]
     [SerializeField] Material mat;
 
-    [Header("Icon Settings")]    
+    [Header("Icon Settings")]
+    [Tooltip("This texture needs to be stored in the Assets/Gizmos folder")]
     [SerializeField] Texture icon;
     [Tooltip("The file extension of the icon photo you are using. DO NOT put the dot (.) before it. For example: jpg, png, ico, tiff")]
     [SerializeField] string fileExt;

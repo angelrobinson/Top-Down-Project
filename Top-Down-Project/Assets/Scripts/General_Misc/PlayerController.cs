@@ -50,7 +50,11 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        FindMouseLocation();
+        if (controlled.MyHealth.Health > 0)
+        {
+            FindMouseLocation();
+        }
+        
         
         Movement();
     }
