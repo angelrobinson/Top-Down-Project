@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-[RequireComponent(typeof(NavMeshAgent))]
+[RequireComponent(typeof(NavMeshAgent), typeof(LootTable))]
 public class Enemy : Character
 {
     [Header("Navigation")]
@@ -12,6 +12,11 @@ public class Enemy : Character
     Vector3 desiredVel;
 
     Transform player;
+
+    [Header("Loot Settings")]
+    [SerializeField] LootTable loot;
+    [SerializeField, Range(0, 1)]
+    float chanceToDrop;
     
 
     new private void Awake()
@@ -20,6 +25,7 @@ public class Enemy : Character
         agent = GetComponent<NavMeshAgent>();
         player = GameObject.FindGameObjectWithTag("Player").transform;
         target = GameObject.FindGameObjectWithTag("Player").transform;
+        loot = GetComponent<LootTable>();
 
         int index = 0;
         //try and equip a random weapon from the guns array
@@ -37,6 +43,7 @@ public class Enemy : Character
         {
             Debug.LogError("NO WEAPONS ARE IN INVENTORY! " + iex.Message);
         }
+
         
     }
 
@@ -94,9 +101,12 @@ public class Enemy : Character
         if (MyHealth.Health <= 0 && dead == false)
         {
             Die();
+            DropItem();
         }
 
     }
+
+    #region Helper Methods
 
     /// <summary>
     /// make sure that the Navemesh agent uses the velocity of the animator
@@ -106,20 +116,49 @@ public class Enemy : Character
         agent.velocity = CharAnimator.velocity;
     }
 
-    public override void TurnPlayer(Vector3 target)
-    {
-        transform.LookAt(target);
-    }
 
+    /// <summary>
+    /// Stop the navMesh agent and turn on Ragdoll mechanics
+    /// </summary>
     protected override void RagdollOn()
     {
         agent.isStopped = true;
         base.RagdollOn();
     }
 
+    /// <summary>
+    /// Turns off ragdoll mechanics and makes sure the navMesh agent is running
+    /// </summary>
     protected override void RagdollOff()
     {
         agent.isStopped = false;
         base.RagdollOff();
     }
+
+    /// <summary>
+    /// Drop loot item and then proceed with base method
+    /// </summary>
+    //public override void Die()
+    //{
+    //    DropItem();
+    //    base.Die();
+    //}
+
+    //drop and item in the loot table
+    void DropItem()
+    {
+        if (Random.Range(0f,1.0f) < chanceToDrop)
+        {
+            GameObject go = loot.Select(loot.table);
+            Instantiate(go, transform.position, go.transform.rotation);
+            //Instantiate(loot.Select(), transform.position, Quaternion.identity);
+        }
+    }
+
+    //required method
+    public override void TurnPlayer(Vector3 target)
+    {
+        throw new System.NotImplementedException();
+    }
+    #endregion  
 }

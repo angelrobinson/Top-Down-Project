@@ -72,6 +72,8 @@ public class ProjectileWeapon : Weapon
             bullet.Damage = damage;
             bullet.rb.AddRelativeForce(Vector3.forward * bulletVelocity, ForceMode.VelocityChange);
             bullet.gameObject.layer = gameObject.layer;
+
+            //TODO: buck shot issue fix
         }
 
         //reset the canshoot bool to false
