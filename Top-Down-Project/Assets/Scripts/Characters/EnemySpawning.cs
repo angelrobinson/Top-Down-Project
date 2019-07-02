@@ -45,7 +45,7 @@ public class EnemySpawning : MonoBehaviour
         //spawn first object
         //Instantiate(spawnObj[spawnIndex], transform);
 
-        InvokeRepeating("Spawn", 0f, respawnTime);
+        InvokeRepeating("Spawn", respawnTime, respawnTime);
     }
 
     private void Update()

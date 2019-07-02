@@ -7,7 +7,7 @@ public class PlayerController : MonoBehaviour
     public enum BuffType { None, Speed } //idea:  add MaxHealth buff
 
     [Header("Player/Controlled Settings")]
-    Player controlled;
+    //Player controlled;
     [SerializeField] float walkSpeed;
     [SerializeField] float runSpeed;
     
@@ -22,10 +22,10 @@ public class PlayerController : MonoBehaviour
     void Start()
     {
         //set defaults if the inspector info is not put in
-        if (controlled == null)
-        {
-            controlled = GetComponentInChildren<Player>();
-        }
+        //if (controlled == null)
+        //{
+        //    controlled = GetComponentInChildren<Player>();
+        //}
 
         if (walkSpeed == 0)
         {
@@ -41,16 +41,16 @@ public class PlayerController : MonoBehaviour
     private void Update()
     {
         //check on Player's health and trigger die animation when health gets to zero
-        if (controlled.MyHealth.Health <= 0)
+        if (GameManager.Player.MyHealth.Health <= 0)
         {
-            controlled.Die();
+            GameManager.Player.Die();
         }
     }
 
     // Update is called once per frame
     void FixedUpdate()
     {
-        if (controlled.MyHealth.Health > 0)
+        if (GameManager.Player.MyHealth.Health > 0)
         {
             FindMouseLocation();
         }
@@ -68,12 +68,12 @@ public class PlayerController : MonoBehaviour
         contMovement = Vector3.ClampMagnitude(contMovement, 1);
 
         //ensure that the player only moves on x and z axis
-        contMovement = controlled.transform.InverseTransformDirection(contMovement);
+        contMovement = GameManager.Player.transform.InverseTransformDirection(contMovement);
 
         //check to see if player is moving and if so set animation bool to true as to call the correct jum animation when triggered
         if (contMovement.x != 0 || contMovement.z != 0)
         {
-            controlled.CharAnimator.SetBool("IsMoving", true);
+            GameManager.Player.CharAnimator.SetBool("IsMoving", true);
         }
 
         
@@ -84,11 +84,11 @@ public class PlayerController : MonoBehaviour
                 //use run speed/animation if  the shift key is pressed while moving, otherwise use the walking speed
                 if (Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift))
                 {
-                    controlled.Speed = runSpeed;
+                    GameManager.Player.Speed = runSpeed;
                 }
                 else
                 {
-                    controlled.Speed = walkSpeed;
+                    GameManager.Player.Speed = walkSpeed;
                 }
                 break;
             case BuffType.Speed:
@@ -99,11 +99,11 @@ public class PlayerController : MonoBehaviour
                     //use run speed/animation if  the shift key is pressed while moving, otherwise use the walking speed
                     if (Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift))
                     {
-                        controlled.Speed = runSpeed + BuffSpeed;
+                        GameManager.Player.Speed = runSpeed + BuffSpeed;
                     }
                     else
                     {
-                        controlled.Speed = walkSpeed + BuffSpeed;
+                        GameManager.Player.Speed = walkSpeed + BuffSpeed;
                     }
                 }
                 else
@@ -114,12 +114,12 @@ public class PlayerController : MonoBehaviour
         }
 
 
-        controlled.MovePlayer(contMovement, controlled.Speed);
+        GameManager.Player.MovePlayer(contMovement, GameManager.Player.Speed);
 
         //jump when you press the key set in the Input settings...default is space
         if (Input.GetButtonDown("Jump"))
         {
-            controlled.Jump();
+            GameManager.Player.Jump();
         }
         
     }
@@ -137,8 +137,8 @@ public class PlayerController : MonoBehaviour
         //calculate distance from camera to the plane that the ray hit
         float distance;
         if (plane.Raycast(ray, out distance))
-        {            
-            controlled.TurnPlayer(ray.GetPoint(distance));
+        {
+            GameManager.Player.TurnPlayer(ray.GetPoint(distance));
         }
 
         

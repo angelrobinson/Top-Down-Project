@@ -70,6 +70,17 @@ public abstract class Character : MonoBehaviour
     {
         RagdollOff();
     }
+
+    public virtual void Update()
+    {
+        //if the game is paused stop characters from rotation and looking at targets
+        //as well as any NavMesh Agents and other input movements
+        if (GameManager.Paused)
+        {
+            return;
+        }
+    }
+
     #region Helper Methods
     /// <summary>
     /// Allows for movement of an object in a specific direction and speed.

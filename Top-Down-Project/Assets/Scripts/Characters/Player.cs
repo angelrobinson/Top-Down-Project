@@ -52,8 +52,9 @@ public class Player : Character
 
     
 
-    private void Update()
+    public override void Update()
     {
+        base.Update();
         if (currentWeapon)
         {
             gun = currentWeapon.GetComponent<ProjectileWeapon>();

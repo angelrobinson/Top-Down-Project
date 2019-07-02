@@ -24,7 +24,13 @@ public abstract class Pickup : MonoBehaviour
 
     // Update is called once per frame
     void Update()
-    {  
+    {
+        //to pause rotation of pickups, return early if the game is paused
+        if (GameManager.Paused)
+        {
+            return;
+        }
+
         //rotate object with the given vector that was put in the inspector
         transform.Rotate(rotation, Space.World);        
     }

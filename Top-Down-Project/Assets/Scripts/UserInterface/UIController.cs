@@ -7,7 +7,7 @@ using UnityEngine.UI;
 public class UIController : MonoBehaviour
 {
     //Canvas items
-    GameObject panel;
+    [SerializeField] GameObject panel;
     [SerializeField] Text healthPercent;
 
     //Variables-Properties
@@ -15,20 +15,32 @@ public class UIController : MonoBehaviour
 
     private void Awake()
     {
-        //find the game object with the tag "Player" and get the health coponent
-        playerHealth = GameObject.FindGameObjectWithTag("Player").GetComponent<ObjectHealth>();
+        //find the Player and get it's health component
+        playerHealth = GameManager.Player.GetComponent<ObjectHealth>();
     }
     // Update is called once per frame
     void Update()
     {
+        if (GameManager.Player && !playerHealth)
+        {
+            playerHealth = GameManager.Player.GetComponent<ObjectHealth>();
+        }
+        else
+        {
+            //Show health as a fraction and as percent
+            healthPercent.text = string.Format("Health: {0}/{1} : {2}%", playerHealth.Health, playerHealth.MaxHealth, playerHealth.HealthPercent().ToString());
+        }
         //press escape to bring up popup panel
         if (Input.GetKeyDown(KeyCode.Escape))
         {
             panel.SetActive(true);
+            GameManager.PauseGame();
         }
 
-        //Show health as a fraction and as percent
-        healthPercent.text = string.Format("Health: {0}/{1} : {2}%", playerHealth.Health, playerHealth.MaxHealth, playerHealth.HealthPercent().ToString());
+        if (!panel.activeSelf && GameManager.Paused)
+        {
+            GameManager.UnpauseGame();
+        }
     }
 
     

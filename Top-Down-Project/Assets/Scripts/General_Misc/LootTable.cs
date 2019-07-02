@@ -31,16 +31,33 @@ public class LootTable : MonoBehaviour
 
     private void Awake()
     {
+        //sort the table list based on the chance
+        table.Sort(delegate (LootItem loot1, LootItem loot2) { return loot1.ChanceToDrop.CompareTo(loot2.ChanceToDrop); });
+
+        //create array of just the weights
         CDF = new float[table.Count];
         int index = 0;
         foreach (var item in table)
         {
-            CDF[index] = item.ChanceToDrop;
+            if (index == 0)
+            {
+                CDF[index] = item.ChanceToDrop;
+            }
+            else
+            {
+                CDF[index] = item.ChanceToDrop + CDF[index - 1];
+            }
+            
             fullCDF += item.ChanceToDrop;
             index++;
         }
     }
 
+    /// <summary>
+    /// Select and Return a Random loot from the loot table. 
+    /// </summary>
+    /// <param name="items">List from loot table</param>
+    /// <returns></returns>
     public GameObject Select(List<LootItem> items)
     {
         //sort the list
@@ -50,8 +67,15 @@ public class LootTable : MonoBehaviour
         return selected.Item;
     }
 
+    /// <summary>
+    /// Select random spawn via binary search
+    /// </summary>
+    /// <returns></returns>
     public GameObject Select()
     {
+        //Binary search can only be done on a sorted array
+        Array.Sort(CDF);
+
         int index = System.Array.BinarySearch(CDF, UnityEngine.Random.Range(0, fullCDF) * fullCDF);
 
         if (index < 0)

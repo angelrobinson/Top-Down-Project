@@ -11,7 +11,7 @@ public class Enemy : Character
     NavMeshAgent agent;    
     Vector3 desiredVel;
 
-    Transform player;
+    //Transform player;
 
     [Header("Loot Settings")]
     [SerializeField] LootTable loot;
@@ -23,8 +23,8 @@ public class Enemy : Character
     {
         base.Awake();
         agent = GetComponent<NavMeshAgent>();
-        player = GameObject.FindGameObjectWithTag("Player").transform;
-        target = GameObject.FindGameObjectWithTag("Player").transform;
+        //player = GameObject.FindGameObjectWithTag("Player").transform;
+        
         loot = GetComponent<LootTable>();
 
         int index = 0;
@@ -47,15 +47,23 @@ public class Enemy : Character
         
     }
 
-    private void Update()
+    public override void Update()
     {
+        base.Update();
+
+        if (GameManager.Player)
+        {
+            target = GameManager.Player.transform;
+        }
+        
         //if there is not a target to move to, stop the animator and end the update method early
         //so we don't get null reference errors
         if (!target)
         {
             agent.isStopped = true;
-            return;
+            return;            
         }
+        
 
         if (currentWeapon)
         {
@@ -64,11 +72,11 @@ public class Enemy : Character
             if (gun)
             {
                 //check to see if the player is within max distance of the gun range
-                if (Vector3.Distance(transform.position, player.position) <= gun.MaxDistance)
+                if (Vector3.Distance(transform.position, GameManager.Player.transform.position) <= gun.MaxDistance)
                 {
                     //check the angle between the Enemy’s forward and the Player.
                     //If the angle is below the equipped weapon’s attackAngle we have the Enemy pull the trigger.
-                    float checkAngle = Vector3.Angle(transform.forward, player.position);
+                    float checkAngle = Vector3.Angle(transform.forward, GameManager.Player.transform.position);
                     //Debug.Log("Aim Angle: " + checkAngle);
                     if (checkAngle <= gun.aimingAngleDegree)
                     {
