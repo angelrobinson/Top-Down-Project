@@ -28,7 +28,7 @@ public class GameManager : MonoBehaviour
     {
         Instance = this;
         Player = FindObjectOfType<Player>();
-        Debug.Log(Player.name);
+        
 
         //set default max lives if it wasn't set in inspector
         if (maxLives == 0)

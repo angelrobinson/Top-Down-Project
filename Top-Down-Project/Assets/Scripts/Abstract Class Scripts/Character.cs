@@ -66,7 +66,7 @@ public abstract class Character : MonoBehaviour
         
     }
 
-    private void Start()
+    protected void Start()
     {
         RagdollOff();
     }

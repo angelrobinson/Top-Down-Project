@@ -8,26 +8,10 @@ public class Player : Character
     [Header("Movement")]
     [SerializeField] float _speed;
 
-    [Header("Stats")]
-    [SerializeField] float _stamina;    
-    
     ProjectileWeapon gun;
 
     #region Properties
-    public float Stamina
-    {
-        get { return _stamina; }
-        set
-        {
-            //can not be below 0
-            if (value < 0)
-            {
-                _stamina = 0;
-            }
-
-            _stamina = value;
-        }
-    }
+    
     /// <summary>
     /// Use this to get and set the speed of the character
     /// when at Zero, the character can not move
@@ -46,15 +30,22 @@ public class Player : Character
             _speed = value;
         }
     }
-
-    //public ObjectHealth MyHealth { get; set; }
     #endregion
 
-    
+
+    new private void Start()
+    {
+        UIController.Instance.PlayerHealthBar(this);
+    }
+
+
 
     public override void Update()
     {
         base.Update();
+
+        //UIController.Instance.PlayerHealthBar(this);
+
         if (currentWeapon)
         {
             gun = currentWeapon.GetComponent<ProjectileWeapon>();

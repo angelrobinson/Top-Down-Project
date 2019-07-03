@@ -19,7 +19,7 @@ public class Enemy : Character
     float chanceToDrop;
     
 
-    new private void Awake()
+    new protected void Awake()
     {
         base.Awake();
         agent = GetComponent<NavMeshAgent>();
@@ -158,6 +158,7 @@ public class Enemy : Character
         if (Random.Range(0f,1.0f) < chanceToDrop)
         {
             GameObject go = loot.Select(loot.table);
+            //GameObject go = loot.Select();
             Instantiate(go, transform.position, go.transform.rotation);
             //Instantiate(loot.Select(), transform.position, Quaternion.identity);
         }
