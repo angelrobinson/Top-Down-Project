@@ -21,8 +21,9 @@ public class HealthBar : MonoBehaviour
     [SerializeField] Vector3 placementOffset;
     [SerializeField] Transform placementTransform;
     [SerializeField] ObjectHealth target;
+    [SerializeField] Camera uiCamera;
 
-
+    public bool IsTracking { get { return trackTarget; } set { trackTarget = value; } }
 
     // Start is called before the first frame update
     void Start()
@@ -39,9 +40,12 @@ public class HealthBar : MonoBehaviour
         //show the health on the slider fill image
         healthSlider.value = target.HealthPercent() / 100;
 
-        if (trackTarget)
+        if (IsTracking)
         {
 
+            //placementOffset = uiCamera.WorldToScreenPoint(placementTransform.position);
+            transform.position = placementTransform.position;// + placementOffset; 
+            //transform.localPosition = placementOffset;
         }
     }
 
@@ -49,6 +53,12 @@ public class HealthBar : MonoBehaviour
     public void SetTarget(ObjectHealth health)
     {
         target = health;
+    }
+
+    public void SetHealthPlacement(Transform placement, Camera cam)
+    {
+        placementTransform = placement;
+        uiCamera = cam;
     }
     #endregion
 }

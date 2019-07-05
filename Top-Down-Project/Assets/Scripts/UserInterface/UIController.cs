@@ -12,14 +12,13 @@ public class UIController : MonoBehaviour
 
     [Header("Health Bar Settings")]
     [SerializeField] HealthBar healthBar;
-    [SerializeField] GameObject healthPrefab;
-
-    //ObjectHealth playerHealth;
-    
-
+    [SerializeField] HealthBar healthPrefab;
+    [SerializeField] Transform enemyHealthHolder;
+    Camera uiCamera;
 
     private void Awake()
     {
+        uiCamera = GetComponent<Canvas>().worldCamera;
         if (Instance == null)
         {
             Instance = this;
@@ -28,21 +27,13 @@ public class UIController : MonoBehaviour
     }
     private void Start()
     {
-        //find the Player and get it's health component
-        //playerHealth = GameManager.Player.GetComponent<ObjectHealth>();
+        
     }
+
     // Update is called once per frame
     void Update()
     {
-        //if (GameManager.Player && !playerHealth)
-        //{
-        //    playerHealth = GameManager.Player.GetComponent<ObjectHealth>();
-        //}
-        //else
-        //{
-        //    //Show health as a fraction and as percent
-        //    //healthPercent.text = string.Format(healthTextFormat, playerHealth.Health, playerHealth.MaxHealth, playerHealth.HealthPercent().ToString());
-        //}
+        
         //press escape to bring up popup panel
         if (Input.GetKeyDown(KeyCode.Escape))
         {
@@ -56,6 +47,11 @@ public class UIController : MonoBehaviour
         }
     }
 
+
+    /// <summary>
+    /// connect the health bar on UI to the active player with this script
+    /// </summary>
+    /// <param name="player"></param>
     #region Helper Methods
     public void PlayerHealthBar(Player player)
     {
@@ -64,7 +60,13 @@ public class UIController : MonoBehaviour
 
     public void EnemyHealthBar(Enemy enemy)
     {
-
+        
+        
+        HealthBar enemyHealth = Instantiate(healthPrefab);
+        enemyHealth.transform.SetParent(enemyHealthHolder.transform, false);
+        enemyHealth.IsTracking = true;        
+        enemyHealth.SetHealthPlacement(enemy.transform.Find("EnemyHealth"), uiCamera);
+        enemyHealth.SetTarget(enemy.MyHealth);
     }
     #endregion
     /// <summary>
