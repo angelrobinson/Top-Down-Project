@@ -26,6 +26,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] float respawnTime;
     [SerializeField] int maxLives;
     int currentLives;
+    bool respawning;
 
     //Properties
     public int Lives { get { return currentLives; } private set { currentLives = value; } }
@@ -54,7 +55,7 @@ public class GameManager : MonoBehaviour
     void Update()
     { 
         //if player is dead and has been deleted
-        if (!Player)
+        if (!Player && !respawning)
         {
             HandleDeath();
         }
@@ -71,10 +72,10 @@ public class GameManager : MonoBehaviour
     #region Helper Methods
     private void HandleDeath()
     {
-        //TODO: this seems to be doing a loop
         //check for current lives.  If there are lives left, respawn, otherwise end game
         if (currentLives > 0)
         {
+            respawning = true;
             Invoke("SpawnPlayer", respawnTime);
             Lives--;
         }
@@ -91,6 +92,8 @@ public class GameManager : MonoBehaviour
     {
         int index = Random.Range(0, playerSpawns.Count);
         Player = Instantiate(playerPrefab, playerSpawns[index].position, playerSpawns[index].rotation).GetComponent<Player>();
+        respawning = false;
+        
     }
 
     /// <summary>

@@ -12,10 +12,7 @@ public class FollowPlayer : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        if (GameManager.Player)
-        {
-            lookAtTarget = GameManager.Player.transform;
-        }
+        
         
         trans = GetComponent<Transform>();
 
@@ -30,6 +27,11 @@ public class FollowPlayer : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (GameManager.Player)
+        {
+            lookAtTarget = GameManager.Player.transform;
+        }
+
         if (lookAtTarget)
         {
             //move the camera to the offset position related to the target and look at the target
