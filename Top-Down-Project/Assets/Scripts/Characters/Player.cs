@@ -11,7 +11,7 @@ public class Player : Character
     ProjectileWeapon gun;
 
     #region Properties
-    
+    public ProjectileWeapon Gun { get { return gun; } }
     /// <summary>
     /// Use this to get and set the speed of the character
     /// when at Zero, the character can not move

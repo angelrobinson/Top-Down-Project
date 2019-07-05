@@ -2,19 +2,29 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 
 public class UIController : MonoBehaviour
 {
     public static UIController Instance { get; private set; }
     
-    [SerializeField] GameObject panel;
+    [Header("Pause/End info")]
+    [SerializeField] TextMeshProUGUI pauseEndText;
 
     [Header("Health Bar Settings")]
     [SerializeField] HealthBar healthBar;
     [SerializeField] HealthBar healthPrefab;
     [SerializeField] Transform enemyHealthHolder;
     Camera uiCamera;
+
+    [Header("Weapon Info")]
+    [SerializeField] Image weaponIcon;
+    [SerializeField] Material weaponMaterial;
+
+    [Header("Player Stats")]
+    [SerializeField] TextMeshProUGUI lives;
+    [SerializeField] string livesTextFormat;
 
     private void Awake()
     {
@@ -37,13 +47,24 @@ public class UIController : MonoBehaviour
         //press escape to bring up popup panel
         if (Input.GetKeyDown(KeyCode.Escape))
         {
-            panel.SetActive(true);
-            GameManager.PauseGame();
+            //GameManager.PauseGame();
         }
 
-        if (!panel.activeSelf && GameManager.Paused)
+        //show weapon Icon
+        if (GameManager.Player)
         {
-            GameManager.UnpauseGame();
+            if (GameManager.Player.Gun)
+            {
+                weaponIcon.overrideSprite = GameManager.Player.Gun.Icon;
+                weaponIcon.material = null;
+            }
+            else
+            {
+                weaponIcon.material = weaponMaterial;
+            }
+            
+
+            lives.text = string.Format(livesTextFormat, GameManager.Instance.Lives);
         }
     }
 
@@ -60,8 +81,6 @@ public class UIController : MonoBehaviour
 
     public void EnemyHealthBar(Enemy enemy)
     {
-        
-        
         HealthBar enemyHealth = Instantiate(healthPrefab);
         enemyHealth.transform.SetParent(enemyHealthHolder.transform, false);
         enemyHealth.IsTracking = true;        
@@ -75,5 +94,15 @@ public class UIController : MonoBehaviour
     public void ExitApplication()
     {
         Application.Quit();
+    }
+
+    public void Paused()
+    {
+        pauseEndText.text = "PAUSED";
+    }
+
+    public void GameOver()
+    {
+        pauseEndText.text = "GAME OVER!";
     }
 }

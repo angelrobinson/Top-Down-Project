@@ -30,7 +30,7 @@ public abstract class Character : MonoBehaviour
 
     [Header("Equipment")]
     [SerializeField]protected ProjectileWeapon[] guns; //gun inventory
-    [SerializeField] protected GameObject currentWeapon;
+    protected GameObject currentWeapon;
     [SerializeField] protected GameObject weaponHolder;
 
     //ragdoll
@@ -40,7 +40,7 @@ public abstract class Character : MonoBehaviour
     //properties
     public Animator CharAnimator { get { return anim; } protected set { anim = value; } }
     public ObjectHealth MyHealth { get; set; }
-
+    
     protected void Awake()
     {
         rb = GetComponent<Rigidbody>();
