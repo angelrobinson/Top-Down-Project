@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using UnityEngine.SceneManagement;
 
 
 public class UIController : MonoBehaviour
@@ -93,7 +94,7 @@ public class UIController : MonoBehaviour
     /// </summary>
     public void ExitApplication()
     {
-        Application.Quit();
+        SceneManager.LoadScene("StartMenu");
     }
 
     public void Paused()
