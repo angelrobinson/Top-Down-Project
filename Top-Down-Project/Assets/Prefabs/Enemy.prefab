@@ -192,7 +192,7 @@ MonoBehaviour:
   weaponHolder: {fileID: 1898644373198660932}
   target: {fileID: 0}
   loot: {fileID: 0}
-  chanceToDrop: 0.5
+  chanceToDrop: 0.8
 --- !u!114 &-6969416336516383773
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -209,13 +209,15 @@ MonoBehaviour:
   - item: {fileID: 1087879810476366138, guid: 98a0e04103ce24c43ae2b1edc53f69e6, type: 3}
     chance: 50
   - item: {fileID: 8058779969121247718, guid: 8e63cfadf68238f4187d63dca0a923c3, type: 3}
-    chance: 25
+    chance: 30
   - item: {fileID: 8425642021044318168, guid: 200228b984cc88b48a9fd09ea8f4e509, type: 3}
+    chance: 40
+  - item: {fileID: 5047409690231188647, guid: 9b53f91918e9d164a98f9d4a170ccc12, type: 3}
     chance: 20
-  - item: {fileID: 3388507341622569164, guid: 97baed4171c4ceb45959166467e4fa50, type: 3}
-    chance: 20
-  - item: {fileID: 7672093253024664748, guid: f3cc72dd4e7bc9244a8548f951c87f44, type: 3}
-    chance: 20
+  - item: {fileID: 873132082213452019, guid: 21e7808ace012354ab478fc222c1fb6a, type: 3}
+    chance: 25
+  - item: {fileID: 713313952766097539, guid: 63453764a0562de4e9a01621dc0f9651, type: 3}
+    chance: 100
 --- !u!195 &1898644373245274699
 NavMeshAgent:
   m_ObjectHideFlags: 0
