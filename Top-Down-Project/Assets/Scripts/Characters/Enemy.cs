@@ -11,8 +11,6 @@ public class Enemy : Character
     NavMeshAgent agent;    
     Vector3 desiredVel;
 
-    //Transform player;
-
     [Header("Loot Settings")]
     [SerializeField] LootTable loot;
     [SerializeField, Range(0, 1)]
@@ -23,7 +21,6 @@ public class Enemy : Character
     {
         base.Awake();
         agent = GetComponent<NavMeshAgent>();
-        //player = GameObject.FindGameObjectWithTag("Player").transform;
         
         loot = GetComponent<LootTable>();
 
@@ -45,6 +42,12 @@ public class Enemy : Character
         }
 
         
+    }
+
+    new private void Start()
+    {
+        base.Start();
+        UIController.Instance.EnemyHealthBar(this);
     }
 
     public override void Update()
@@ -77,7 +80,7 @@ public class Enemy : Character
                     //check the angle between the Enemy’s forward and the Player.
                     //If the angle is below the equipped weapon’s attackAngle we have the Enemy pull the trigger.
                     float checkAngle = Vector3.Angle(transform.forward, GameManager.Player.transform.position);
-                    //Debug.Log("Aim Angle: " + checkAngle);
+
                     if (checkAngle <= gun.aimingAngleDegree)
                     {
                         if (gun.canShoot)
@@ -102,10 +105,7 @@ public class Enemy : Character
         Vector3 input = transform.InverseTransformDirection(desiredVel);        
         MovePlayer(input);
 
-        //if (MyHealth.Health == 0)
-        //{
-        //    Die();
-        //}
+        
         if (MyHealth.Health <= 0 && dead == false)
         {
             Die();
@@ -143,15 +143,6 @@ public class Enemy : Character
         base.RagdollOff();
     }
 
-    /// <summary>
-    /// Drop loot item and then proceed with base method
-    /// </summary>
-    //public override void Die()
-    //{
-    //    DropItem();
-    //    base.Die();
-    //}
-
     //drop and item in the loot table
     void DropItem()
     {
@@ -160,7 +151,6 @@ public class Enemy : Character
             GameObject go = loot.Select(loot.table);
             //GameObject go = loot.Select();
             Instantiate(go, transform.position, go.transform.rotation);
-            //Instantiate(loot.Select(), transform.position, Quaternion.identity);
         }
     }
 

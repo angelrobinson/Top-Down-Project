@@ -11,10 +11,9 @@ public class HealthBar : MonoBehaviour
 
     [Header("Health Bar settings")]
     [SerializeField] TextMeshProUGUI healthTMP;
-    [SerializeField] Slider healthSlider;
-    [SerializeField] Text healthText;
+    [SerializeField] Slider healthSlider;    
     [SerializeField] string textFormat;
-    [SerializeField] Image fillImage;
+    
 
     [Header("Target Settings")]
     [SerializeField] bool trackTarget;
@@ -34,11 +33,16 @@ public class HealthBar : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        healthText.text = string.Format(textFormat, target.Health, target.MaxHealth, target.HealthPercent().ToString());        
-        fillImage.fillAmount = target.HealthPercent() / 100;
-
+        //set text of the health bar
         healthTMP.text = string.Format(textFormat, target.Health, target.MaxHealth, target.HealthPercent().ToString());
+
+        //show the health on the slider fill image
         healthSlider.value = target.HealthPercent() / 100;
+
+        if (trackTarget)
+        {
+
+        }
     }
 
     #region Helper Methods

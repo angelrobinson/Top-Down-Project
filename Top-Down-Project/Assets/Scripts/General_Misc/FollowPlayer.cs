@@ -12,6 +12,11 @@ public class FollowPlayer : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        if (GameManager.Player)
+        {
+            lookAtTarget = GameManager.Player.transform;
+        }
+        
         trans = GetComponent<Transform>();
 
         //if no offset is input into the inspector, it will default to starting position Vector of the object that it is attached to
