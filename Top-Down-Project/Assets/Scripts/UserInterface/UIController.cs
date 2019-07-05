@@ -97,11 +97,17 @@ public class UIController : MonoBehaviour
         SceneManager.LoadScene("StartMenu");
     }
 
+    /// <summary>
+    /// When game is paused and the Pause window is open update text to show correct text
+    /// </summary>
     public void Paused()
     {
         pauseEndText.text = "PAUSED";
     }
 
+    /// <summary>
+    /// Show correct text when game is over
+    /// </summary>
     public void GameOver()
     {
         pauseEndText.text = "GAME OVER!";

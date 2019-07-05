@@ -81,6 +81,7 @@ public class GameManager : MonoBehaviour
         }
         else
         {
+            PauseGame();
             OnEndGame.Invoke();
         }
     }

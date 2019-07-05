@@ -109,9 +109,12 @@ public class Enemy : Character
         if (MyHealth.Health <= 0 && dead == false)
         {
             Die();
+            //DropItem();
+        }
+        if (dead)
+        {
             DropItem();
         }
-
     }
 
     #region Helper Methods
