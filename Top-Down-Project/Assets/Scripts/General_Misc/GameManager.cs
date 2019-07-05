@@ -37,11 +37,12 @@ public class GameManager : MonoBehaviour
         Instance = this;
         Player = FindObjectOfType<Player>();
 
+        //set defaults 
         if (respawnTime == 0)
         {
             respawnTime = 10;
         }
-        //set default max lives if it wasn't set in inspector
+        
         if (maxLives == 0)
         {
             maxLives = 3;

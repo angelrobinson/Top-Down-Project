@@ -28,26 +28,6 @@ public class LootTable : MonoBehaviour
     public List<LootItem> table;    
     float[] CDF;
 
-    private void Awake()
-    {
-        //sort the table list based on the chance
-        //table.Sort(delegate (LootItem loot1, LootItem loot2) { return loot1.ChanceToDrop.CompareTo(loot2.ChanceToDrop); });
-    }
-
-    /// <summary>
-    /// Select and Return a Random loot from the loot table. 
-    /// </summary>
-    /// <param name="items">List from loot table</param>
-    /// <returns></returns>
-    //public GameObject Select(List<LootItem> items)
-    //{
-    //    //sort the list
-    //    //items.Sort();  
-    //    int index = UnityEngine.Random.Range(0, items.Count);
-    //    LootItem selected = items[index];
-    //    return selected.Item;
-    //}
-
     /// <summary>
     /// Select and Return a Random loot from the loot table. 
     /// </summary>
