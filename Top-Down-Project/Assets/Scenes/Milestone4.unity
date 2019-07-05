@@ -3998,7 +3998,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: -99.99994, y: -100}
+  m_AnchoredPosition: {x: -100, y: -100}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0, y: 0}
 --- !u!4 &825680197 stripped
@@ -6850,6 +6850,11 @@ PrefabInstance:
     - target: {fileID: -7741229588541306535, guid: ce20b326e1afbd64bae4ff55dca57502,
         type: 3}
       propertyPath: respawnTime
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: -7741229588541306535, guid: ce20b326e1afbd64bae4ff55dca57502,
+        type: 3}
+      propertyPath: maxEnemies
       value: 5
       objectReference: {fileID: 0}
     m_RemovedComponents: []

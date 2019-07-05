@@ -27,6 +27,10 @@ public class UIController : MonoBehaviour
     [SerializeField] TextMeshProUGUI lives;
     [SerializeField] string livesTextFormat;
 
+    [Header("Score Info")]
+    [SerializeField] TextMeshProUGUI score;
+    [SerializeField] string scoreTextFormat;
+
     private void Awake()
     {
         uiCamera = GetComponent<Canvas>().worldCamera;
@@ -67,6 +71,8 @@ public class UIController : MonoBehaviour
 
             lives.text = string.Format(livesTextFormat, GameManager.Instance.Lives);
         }
+
+        score.text = string.Format(scoreTextFormat, GameManager.Instance.Score);
     }
 
 

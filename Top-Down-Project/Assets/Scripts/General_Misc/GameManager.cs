@@ -30,6 +30,7 @@ public class GameManager : MonoBehaviour
 
     //Properties
     public int Lives { get { return currentLives; } private set { currentLives = value; } }
+    public int Score { get; private set; }
     
 
     private void Awake()
@@ -116,6 +117,15 @@ public class GameManager : MonoBehaviour
         OnResume.Invoke();
         Paused = false;
         Time.timeScale = 1f;
+    }
+
+    /// <summary>
+    /// Update the player score
+    /// </summary>
+    /// <param name="amt"></param>
+    public void UpdateScore(int amt = 1)
+    {
+        Score += amt;
     }
     #endregion
 }

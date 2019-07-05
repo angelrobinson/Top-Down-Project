@@ -189,7 +189,6 @@ MonoBehaviour:
   guns:
   - {fileID: 7470817250273009478, guid: 5ae2e69dbfba24444a9170da01d38e86, type: 3}
   - {fileID: 864680161672632991, guid: d07a1d6ac9d3abd4eb7e0367309bc27a, type: 3}
-  currentWeapon: {fileID: 0}
   weaponHolder: {fileID: 1898644373198660932}
   target: {fileID: 0}
   loot: {fileID: 0}

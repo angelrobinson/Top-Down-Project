@@ -15,6 +15,7 @@ public class Enemy : Character
     [SerializeField] LootTable loot;
     [SerializeField, Range(0, 1)]
     float chanceToDrop;
+    bool lootDropped;
     
 
     new protected void Awake()
@@ -109,16 +110,18 @@ public class Enemy : Character
         if (MyHealth.Health <= 0 && dead == false)
         {
             Die();
-            //DropItem();
-        }
-        if (dead)
-        {
             DropItem();
         }
+
     }
 
     #region Helper Methods
 
+    public override void Die()
+    {
+        GameManager.Instance.UpdateScore();
+        base.Die();
+    }
     /// <summary>
     /// make sure that the Navemesh agent uses the velocity of the animator
     /// </summary>
@@ -149,7 +152,8 @@ public class Enemy : Character
     //drop and item in the loot table
     void DropItem()
     {
-        if (Random.Range(0f,1.0f) < chanceToDrop)
+        float drop = Random.Range(0f, 1.0f);
+        if (drop < chanceToDrop)
         {
             GameObject go = loot.Select(loot.table);
             //GameObject go = loot.Select();
