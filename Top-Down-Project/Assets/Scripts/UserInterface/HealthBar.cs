@@ -42,10 +42,16 @@ public class HealthBar : MonoBehaviour
 
         if (IsTracking)
         {
-
-            //placementOffset = uiCamera.WorldToScreenPoint(placementTransform.position);
-            transform.position = placementTransform.position;// + placementOffset; 
-            //transform.localPosition = placementOffset;
+            if (target)
+            {
+                //placementOffset = uiCamera.WorldToScreenPoint(placementTransform.position);
+                transform.position = placementTransform.position;// + placementOffset; 
+                //transform.localPosition = placementOffset;
+            }
+            else
+            {
+                Destroy(gameObject);
+            }
         }
     }
 
