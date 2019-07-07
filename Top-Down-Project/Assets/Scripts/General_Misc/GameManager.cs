@@ -10,9 +10,9 @@ using UnityEditor;
 public class GameManager : MonoBehaviour
 {
     //unity events
-    [SerializeField] private UnityEvent OnPause = default;
-    [SerializeField] private UnityEvent OnResume = default;
-    [SerializeField] private UnityEvent OnEndGame = default;
+    [SerializeField] private UnityEvent OnPause;
+    [SerializeField] private UnityEvent OnResume;
+    [SerializeField] private UnityEvent OnEndGame ;
 
 
     //static variables
@@ -29,12 +29,28 @@ public class GameManager : MonoBehaviour
     int currentLives;
     bool respawning;
 
+    [Header("Game Timer")]
+    [Tooltip("Total time In Minutes")]
+    [SerializeField] int gameTime;
+    int minutes;
+    int seconds;
+    float miliseconds; //in seconds
+
+
     [Header("Player Prefs Info")]
     [SerializeField] List<string> scores;
 
     //Properties
     public int Lives { get { return currentLives; } private set { currentLives = value; } }
     public int Score { get; private set; }
+
+    public string TimeLeft
+    {
+        get
+        {
+            return minutes + ":" + seconds;
+        }        
+    }
     
 
     private void Awake()
@@ -58,7 +74,13 @@ public class GameManager : MonoBehaviour
             playerPrefab = (GameObject) AssetDatabase.LoadAssetAtPath("Assets/Prefabs/Player.prefab", typeof(GameObject));
         }
 
-        //set initial lives
+        if (gameTime == 0)
+        {
+            gameTime = 3;
+        }
+
+        minutes = gameTime;
+        
         currentLives = maxLives;
     }
 
@@ -77,10 +99,39 @@ public class GameManager : MonoBehaviour
             PauseGame();
         }
 
+
+        Timer();
+
+
     }
 
 
     #region Helper Methods
+    private void Timer()
+    {
+        if (miliseconds <= 0)
+        {
+            if (seconds <= 0)
+            {
+                minutes--;
+                seconds = 59;
+            }
+            else if (seconds >= 0)
+            {
+                seconds--;
+            }
+
+            miliseconds = 100;
+        }
+
+        miliseconds -= Time.deltaTime * 100;
+
+        if (minutes == 0 && seconds == 0)
+        {
+            PauseGame();
+            OnEndGame.Invoke();
+        }
+    }
     private void HandleDeath()
     {
         //check for current lives.  If there are lives left, respawn, otherwise end game

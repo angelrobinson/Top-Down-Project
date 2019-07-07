@@ -14,6 +14,10 @@ public class UIController : MonoBehaviour
     [Header("Pause/End info")]
     [SerializeField] TextMeshProUGUI pauseEndText = default;
 
+    [Header("Game Timer info")]
+    [SerializeField] TextMeshProUGUI timer = default;
+    [SerializeField] string gameTimerTextFormat;
+
     [Header("Health Bar Settings")]
     [SerializeField] HealthBar healthBar;
     [SerializeField] HealthBar healthPrefab;
@@ -50,6 +54,11 @@ public class UIController : MonoBehaviour
         if (string.IsNullOrEmpty(scoreTextFormat))
         {
             scoreTextFormat = "{0}";
+        }
+
+        if (string.IsNullOrEmpty(gameTimerTextFormat))
+        {
+            gameTimerTextFormat = "Time Left: {0}";
         }
     }
     private void Start()
@@ -92,6 +101,8 @@ public class UIController : MonoBehaviour
         }
 
         score.text = string.Format(scoreTextFormat, GameManager.Instance.Score);
+
+        timer.text = string.Format(gameTimerTextFormat, GameManager.Instance.TimeLeft);
     }
 
 
