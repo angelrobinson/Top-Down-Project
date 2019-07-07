@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using UnityEngine.SceneManagement;
+using UnityEditor;
 
 
 public class UIController : MonoBehaviour
@@ -11,38 +12,56 @@ public class UIController : MonoBehaviour
     public static UIController Instance { get; private set; }
     
     [Header("Pause/End info")]
-    [SerializeField] TextMeshProUGUI pauseEndText;
+    [SerializeField] TextMeshProUGUI pauseEndText = default;
 
     [Header("Health Bar Settings")]
     [SerializeField] HealthBar healthBar;
     [SerializeField] HealthBar healthPrefab;
-    [SerializeField] Transform enemyHealthHolder;
+    [SerializeField] Transform enemyHealthHolder = default;
     Camera uiCamera;
 
     [Header("Weapon Info")]
-    [SerializeField] Image weaponIcon;
-    [SerializeField] Material weaponMaterial;
+    [SerializeField] Image weaponIcon = default;
+    [SerializeField] Material weaponMaterial = default;
 
     [Header("Player Stats")]
-    [SerializeField] TextMeshProUGUI lives;
+    [SerializeField] TextMeshProUGUI lives = default;
     [SerializeField] string livesTextFormat;
 
     [Header("Score Info")]
-    [SerializeField] TextMeshProUGUI score;
+    [SerializeField] TextMeshProUGUI score =default;
     [SerializeField] string scoreTextFormat;
+    
 
     private void Awake()
     {
+        //defaults
         uiCamera = GetComponent<Canvas>().worldCamera;
         if (Instance == null)
         {
             Instance = this;
         }
-        
+
+        if (string.IsNullOrEmpty(livesTextFormat))
+        {
+            livesTextFormat = "{0}";
+        }
+
+        if (string.IsNullOrEmpty(scoreTextFormat))
+        {
+            scoreTextFormat = "{0}";
+        }
     }
     private void Start()
     {
-        
+        if (healthBar == null)
+        {
+            healthBar = GetComponentInChildren<HealthBar>();
+        }
+        if (healthPrefab == null)
+        {
+            healthPrefab = (HealthBar)AssetDatabase.LoadAssetAtPath<HealthBar>("Assets/Prefabs/WorldUI/HealthBar");
+        }
     }
 
     // Update is called once per frame
@@ -117,5 +136,6 @@ public class UIController : MonoBehaviour
     public void GameOver()
     {
         pauseEndText.text = "GAME OVER!";
+        
     }
 }

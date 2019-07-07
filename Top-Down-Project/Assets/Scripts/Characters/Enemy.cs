@@ -21,11 +21,19 @@ public class Enemy : Character
     new protected void Awake()
     {
         base.Awake();
+
+        //set defaults
         agent = GetComponent<NavMeshAgent>();
         
         loot = GetComponent<LootTable>();
 
         int index = 0;
+
+        if (chanceToDrop == 0)
+        {
+            chanceToDrop = 1;
+        }
+
         //try and equip a random weapon from the guns array
         try
         {

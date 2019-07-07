@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEditor;
 
 /// <summary>
 /// Singleton script for Main game management
@@ -9,9 +10,9 @@ using UnityEngine.Events;
 public class GameManager : MonoBehaviour
 {
     //unity events
-    [SerializeField] private UnityEvent OnPause;
-    [SerializeField] private UnityEvent OnResume;
-    [SerializeField] private UnityEvent OnEndGame;
+    [SerializeField] private UnityEvent OnPause = default;
+    [SerializeField] private UnityEvent OnResume = default;
+    [SerializeField] private UnityEvent OnEndGame = default;
 
 
     //static variables
@@ -22,11 +23,14 @@ public class GameManager : MonoBehaviour
     //normal variables
     [Header("Player Settings")]
     [SerializeField] GameObject playerPrefab;
-    [SerializeField] List<Transform> playerSpawns;
+    [SerializeField] List<Transform> playerSpawns = default;
     [SerializeField] float respawnTime;
     [SerializeField] int maxLives;
     int currentLives;
     bool respawning;
+
+    [Header("Player Prefs Info")]
+    [SerializeField] List<string> scores;
 
     //Properties
     public int Lives { get { return currentLives; } private set { currentLives = value; } }
@@ -47,6 +51,11 @@ public class GameManager : MonoBehaviour
         if (maxLives == 0)
         {
             maxLives = 3;
+        }
+
+        if (playerPrefab == null)
+        {
+            playerPrefab = (GameObject) AssetDatabase.LoadAssetAtPath("Assets/Prefabs/Player.prefab", typeof(GameObject));
         }
 
         //set initial lives
@@ -126,6 +135,14 @@ public class GameManager : MonoBehaviour
     public void UpdateScore(int amt = 1)
     {
         Score += amt;
+    }
+    #endregion
+
+    #region Embeded Classes and Structs
+    public struct PlayerScore
+    {
+        public string name;
+        public int score;
     }
     #endregion
 }

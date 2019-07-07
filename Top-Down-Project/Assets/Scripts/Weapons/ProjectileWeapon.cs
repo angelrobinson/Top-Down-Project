@@ -8,7 +8,7 @@ public class ProjectileWeapon : Weapon
 
     [Header("Projectile Settings")]
     [Tooltip("List any bullets that the gun can use")]
-    [SerializeField] Projectile[] bulletPrefab; 
+    [SerializeField] Projectile[] bulletPrefab = default; 
     [Tooltip("List all barrels that the gun can shoot from")]
     [SerializeField] Transform[] barrel;
     [SerializeField] int damage;
@@ -28,12 +28,31 @@ public class ProjectileWeapon : Weapon
         //to get how much time is between each shot
         timeBetweenFire = 60f / shotsPerMinute;
 
-        //set default max distance if not put into inspector
+        //set defaults 
         if (MaxDistance <= 0)
         {
             MaxDistance = 25;
         }
-        
+
+        if (damage == 0)
+        {
+            damage = 10;
+        }
+
+        if (barrel.Length == 0)
+        {
+            barrel = new Transform[1];
+        }
+
+        if (bulletVelocity == 0)
+        {
+            bulletVelocity = 10;
+        }
+
+        if (shotsPerMinute == 0)
+        {
+            shotsPerMinute = 100;
+        }
     }
 
     

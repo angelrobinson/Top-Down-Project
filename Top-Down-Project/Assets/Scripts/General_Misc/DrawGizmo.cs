@@ -31,9 +31,9 @@ public class DrawGizmo : MonoBehaviour
     [Tooltip("X & Y cordinates of the texture")]
     [SerializeField] Vector2 XYPosition;
     [Tooltip("X = Width, Y=Height")]
-    [SerializeField] Vector2 XYSize;
+    [SerializeField] Vector2 XYSize = new Vector2();
     [Tooltip("texture to show")]
-    [SerializeField] Texture texture;
+    [SerializeField] Texture texture = null;
     [Tooltip("If you want border, set thickness of each side: Left, Right, Top, Bottom")]
     [SerializeField] int lftBorder;
     [Tooltip("If you want border, set thickness of each side: Left, Right, Top, Bottom")]
@@ -43,20 +43,20 @@ public class DrawGizmo : MonoBehaviour
     [Tooltip("If you want border, set thickness of each side: Left, Right, Top, Bottom")]
     [SerializeField] int bottBorder;
     [Tooltip("Optional material to put on the texture")]
-    [SerializeField] Material mat;
+    [SerializeField] Material mat = null;
 
     [Header("Icon Settings")]
     [Tooltip("This texture needs to be stored in the Assets/Gizmos folder")]
-    [SerializeField] Texture icon;
+    [SerializeField] Texture icon = null;
     [Tooltip("The file extension of the icon photo you are using. DO NOT put the dot (.) before it. For example: jpg, png, ico, tiff")]
-    [SerializeField] string fileExt;
+    [SerializeField] string fileExt = null;
 
     [Header("Line Settings")]
     [SerializeField] Transform startPosition;
     [SerializeField] Transform endPosition;
 
     [Header("Mesh Settings")]
-    [SerializeField] Mesh mesh;
+    [SerializeField] Mesh mesh = null;
 
     [Header("Ray Settings")]
     [SerializeField] Transform rayStart;
@@ -65,10 +65,10 @@ public class DrawGizmo : MonoBehaviour
     [SerializeField] Vector3 wireScale;
 
     [Header("Wire-Mesh Settings")]
-    [SerializeField] Mesh wireMesh;
+    [SerializeField] Mesh wireMesh = null;
 
     [Header("Wire-Sphere Settings")]
-    [SerializeField] float wireRadius;
+    [SerializeField] float wireRadius = 0;
 
     [Header("Sphere Settings")]
     [SerializeField] float radius;
@@ -84,11 +84,35 @@ public class DrawGizmo : MonoBehaviour
 
         switch (type)
         {            
-            case GizmoType.CUBE:                
+            case GizmoType.CUBE:
+                if (scale == null)
+                {
+                    scale = Vector3.one;
+                }
                 Gizmos.DrawCube(Vector3.up * scale.y / 2f, scale);
                 Gizmos.color = gizmoColor;
                 break;
             case GizmoType.FRUSTRUM:
+                if (nearDist == 0)
+                {
+                    nearDist = 1;
+                }
+                if (farDist == 0)
+                {
+                    farDist = 100;
+                }
+                if (FOV == 0)
+                {
+                    FOV = 30;
+                }
+                if (aspect == 0)
+                {
+                    aspect = 1.33f;
+                }
+                if (center == null)
+                {
+                    center = Vector3.zero;
+                }
                 Gizmos.DrawFrustum(center, FOV, farDist, nearDist, aspect);
                 Gizmos.color = gizmoColor;
                 break;
@@ -111,6 +135,16 @@ public class DrawGizmo : MonoBehaviour
                     bottBorder = 0;
                 }
 
+                if (XYSize == null)
+                {
+                    XYSize = new Vector2(1, 1);
+                }
+
+                if (XYPosition == null)
+                {
+                    XYPosition = new Vector2(0, 0);
+                }
+
                 if (mat)
                 {
                     Gizmos.DrawGUITexture(new Rect(XYPosition, XYSize), texture, lftBorder, rtBorder, topBorder, bottBorder, mat);
@@ -125,18 +159,39 @@ public class DrawGizmo : MonoBehaviour
                 Gizmos.DrawIcon(transform.position, icon.name + "." + fileExt, true);
                 break;
             case GizmoType.LINE:
+                if (startPosition == null)
+                {
+                    startPosition = transform;
+                }
+
+                if (endPosition = null)
+                {
+                    endPosition = transform;
+                }
                 Gizmos.DrawLine(startPosition.position, endPosition.position);
                 break;
             case GizmoType.MESH:
                 Gizmos.DrawMesh(mesh, transform.position, transform.rotation);
                 break;
             case GizmoType.RAY:
+                if (rayStart == null)
+                {
+                    rayStart = transform;
+                }
                 Gizmos.DrawRay(rayStart.localPosition, Vector3.forward * 5);
                 break;
             case GizmoType.SPHERE:
+                if (radius == 0)
+                {
+                    radius = 1;
+                }
                 Gizmos.DrawSphere(Vector3.zero, radius);
                 break;
             case GizmoType.WIRE_CUBE:
+                if (wireScale == null)
+                {
+                    wireScale = Vector3.one;
+                }
                 Gizmos.DrawWireCube(Vector3.zero, wireScale);
                 break;
             case GizmoType.WIRE_MESH:

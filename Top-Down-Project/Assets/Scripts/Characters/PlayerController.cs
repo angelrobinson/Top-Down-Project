@@ -92,7 +92,15 @@ public class PlayerController : MonoBehaviour
                 }
                 break;
             case BuffType.Speed:
-                if (buffTime >= 0)
+
+                if (buffTime <= -1)
+                {
+                    //if bufftime is less than or equal to -1 then the designers wanted this buff to be permanent
+                    runSpeed += BuffSpeed;
+                    walkSpeed += BuffSpeed;
+                }
+
+                else if (buffTime >= 0)
                 {
                     buffTime -= Time.deltaTime;
 

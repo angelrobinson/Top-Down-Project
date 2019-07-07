@@ -7,9 +7,9 @@ public class EnemySpawning : MonoBehaviour
     [Tooltip("How long do you want to wait until respawn")]
     [SerializeField] float respawnTime;
     [Tooltip("Object(s) to respawn")]
-    [SerializeField] GameObject[] spawnObj;
+    [SerializeField] GameObject[] spawnObj = default;
     int spawnIndex = 0;
-    [SerializeField] bool randomSpawn;
+    [SerializeField] bool randomSpawn = false;
     System.Random ran;
 
     [Header("EnemySettings")]
@@ -21,12 +21,16 @@ public class EnemySpawning : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        //set default respawn time
+        //set defaults
         if (respawnTime == 0)
         {
             respawnTime = 5;
         }
 
+        if (maxEnemies == 0)
+        {
+            maxEnemies = 1;
+        }
 
         //if there aren't any objects to spawn, this throws a Null Reference Exception
         if (spawnObj.Length == 0 || spawnObj[0] == null)

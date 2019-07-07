@@ -10,7 +10,7 @@ public class HealthBar : MonoBehaviour
 
 
     [Header("Health Bar settings")]
-    [SerializeField] TextMeshProUGUI healthTMP;
+    [SerializeField] TextMeshProUGUI healthTMP = default;
     [SerializeField] Slider healthSlider;    
     [SerializeField] string textFormat;
     
@@ -28,7 +28,16 @@ public class HealthBar : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        //defaults
+        if (healthSlider == null)
+        {
+            healthSlider = GetComponent<Slider>();
+        }
+
+        if (string.IsNullOrEmpty(textFormat))
+        {
+            textFormat = "{0}/{1}: {2}%";
+        }
     }
 
     // Update is called once per frame
