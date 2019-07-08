@@ -90,7 +90,7 @@ public class UIController : MonoBehaviour
         //press escape to bring up popup panel
         if (Input.GetKeyDown(KeyCode.Escape))
         {
-            //GameManager.PauseGame();
+            GameManager.Instance.PauseGame();
         }
 
         //show weapon Icon
@@ -182,10 +182,13 @@ public class UIController : MonoBehaviour
         
     }
 
+    /// <summary>
+    /// Get name of current player from the pop up window asking for name and score from GameManager
+    /// </summary>
     public void GetCurrentPlayerInfo()
     {
         scores[0].nameText.text = nameField.text;
-        scores[0].scoreText.text = score.text;
+        scores[0].scoreText.text = GameManager.Instance.Score.ToString();
         GameManager.Instance.AddScore(nameField.text, GameManager.Instance.Score);
 
     }
