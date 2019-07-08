@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public abstract class Weapon : MonoBehaviour
 {
@@ -27,8 +28,12 @@ public abstract class Weapon : MonoBehaviour
     public Transform RightElbowHint;
     public Transform LeftElbowHint;
 
+    [Header("UI elements--if any")]
+    [SerializeField] Sprite icon;
+
     //properties
     public float MaxDistance { get { return maxDist; } protected set { maxDist = value; } }
+    public Sprite Icon { get { return icon; } protected set { icon = value; } }
 
     /// <summary>
     /// derived class will determine what is done in this method

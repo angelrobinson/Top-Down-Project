@@ -9,7 +9,7 @@ using UnityEngine;
 /// </summary>
 public class WeaponPickup : Pickup
 {
-    [SerializeField] GameObject weapon;
+    [SerializeField] GameObject weapon = default;
 
 
     private void Start()

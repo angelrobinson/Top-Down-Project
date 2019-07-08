@@ -30,7 +30,7 @@ public abstract class Character : MonoBehaviour
 
     [Header("Equipment")]
     [SerializeField]protected ProjectileWeapon[] guns; //gun inventory
-    [SerializeField] protected GameObject currentWeapon;
+    protected GameObject currentWeapon;
     [SerializeField] protected GameObject weaponHolder;
 
     //ragdoll
@@ -40,7 +40,7 @@ public abstract class Character : MonoBehaviour
     //properties
     public Animator CharAnimator { get { return anim; } protected set { anim = value; } }
     public ObjectHealth MyHealth { get; set; }
-
+    
     protected void Awake()
     {
         rb = GetComponent<Rigidbody>();
@@ -66,10 +66,21 @@ public abstract class Character : MonoBehaviour
         
     }
 
-    private void Start()
+    protected void Start()
     {
         RagdollOff();
     }
+
+    public virtual void Update()
+    {
+        //if the game is paused stop characters from rotation and looking at targets
+        //as well as any NavMesh Agents and other input movements
+        if (GameManager.Paused)
+        {
+            return;
+        }
+    }
+
     #region Helper Methods
     /// <summary>
     /// Allows for movement of an object in a specific direction and speed.
@@ -123,7 +134,7 @@ public abstract class Character : MonoBehaviour
             Transform wpn = currentWeapon.transform;
             wpn.position = new Vector3(wpn.position.x, 0, wpn.position.z);
         }
-
+        
         Destroy(gameObject, 5.0f);
         //anim.SetTrigger("Death");
     }

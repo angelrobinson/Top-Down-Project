@@ -13,7 +13,18 @@ public class Projectile : MonoBehaviour
 
     private void Awake()
     {
+        //defaults
         rb = GetComponent<Rigidbody>();
+
+        if (lifespan == 0)
+        {
+            lifespan = 15;
+        }
+
+        if (distance == 0)
+        {
+            distance = 25;
+        }
 
         //set start position of where the projectile is instantiated
         startPostion = transform.position;

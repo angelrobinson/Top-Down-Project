@@ -7,10 +7,10 @@ public class Respawn : MonoBehaviour
     [Tooltip("How long do you want to wait until respawn")]
     [SerializeField] float respawnTime;
     [Tooltip("Object(s) to respawn")]
-    [SerializeField] GameObject[] spawnObj;
+    [SerializeField] GameObject[] spawnObj = default;
     float timeLeft;
     int spawnIndex = 0;
-    [SerializeField] bool randomSpawn;
+    [SerializeField] bool randomSpawn = false;
 
 
     // Start is called before the first frame update
