@@ -20,6 +20,7 @@ public class GameManager : MonoBehaviour
     public static Player Player { get; private set; }
     public static bool Paused { get; private set; }
 
+
     //normal variables
     [Header("Player Settings")]
     [SerializeField] GameObject playerPrefab;
@@ -38,11 +39,14 @@ public class GameManager : MonoBehaviour
 
 
     [Header("Player Prefs Info")]
-    [SerializeField] List<string> scores;
+    [SerializeField] List<PlayerScore> scores = new List<PlayerScore>();
 
     //Properties
     public int Lives { get { return currentLives; } private set { currentLives = value; } }
     public int Score { get; private set; }
+
+    public List<PlayerScore> Scores { get { return scores; } }
+    
 
     public string TimeLeft
     {
@@ -82,6 +86,8 @@ public class GameManager : MonoBehaviour
         minutes = gameTime;
         
         currentLives = maxLives;
+
+        GetScores();
     }
 
     // Update is called once per frame
@@ -99,14 +105,56 @@ public class GameManager : MonoBehaviour
             PauseGame();
         }
 
-
-        Timer();
+        if (!Paused)
+        {
+            Timer();
+        }
+        
 
 
     }
 
 
     #region Helper Methods
+
+
+    private void GetScores()
+    {
+        for (int i = 0; i < 5; i++)
+        {
+            AddScore(PlayerPrefs.GetString("player[" + i + "]"), PlayerPrefs.GetInt("score[" + i + "]"));
+            //PlayerPrefs.DeleteKey("player[" + i + "]");
+            //PlayerPrefs.DeleteKey("score[" + i + "]");
+        }
+
+
+    }
+
+    public void SaveScores()
+    {
+        scores.Sort(delegate (PlayerScore score1, PlayerScore score2) { return score2.playerScore - score1.playerScore; });
+        
+        //go through sorted list and save top five
+        for (int i = 0; i < 5; i++)
+        {
+            PlayerPrefs.SetString("player[" + i + "]", scores[i].playerName);
+            PlayerPrefs.SetInt("score[" + i + "]", scores[i].playerScore);
+        }
+    }
+
+    public void AddScore(PlayerScore ps)
+    {
+        scores.Add(ps);
+    }
+
+    public void AddScore(string pName, int score)
+    {
+        PlayerScore temp = new PlayerScore { playerName = pName, playerScore = score };
+        scores.Add(temp);
+    }
+    /// <summary>
+    /// Timer count down in Minutes:Seconds:Miliseconds
+    /// </summary>
     private void Timer()
     {
         if (miliseconds <= 0)
@@ -128,13 +176,17 @@ public class GameManager : MonoBehaviour
 
         if (minutes == 0 && seconds == 0)
         {
-            PauseGame();
+            Paused = true;
             OnEndGame.Invoke();
         }
     }
+
+    /// <summary>
+    /// check for current lives.  If there are lives left, respawn, otherwise end game
+    /// </summary>
     private void HandleDeath()
     {
-        //check for current lives.  If there are lives left, respawn, otherwise end game
+        
         if (currentLives > 0)
         {
             respawning = true;
@@ -190,10 +242,11 @@ public class GameManager : MonoBehaviour
     #endregion
 
     #region Embeded Classes and Structs
+    [System.Serializable]
     public struct PlayerScore
     {
-        public string name;
-        public int score;
+        public string playerName;
+        public int playerScore;
     }
     #endregion
 }

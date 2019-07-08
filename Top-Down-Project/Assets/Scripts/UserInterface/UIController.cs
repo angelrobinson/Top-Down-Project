@@ -31,11 +31,13 @@ public class UIController : MonoBehaviour
     [Header("Player Stats")]
     [SerializeField] TextMeshProUGUI lives = default;
     [SerializeField] string livesTextFormat;
+    [SerializeField] TMP_InputField nameField;
 
     [Header("Score Info")]
     [SerializeField] TextMeshProUGUI score =default;
     [SerializeField] string scoreTextFormat;
-    
+    public GameObject scoreBoard;
+    public PlayerScoreBoard[] scores;
 
     private void Awake()
     {
@@ -60,6 +62,10 @@ public class UIController : MonoBehaviour
         {
             gameTimerTextFormat = "Time Left: {0}";
         }
+
+        scoreBoard = transform.Find("ScoresPanel").gameObject;
+        scores = GetComponentsInChildren<PlayerScoreBoard>();
+        scoreBoard.SetActive(false);
     }
     private void Start()
     {
@@ -106,16 +112,21 @@ public class UIController : MonoBehaviour
     }
 
 
+
+    #region Helper Methods
     /// <summary>
     /// connect the health bar on UI to the active player with this script
     /// </summary>
     /// <param name="player"></param>
-    #region Helper Methods
     public void PlayerHealthBar(Player player)
     {
         healthBar.SetTarget(player.MyHealth);
     }
 
+    /// <summary>
+    /// Connect the Enemy health bar with the enemy being spawned
+    /// </summary>
+    /// <param name="enemy"></param>
     public void EnemyHealthBar(Enemy enemy)
     {
         HealthBar enemyHealth = Instantiate(healthPrefab);
@@ -124,13 +135,16 @@ public class UIController : MonoBehaviour
         enemyHealth.SetHealthPlacement(enemy.transform.Find("EnemyHealth"), uiCamera);
         enemyHealth.SetTarget(enemy.MyHealth);
     }
-    #endregion
+    
     /// <summary>
     /// To be called when clicking the Yes button in the panel that is shown when pressing esc key 
     /// </summary>
     public void ExitApplication()
     {
+        GameManager.Instance.SaveScores();
         SceneManager.LoadScene("StartMenu");
+
+        
     }
 
     /// <summary>
@@ -147,6 +161,23 @@ public class UIController : MonoBehaviour
     public void GameOver()
     {
         pauseEndText.text = "GAME OVER!";
+
+        for (int i = 0; i < GameManager.Instance.Scores.Count; i++)
+        {
+            scores[i+1].nameText.text = GameManager.Instance.Scores[i].playerName;
+            scores[i+1].scoreText.text = GameManager.Instance.Scores[i].playerScore.ToString();
+        }
+
         
     }
+
+    public void GetCurrentPlayerInfo()
+    {
+        scores[0].nameText.text = nameField.text;
+        scores[0].scoreText.text = score.text;
+        GameManager.Instance.AddScore(nameField.text, GameManager.Instance.Score);
+
+    }
+
+    #endregion
 }

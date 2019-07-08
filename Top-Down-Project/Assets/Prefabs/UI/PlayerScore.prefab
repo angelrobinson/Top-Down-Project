@@ -136,6 +136,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c48c8cfb2d0845541834f32ea4772c09, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerName: 
+  score: 0
+  nameText: {fileID: 1771286745806202288}
+  scoreText: {fileID: 3993843480841643209}
 --- !u!1 &5399519721252318976
 GameObject:
   m_ObjectHideFlags: 0
@@ -169,10 +173,10 @@ RectTransform:
   m_Father: {fileID: 1759082233527283879}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 530, y: -12.5}
+  m_SizeDelta: {x: 220, y: 25}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &792083739543737946
 CanvasRenderer:
@@ -271,13 +275,13 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: 0, w: 0}
   m_textInfo:
     textComponent: {fileID: 3993843480841643209}
-    characterCount: 4
+    characterCount: 0
     spriteCount: 0
     spaceCount: 0
-    wordCount: 1
+    wordCount: 0
     linkCount: 0
-    lineCount: 1
-    pageCount: 1
+    lineCount: 0
+    pageCount: 0
     materialCount: 1
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
@@ -347,10 +351,10 @@ RectTransform:
   m_Father: {fileID: 1759082233527283879}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 210, y: -12.5}
+  m_SizeDelta: {x: 420, y: 25}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &5081329269957457830
 CanvasRenderer:
@@ -449,13 +453,13 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: 0, w: 0}
   m_textInfo:
     textComponent: {fileID: 1771286745806202288}
-    characterCount: 8
+    characterCount: 0
     spriteCount: 0
-    spaceCount: 1
-    wordCount: 2
+    spaceCount: 0
+    wordCount: 0
     linkCount: 0
-    lineCount: 1
-    pageCount: 1
+    lineCount: 0
+    pageCount: 0
     materialCount: 1
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0

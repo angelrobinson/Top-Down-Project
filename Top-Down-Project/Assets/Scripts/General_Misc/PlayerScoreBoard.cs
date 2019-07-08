@@ -13,8 +13,7 @@ public class PlayerScoreBoard : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        playerName = PlayerPrefs.GetString("currentPlayer");
-        score = GameManager.Instance.Score;
+        
     }
 
     // Update is called once per frame
