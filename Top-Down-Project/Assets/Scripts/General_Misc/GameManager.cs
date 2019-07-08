@@ -75,7 +75,7 @@ public class GameManager : MonoBehaviour
 
         if (playerPrefab == null)
         {
-            playerPrefab = (GameObject) AssetDatabase.LoadAssetAtPath("Assets/Prefabs/Player.prefab", typeof(GameObject));
+            playerPrefab = Resources.Load("Prefabs/Player.prefab") as GameObject;
         }
 
         if (gameTime == 0)
@@ -92,7 +92,11 @@ public class GameManager : MonoBehaviour
 
     // Update is called once per frame
     void Update()
-    { 
+    {
+        if (Paused)
+        {
+            return;
+        }
         //if player is dead and has been deleted
         if (!Player && !respawning)
         {
@@ -105,10 +109,9 @@ public class GameManager : MonoBehaviour
             PauseGame();
         }
 
-        if (!Paused)
-        {
-            Timer();
-        }
+        
+        Timer();
+        
         
 
 
@@ -116,15 +119,16 @@ public class GameManager : MonoBehaviour
 
 
     #region Helper Methods
-
+    public void Reset()
+    {
+        Awake();
+    }
 
     private void GetScores()
     {
         for (int i = 0; i < 5; i++)
         {
             AddScore(PlayerPrefs.GetString("player[" + i + "]"), PlayerPrefs.GetInt("score[" + i + "]"));
-            //PlayerPrefs.DeleteKey("player[" + i + "]");
-            //PlayerPrefs.DeleteKey("score[" + i + "]");
         }
 
 
@@ -176,7 +180,8 @@ public class GameManager : MonoBehaviour
 
         if (minutes == 0 && seconds == 0)
         {
-            Paused = true;
+            //Paused = true;
+            PauseGame();
             OnEndGame.Invoke();
         }
     }
@@ -186,12 +191,11 @@ public class GameManager : MonoBehaviour
     /// </summary>
     private void HandleDeath()
     {
-        
+        Lives--;
         if (currentLives > 0)
         {
             respawning = true;
             Invoke("SpawnPlayer", respawnTime);
-            Lives--;
         }
         else
         {

@@ -75,13 +75,17 @@ public class UIController : MonoBehaviour
         }
         if (healthPrefab == null)
         {
-            healthPrefab = (HealthBar)AssetDatabase.LoadAssetAtPath<HealthBar>("Assets/Prefabs/WorldUI/HealthBar");
+            healthPrefab = Resources.Load("Prefabs/WorldUI/HealthBar") as HealthBar;
         }
     }
 
     // Update is called once per frame
     void Update()
     {
+        if (GameManager.Paused)
+        {
+            return;
+        }
         
         //press escape to bring up popup panel
         if (Input.GetKeyDown(KeyCode.Escape))
@@ -103,8 +107,11 @@ public class UIController : MonoBehaviour
             }
             
 
-            lives.text = string.Format(livesTextFormat, GameManager.Instance.Lives);
+            
         }
+
+
+        lives.text = string.Format(livesTextFormat, GameManager.Instance.Lives);
 
         score.text = string.Format(scoreTextFormat, GameManager.Instance.Score);
 
@@ -142,9 +149,11 @@ public class UIController : MonoBehaviour
     public void ExitApplication()
     {
         GameManager.Instance.SaveScores();
-        SceneManager.LoadScene("StartMenu");
+        Application.Quit();
+        //TODO: return to this when I figure out how to properly reset the GamaManager
+        //SceneManager.LoadScene("StartMenu");
 
-        
+
     }
 
     /// <summary>
@@ -162,10 +171,12 @@ public class UIController : MonoBehaviour
     {
         pauseEndText.text = "GAME OVER!";
 
-        for (int i = 0; i < GameManager.Instance.Scores.Count; i++)
+        lives.text = string.Format(livesTextFormat, GameManager.Instance.Lives);
+
+        for (int i = 1; i < 6; i++)
         {
-            scores[i+1].nameText.text = GameManager.Instance.Scores[i].playerName;
-            scores[i+1].scoreText.text = GameManager.Instance.Scores[i].playerScore.ToString();
+            scores[i].nameText.text = GameManager.Instance.Scores[i-1].playerName;
+            scores[i].scoreText.text = GameManager.Instance.Scores[i-1].playerScore.ToString();
         }
 
         
