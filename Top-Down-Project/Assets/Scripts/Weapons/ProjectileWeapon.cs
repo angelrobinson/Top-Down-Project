@@ -53,6 +53,8 @@ public class ProjectileWeapon : Weapon
         {
             shotsPerMinute = 100;
         }
+
+        Audio = GetComponent<AudioSource>();
     }
 
     
@@ -75,7 +77,7 @@ public class ProjectileWeapon : Weapon
         //create temp variable to be able to assign settings on the projectile
         Projectile bullet;
 
-        //
+        //instantiate bullet
         for (int i = 0; i < barrel.Length; i++)
         {
             if (bulletPrefab.Length > 1)
@@ -95,6 +97,16 @@ public class ProjectileWeapon : Weapon
             //TODO: buck shot issue fix
         }
 
+        if (Audio)
+        {
+            //play shot sound
+            Audio.PlayOneShot(shotSound);
+        }
+
+        if (MuzzleFlash)
+        {
+            MuzzleFlash.Emit(1);
+        }
         //reset the canshoot bool to false
         canShoot = false;
         //reset the timer

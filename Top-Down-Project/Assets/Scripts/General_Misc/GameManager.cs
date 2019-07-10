@@ -19,9 +19,14 @@ public class GameManager : MonoBehaviour
     public static GameManager Instance { get; private set; }
     public static Player Player { get; private set; }
     public static bool Paused { get; private set; }
+    public static AudioSource AudioSource { get; private set; }
 
 
     //normal variables
+    [Header("SFX")]
+    [SerializeField] AudioClip backgroundMusic;
+    [SerializeField] AudioClip menuMusic;
+
     [Header("Player Settings")]
     [SerializeField] GameObject playerPrefab;
     [SerializeField] List<Transform> playerSpawns = default;
@@ -61,7 +66,19 @@ public class GameManager : MonoBehaviour
     {
         Instance = this;
         Player = FindObjectOfType<Player>();
+        AudioSource = GetComponent<AudioSource>();
 
+        if (AudioSource)
+        {
+            if (backgroundMusic)
+            {
+                AudioSource.clip = backgroundMusic;
+            }
+
+            AudioSource.Play();
+        }
+
+        
         //set defaults 
         if (respawnTime == 0)
         {
