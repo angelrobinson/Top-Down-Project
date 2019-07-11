@@ -21,6 +21,11 @@ public class FollowPlayer : MonoBehaviour
         {
             offset = trans.position;
         }
+
+        if (lookAtTarget == null)
+        {
+            lookAtTarget = GameObject.FindGameObjectWithTag("Player").transform;
+        }
         
     }
 

@@ -103,10 +103,14 @@ public class ProjectileWeapon : Weapon
             Audio.PlayOneShot(shotSound);
         }
 
-        if (MuzzleFlash)
+        foreach (var item in MuzzleFlash)
         {
-            MuzzleFlash.Emit(1);
+            item.Emit(1);
         }
+        //if (MuzzleFlash)
+        //{
+        //    MuzzleFlash.Emit(1);
+        //}
         //reset the canshoot bool to false
         canShoot = false;
         //reset the timer

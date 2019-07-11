@@ -126,20 +126,20 @@ public class SettingsMenu : MonoBehaviour
         resolution.value = resolution.options.FindIndex((i) => { return i.text.Equals(current.text); });
         
         //look for value of "Master Volume", "Sound Volume", "Music Volume" in player prefs, if not there set default to Max
-        masterVol.value = PlayerPrefs.GetFloat("Master Volume", masterVol.maxValue);
-        mixer.SetFloat("MasterVol", volToDecibel.Evaluate(masterVol.value));
-        soundVol.value = PlayerPrefs.GetFloat("Sound Volume", soundVol.maxValue);
-        mixer.SetFloat("SoundVol", volToDecibel.Evaluate(soundVol.value));
-        musicVol.value = PlayerPrefs.GetFloat("Music Volume", musicVol.maxValue);
-        mixer.SetFloat("MusicVol", volToDecibel.Evaluate(musicVol.value));
+        masterVol.value = PlayerPrefs.GetFloat("Master Volume");
+        mixer.SetFloat("Master Volume", volToDecibel.Evaluate(masterVol.value));
+        soundVol.value = PlayerPrefs.GetFloat("Sound Volume");
+        mixer.SetFloat("Sound Volume", volToDecibel.Evaluate(soundVol.value));
+        musicVol.value = PlayerPrefs.GetFloat("Music Volume");
+        mixer.SetFloat("Music Volume", volToDecibel.Evaluate(musicVol.value));
         
 
         fullScreen.isOn = Screen.fullScreen;
 
-#if UNITY_EDITOR
-        EditorWindow window = UnityEditor.EditorWindow.focusedWindow;
-        window.maximized = Screen.fullScreen;
-#endif
+//#if UNITY_EDITOR
+//        EditorWindow window = UnityEditor.EditorWindow.focusedWindow;
+//        window.maximized = Screen.fullScreen;
+//#endif
 
 
         quality.value = resolution.options.FindIndex((i) => { return i.text.Equals(QualitySettings.GetQualityLevel()); });
@@ -148,7 +148,13 @@ public class SettingsMenu : MonoBehaviour
 
     void Start()
     {
-        
+        //look for value of "Master Volume", "Sound Volume", "Music Volume" in player prefs, if not there set default to Max
+        masterVol.value = PlayerPrefs.GetFloat("Master Volume");
+        mixer.SetFloat("Master Volume", volToDecibel.Evaluate(masterVol.value));
+        soundVol.value = PlayerPrefs.GetFloat("Sound Volume");
+        mixer.SetFloat("Sound Volume", volToDecibel.Evaluate(soundVol.value));
+        musicVol.value = PlayerPrefs.GetFloat("Music Volume");
+        mixer.SetFloat("Music Volume", volToDecibel.Evaluate(musicVol.value));
     }
 
 
@@ -174,13 +180,10 @@ public class SettingsMenu : MonoBehaviour
 
         //set Master Volume
         PlayerPrefs.SetFloat("Master Volume", masterVol.value);
-        mixer.SetFloat("MasterVol", volToDecibel.Evaluate(masterVol.value));
         //set Sound volume
         PlayerPrefs.SetFloat("Sound Volume", soundVol.value);
-        mixer.SetFloat("SoundVol", volToDecibel.Evaluate(soundVol.value));
-        //set musti volume
+        //set music volume
         PlayerPrefs.SetFloat("Music Volume", musicVol.value);
-        mixer.SetFloat("MusicVol", volToDecibel.Evaluate(musicVol.value + 1));
     }
     public void OnFullScreenChange()
     {
@@ -188,6 +191,21 @@ public class SettingsMenu : MonoBehaviour
         EditorWindow window = UnityEditor.EditorWindow.focusedWindow;
         window.maximized = !window.maximized;
 #endif
+    }
+
+    public void MasterVolChange()
+    {
+        mixer.SetFloat("Master Volume", volToDecibel.Evaluate(masterVol.value));
+    }
+
+    public void SoundVolChange()
+    {
+        mixer.SetFloat("Sound Volume", volToDecibel.Evaluate(soundVol.value));
+    }
+
+    public void MusicVolChange()
+    {
+        mixer.SetFloat("Music Volume", volToDecibel.Evaluate(musicVol.value));
     }
 #endregion
 }

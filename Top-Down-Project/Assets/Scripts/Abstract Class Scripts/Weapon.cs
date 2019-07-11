@@ -35,7 +35,7 @@ public abstract class Weapon : MonoBehaviour
     [SerializeField] protected AudioClip shotSound;
 
     [Header("VFX")]
-    [SerializeField] ParticleSystem muzzleFlash;
+    [SerializeField] ParticleSystem[] muzzleFlash;
     AudioSource audioSource;
 
     //properties
@@ -44,7 +44,7 @@ public abstract class Weapon : MonoBehaviour
 
     public AudioSource Audio { get { return audioSource; } protected set { audioSource = value; } }
 
-    public ParticleSystem MuzzleFlash { get { return muzzleFlash; } protected set { muzzleFlash = value; } }
+    public ParticleSystem[] MuzzleFlash { get { return muzzleFlash; } protected set { muzzleFlash = value; } }
     /// <summary>
     /// derived class will determine what is done in this method
     /// </summary>
