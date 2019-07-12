@@ -63,17 +63,23 @@ public class Enemy : Character
     {
         base.Update();
 
-        if (GameManager.Player)
-        {
-            target = GameManager.Player.transform;
-        }
-        
         //if there is not a target to move to, stop the animator and end the update method early
         //so we don't get null reference errors
         if (!target)
         {
-            agent.isStopped = true;
-            return;            
+            if (GameManager.Player)
+            {
+                target = GameManager.Player.transform;
+                agent.isStopped = false;
+                CharAnimator.enabled = true;
+            }
+            else
+            {
+                
+                agent.isStopped = true;
+                CharAnimator.enabled = false;
+                return;
+            }  
         }
         
 
