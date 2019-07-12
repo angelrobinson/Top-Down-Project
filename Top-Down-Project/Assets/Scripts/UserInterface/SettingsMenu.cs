@@ -174,7 +174,6 @@ public class SettingsMenu : MonoBehaviour
         Screen.SetResolution(resolutions[resolution.value].width,resolutions[resolution.value].height, fullScreen.isOn);
 
         //set quality
-        //TODO: not saving correctly in build
         QualitySettings.SetQualityLevel(quality.value);
 
 
