@@ -109,8 +109,14 @@ public class SettingsMenu : MonoBehaviour
         quality.AddOptions(QualitySettings.names.ToList());
         #endregion
 
-        
 
+        //look for value of "Master Volume", "Sound Volume", "Music Volume" in player prefs, if not there set default to Max
+        masterVol.value = PlayerPrefs.GetFloat("Master Volume", masterVol.maxValue);
+        mixer.SetFloat("Master Volume", volToDecibel.Evaluate(masterVol.value));
+        soundVol.value = PlayerPrefs.GetFloat("Sound Volume", soundVol.maxValue);
+        mixer.SetFloat("Sound Volume", volToDecibel.Evaluate(soundVol.value));
+        musicVol.value = PlayerPrefs.GetFloat("Music Volume", musicVol.maxValue);
+        mixer.SetFloat("Music Volume", volToDecibel.Evaluate(musicVol.value));
 
     }
 
@@ -158,10 +164,6 @@ public class SettingsMenu : MonoBehaviour
     }
 
 
-    void Update()
-    {
-        
-    }
 
     #region Helper Methods
 
