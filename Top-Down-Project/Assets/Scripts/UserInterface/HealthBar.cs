@@ -19,7 +19,6 @@ public class HealthBar : MonoBehaviour
     [SerializeField] bool trackTarget;
     [SerializeField] bool destroyWithTarget;
     [SerializeField] Vector3 placementOffset;
-    [SerializeField] Transform placementTransform;
     [SerializeField] ObjectHealth target;
     [SerializeField] Camera uiCamera;
 
@@ -44,24 +43,15 @@ public class HealthBar : MonoBehaviour
     void Update()
     {
         //set text of the health bar
-        healthTMP.text = string.Format(textFormat, target.Health, target.MaxHealth, target.HealthPercent().ToString());
+        if (!string.IsNullOrEmpty(textFormat))
+        {
+            healthTMP.text = string.Format(textFormat, target.Health, target.MaxHealth, target.HealthPercent().ToString());
+        }
+        
 
         //show the health on the slider fill image
         healthSlider.value = target.HealthPercent() / 100;
-
-        if (IsTracking)
-        {
-            if (target)
-            {
-                //placementOffset = uiCamera.WorldToScreenPoint(placementTransform.position);
-                transform.position = placementTransform.position;// + placementOffset; 
-                //transform.localPosition = placementOffset;
-            }
-            else
-            {
-                Destroy(gameObject);
-            }
-        }
+        
     }
 
     #region Helper Methods
@@ -70,9 +60,8 @@ public class HealthBar : MonoBehaviour
         target = health;
     }
 
-    public void SetHealthPlacement(Transform placement, Camera cam)
-    {
-        placementTransform = placement;
+    public void SetCamera(Camera cam)
+    {        
         uiCamera = cam;
     }
     #endregion

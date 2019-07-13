@@ -136,11 +136,9 @@ public class UIController : MonoBehaviour
     /// <param name="enemy"></param>
     public void EnemyHealthBar(Enemy enemy)
     {
-        HealthBar enemyHealth = Instantiate(healthPrefab);
-        enemyHealth.transform.SetParent(enemyHealthHolder.transform, false);
-        enemyHealth.IsTracking = true;        
-        enemyHealth.SetHealthPlacement(enemy.transform.Find("EnemyHealth"), uiCamera);
-        enemyHealth.SetTarget(enemy.MyHealth);
+        enemy.healthBar.IsTracking = true;
+        enemy.healthBar.SetCamera(uiCamera);
+        enemy.healthBar.SetTarget(enemy.MyHealth);
     }
     
     /// <summary>

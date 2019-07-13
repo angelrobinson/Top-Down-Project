@@ -16,6 +16,11 @@ public class Enemy : Character
     [SerializeField, Range(0, 1)]
     float chanceToDrop;
     bool lootDropped;
+
+    [Header("Health Bar")]
+    public HealthBar healthBar;
+
+    
     
 
     new protected void Awake()
@@ -57,6 +62,7 @@ public class Enemy : Character
     {
         base.Start();
         UIController.Instance.EnemyHealthBar(this);
+        
     }
 
     public override void Update()
