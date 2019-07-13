@@ -53,6 +53,8 @@ public class ProjectileWeapon : Weapon
         {
             shotsPerMinute = 100;
         }
+
+        Audio = GetComponent<AudioSource>();
     }
 
     
@@ -73,28 +75,57 @@ public class ProjectileWeapon : Weapon
     public override void PullTrigger()
     {
         //create temp variable to be able to assign settings on the projectile
-        Projectile bullet;
 
-        //
+        //instantiate bullet
+        Projectile bullet;
         for (int i = 0; i < barrel.Length; i++)
         {
             if (bulletPrefab.Length > 1)
             {
-                bullet = Instantiate(bulletPrefab[i], barrel[i].position, barrel[i].rotation * Quaternion.Euler(Random.onUnitSphere * spread)) as Projectile;
+                bullet = Instantiate(bulletPrefab[i]);
+                bullet.transform.position = barrel[i].position;
+                bullet.transform.rotation = barrel[i].rotation * Quaternion.Euler(Random.onUnitSphere * spread);
             }
             else
             {
-                bullet = Instantiate(bulletPrefab[0], barrel[i].position, barrel[i].rotation * Quaternion.Euler(Random.onUnitSphere * spread)) as Projectile;
+                bullet = Instantiate(bulletPrefab[0]);
+                bullet.transform.position = barrel[0].position;
+                bullet.transform.rotation = barrel[0].rotation * Quaternion.Euler(Random.onUnitSphere * spread);
+            }
+            
+
+            foreach (Transform item in bullet.transform)
+            {
+                Projectile bullet1 = item.gameObject.GetComponent<Projectile>();
+                if (bullet1)
+                {
+                    bullet1.Damage = damage / bullet.transform.childCount;
+                    bullet1.gameObject.layer = gameObject.layer;
+                }                
             }
 
-            //add damage, force and layer to the bullet
-            bullet.Damage = damage;
-            bullet.rb.AddRelativeForce(Vector3.forward * bulletVelocity, ForceMode.VelocityChange);
-            bullet.gameObject.layer = gameObject.layer;
+            if (bullet.Damage == 0)
+            {
+                bullet.Damage = damage;
+                bullet.gameObject.layer = gameObject.layer;
+            }
 
-            //TODO: buck shot issue fix
+            bullet.rb.AddRelativeForce(transform.forward * bulletVelocity, ForceMode.VelocityChange);
         }
 
+
+        if (Audio)
+        {
+            //play shot sound
+            Audio.PlayOneShot(shotSound);
+        }
+
+        //trigger any particle effects that we have reference to
+        foreach (var item in MuzzleFlash)
+        {
+            item.Emit(1);
+        }
+        
         //reset the canshoot bool to false
         canShoot = false;
         //reset the timer

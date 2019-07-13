@@ -31,10 +31,20 @@ public abstract class Weapon : MonoBehaviour
     [Header("UI elements--if any")]
     [SerializeField] Sprite icon;
 
+    [Header("SFX")]
+    [SerializeField] protected AudioClip shotSound;
+
+    [Header("VFX")]
+    [SerializeField] ParticleSystem[] muzzleFlash;
+    AudioSource audioSource;
+
     //properties
     public float MaxDistance { get { return maxDist; } protected set { maxDist = value; } }
     public Sprite Icon { get { return icon; } protected set { icon = value; } }
 
+    public AudioSource Audio { get { return audioSource; } protected set { audioSource = value; } }
+
+    public ParticleSystem[] MuzzleFlash { get { return muzzleFlash; } protected set { muzzleFlash = value; } }
     /// <summary>
     /// derived class will determine what is done in this method
     /// </summary>

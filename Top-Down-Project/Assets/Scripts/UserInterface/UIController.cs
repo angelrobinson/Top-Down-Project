@@ -31,7 +31,7 @@ public class UIController : MonoBehaviour
     [Header("Player Stats")]
     [SerializeField] TextMeshProUGUI lives = default;
     [SerializeField] string livesTextFormat;
-    [SerializeField] TMP_InputField nameField;
+    [SerializeField] TMP_InputField nameField = default;
 
     [Header("Score Info")]
     [SerializeField] TextMeshProUGUI score =default;
@@ -150,6 +150,9 @@ public class UIController : MonoBehaviour
     {
         GameManager.Instance.SaveScores();
         Application.Quit();
+#if UNITY_EDITOR
+        UnityEditor.EditorApplication.isPlaying = false;
+#endif
         //TODO: return to this when I figure out how to properly reset the GamaManager
         //SceneManager.LoadScene("StartMenu");
 
